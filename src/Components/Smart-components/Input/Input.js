@@ -1,6 +1,11 @@
 import React from "react";
 
-const Input = ({ value, setValue, label, type, id, onChange }) => {
+const Input = ({ value, setValue, label, type, id, disabled, ...props }) => {
+
+  function handleChange({target}){
+    setValue(target.value)
+  }
+
   return (
     <label>
       {label}<br/>
@@ -8,8 +13,9 @@ const Input = ({ value, setValue, label, type, id, onChange }) => {
         id={id}
         type={type}
         value={value}
-        setValue={setValue}
-        onChange={onChange}
+        onChange={handleChange}
+        disabled={disabled}
+        {...props}
       />
     </label>
   );

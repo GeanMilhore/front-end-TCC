@@ -1,0 +1,83 @@
+.cadastroItem{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 30px;
+    height: 100%;
+    max-height: 80%;
+}
+
+.dialog{
+    height: 100%;
+    width: 100%!important;
+    max-width: 80%!important;
+    margin: 30px;
+    max-height: 95%;
+    
+}
+
+.dialog .modal-content{
+    height: 100%;
+}
+
+.labelClass{
+    display: flex;
+    align-items: center;
+}
+
+.cadastroItem img{
+    width: 100%;
+    max-width: 25%;
+}
+.switchButton{
+    margin-left: 2.5rem;
+}
+
+.imgItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 40vh;
+    min-width: 145px;
+    background-color: #f279003f;
+    border-radius: 5px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.form label{
+    font-size: 18px;
+    margin: .6rem .8rem;
+}
+
+.form input{
+    width: 80%;
+}
+
+.modalFooter{
+    justify-content: flex-start!important;
+}
+
+.modalFooter button{
+    background-color: #f279003f;
+    color: black;
+    border-color: white;
+    font-size: 15pt;
+}
+
+.modalFooter button:hover{
+    background-color: rgb(233, 166, 166);
+    border: none;
+}
+
+.modalFooter button:focus{
+    background-color: rgb(211, 139, 139);
+    border: none;
+}
+

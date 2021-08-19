@@ -1,10 +1,10 @@
 import React from "react";
 import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import CadastrarItem from "./Components/Cadastros/CadastrarItem";
-import Doar from "./Components/Doar/Doar";
+import CadastrarItem from "./Routes/Cadastros/CadastrarItem";
+import Doar from "./Routes/Doar/Doar";
 import Header from "./Components/Header/Header";
-import Home from "./Components/Home/Home";
+import Home from "./Routes/Home/Home";
 
 const App = () => {
   return (

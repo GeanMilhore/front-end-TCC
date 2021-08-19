@@ -6,23 +6,15 @@ const Header = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Link to="/">
-        <Navbar.Brand href="#home">Artemis</Navbar.Brand>
-        </Link>
+        <Link to="/">Artemis</Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto m-auto">
-            <Link to="/">
-              <Nav.Link href="#home">Home</Nav.Link>
-            </Link>
-            <Link to="/doar">
-              <Nav.Link href="#doar" >Doar</Nav.Link>
-            </Link>
-            <Link to="/cadastrarItem">
-              <Nav.Link href="#cadastrarItem">CadastrarItem</Nav.Link>
-            </Link>
+            <Link to="/">Home</Link>
+            <Link to="/doar">Doar</Link>
+            <Link to="/cadastrarItem">CadastrarItem</Link>
           </Nav>
-        </Navbar.Collapse> 
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
