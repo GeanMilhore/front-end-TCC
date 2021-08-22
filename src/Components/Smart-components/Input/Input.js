@@ -1,23 +1,35 @@
 import React from "react";
 
-const Input = ({ value, setValue, label, type, id, disabled, ...props }) => {
-
-  function handleChange({target}){
-    setValue(target.value)
-  }
-
+const Input = ({
+  id,
+  label,
+  value,
+  type,
+  disabled,
+  onChange,
+  onBlur,
+  error,
+  placeholder
+}) => {
+  
   return (
-    <label>
-      {label}<br/>
-      <input
-        id={id}
-        type={type}
-        value={value}
-        onChange={handleChange}
-        disabled={disabled}
-        {...props}
-      />
-    </label>
+    <>
+      <label>
+        {label}
+        <br />
+        <input
+          id={id}
+          name={id}
+          type={type}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+          disabled={disabled}
+          placeholder={placeholder}
+        />
+      {error && <p style={{color: 'red'}}>{error}</p> }
+      </label>
+    </>
   );
 };
 
