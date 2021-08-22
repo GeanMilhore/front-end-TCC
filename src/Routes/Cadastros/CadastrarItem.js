@@ -5,31 +5,31 @@ import Input from "../../Components/Smart-components/Input/Input.js";
 import Switch from "../../Components/Smart-components/Switch/Switch";
 import imageItem from "../../resources/images/add-item-image.png";
 import axios from "axios";
-import useForm from '../../Custom-Hooks/UseForm'
+import useForm from "../../Custom-Hooks/UseForm";
 
 const CadastrarItem = () => {
-  const nome = useForm()
-  const desc = useForm()
-  const qtd = useForm()
+  const nome = useForm();
+  const desc = useForm();
+  const qtd = useForm();
   const [checked, setChecked] = React.useState(false);
   const [img, setImg] = React.useState(null);
-  const [errorImg, setErrorImg] = React.useState(false)
+  const [errorImg, setErrorImg] = React.useState(false);
   const [preview, setPreview] = React.useState(null);
   const inputFile = React.useRef();
 
   React.useEffect(() => {
     if (checked) {
       qtd.setValue(1);
-    } else if(qtd.value < 2){
-      qtd.setValue(2)
+    } else if (qtd.value < 2) {
+      qtd.setValue(2);
     }
   }, [checked, qtd]);
 
   React.useEffect(() => {
-    if(errorImg){
-      validaImagem(img)
+    if (errorImg) {
+      validaImagem(img);
     }
-  }, [img])
+  }, [img, errorImg]);
 
   function fileSelectedHandler(event) {
     setImg(event.target.files[0]);
@@ -43,43 +43,45 @@ const CadastrarItem = () => {
     }
   }
 
-  function validaImagem(img){
-      if(!img){
-        setErrorImg('! Adicione uma foto !')
-        return false
-      } else {
-        setErrorImg(null)
-        return true
-      }
+  function validaImagem(img) {
+    if (!img) {
+      setErrorImg("! Adicione uma foto !");
+      return false;
+    } else {
+      setErrorImg(null);
+      return true;
+    }
   }
-
 
   function handleFormSubmit() {
     let formData = new FormData(); //formdata object
 
-    if(nome.validate() && qtd.validate() && desc.validate() && validaImagem(img)){
-      console.log('enviou')
+    if (
+      nome.validate() &&
+      qtd.validate() &&
+      desc.validate() &&
+      validaImagem(img)
+    ) {
+      formData.append("nome", nome.value); //append the values with key, value pair
+      formData.append("quantidade", qtd.value);
+      formData.append("descricao", desc.value);
+      formData.append("imagem", img);
+
+      const config = {
+        headers: { "content-type": "multipart/form-data" },
+      };
+
+      axios
+        .post('url/api/CadastroItens', formData, config)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
-      console.log('vish kk')
+      console.log("vish kk");
     }
-
-    formData.append("nome", nome.value); //append the values with key, value pair
-    formData.append("quantidade", qtd.value);
-    formData.append("descricao", desc.value);
-    formData.append("imagem", img);
-
-    const config = {
-      headers: { "content-type": "multipart/form-data" },
-    };
-
-    // axios
-    //   .post(url linda da manu aqui, formData, config)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   }
 
   return (
@@ -100,13 +102,11 @@ const CadastrarItem = () => {
 
         <Modal.Body>
           <div className={style.cadastroItem}>
-            <form className={style.form} onSubmit={(event) => event.preventDefault()}>
-              <Input
-                id="nome"
-                label="Nome do Item:"
-                type="text"
-                {...nome}
-              />
+            <form
+              className={style.form}
+              onSubmit={(event) => event.preventDefault()}
+            >
+              <Input id="nome" label="Nome do Item:" type="text" {...nome} />
               <div className={style.divUnicQtd}>
                 <Switch
                   id="unico"
@@ -128,12 +128,7 @@ const CadastrarItem = () => {
                 />
               </div>
 
-              <Input
-                id="desc"
-                label="Descrição:"
-                type="textarea"
-                {...desc}
-              />
+              <Input id="desc" label="Descrição:" type="textarea" {...desc} />
             </form>
             <div
               className={style.imgItem}
@@ -154,7 +149,7 @@ const CadastrarItem = () => {
                 alt="símbolo de galeria"
               />
             </div>
-            {errorImg ? <p style={{color: 'red'}}>{errorImg}</p> : ''}
+            {errorImg ? <p style={{ color: "red" }}>{errorImg}</p> : ""}
           </div>
         </Modal.Body>
 
@@ -166,16 +161,23 @@ const CadastrarItem = () => {
               width: "45%",
             }}
           >
-            <Button variant="secondary" onClick={() => {
-              nome.setValue('')
-              qtd.setValue(2)
-              setChecked(null)
-              desc.setValue('')
-              setImg(null)
-              setPreview(false)
-              if(checked) document.querySelector('.react-switch-bg').click()
-            }}>Limpar</Button>
-            <Button variant="primary" onClick={() => handleFormSubmit()}>Cadastrar</Button>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                nome.setValue("");
+                qtd.setValue(2);
+                setChecked(null);
+                desc.setValue("");
+                setImg(null);
+                setPreview(false);
+                if (checked) document.querySelector(".react-switch-bg").click();
+              }}
+            >
+              Limpar
+            </Button>
+            <Button variant="primary" onClick={() => handleFormSubmit()}>
+              Cadastrar
+            </Button>
           </div>
         </Modal.Footer>
       </Modal.Dialog>
