@@ -1,10 +1,11 @@
 import React from "react";
 import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import CadastrarItem from "./Routes/Cadastros/CadastrarItem";
+import CadastrarItem from "./Routes/Cadastros/CadastroItemUsuario/CadastrarItem.js";
 import Doar from "./Routes/Doar/Doar";
 import Header from "./Components/Header/Header";
 import Home from "./Routes/Home/Home";
+import CadastrarUsuario from "./Routes/Cadastros/CadastrarUsuario/CadastrarUsuario";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/doar" element={<Doar />} />
         <Route path="/cadastrarItem" element={<CadastrarItem />} />
+        <Route path="/cadastro/usuario" element={<CadastrarUsuario />} />
       </Routes>
     </BrowserRouter>
   )

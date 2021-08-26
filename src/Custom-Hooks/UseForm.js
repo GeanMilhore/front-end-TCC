@@ -4,11 +4,24 @@ const types = {
   cep: {
     regex: /^\d{5}-?\d{3}$/,
     messageError: "Cep ínvalido!",
+    teste: ""
   },
   email: {
     regex:
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     messageError: "E-mail ínvalido!",
+    teste: ""
+  },
+  cpf: {
+    regex: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
+    messageError: "CPF ínvalido!",
+    teste: "___.___.___-__"
+  },
+
+  telefone: {
+    regex: /^(?:\+)[0-9]{2}\s?(?:\()[0-9]{2}(?:\))\s?[0-9]{4,5}(?:-)[0-9]{4}$/,
+    teste: "+__ (__) _____-____",
+    messageError: "Número de Telefone ínvalido"
   }
 };
 
@@ -17,7 +30,10 @@ const UseForm = (type) => {
   const [error, setError] = React.useState(null);
 
   function validate(value) {
-    if (value.length === 0) {
+    if (value.length === 0 ) {
+      setError("! Preencha o Campo Vazio !");
+      return false;
+    } else if(types[type] && value === types[type].teste){
       setError("! Preencha o Campo Vazio !");
       return false;
     } else if (types[type] && !types[type].regex.test(value)) {
@@ -38,6 +54,7 @@ const UseForm = (type) => {
     value,
     setValue,
     error,
+    setError,
     onChange,
     onBlur: () => validate(value),
     validate: () => validate(value),

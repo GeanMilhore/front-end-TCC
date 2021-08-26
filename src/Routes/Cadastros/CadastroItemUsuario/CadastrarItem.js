@@ -1,11 +1,11 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import style from "./CadastrarItem.module.css";
-import Input from "../../Components/Smart-components/Input/Input.js";
-import Switch from "../../Components/Smart-components/Switch/Switch";
-import imageItem from "../../resources/images/add-item-image.png";
+import Input from "../../../Components/Smart-components/Input/Input.js";
+import Switch from "../../../Components/Smart-components/Switch/Switch";
+import imageItem from "../../../resources/images/add-item-image.png";
 import axios from "axios";
-import useForm from "../../Custom-Hooks/UseForm";
+import useForm from "../../../Custom-Hooks/UseForm";
 
 const CadastrarItem = () => {
   const nome = useForm();

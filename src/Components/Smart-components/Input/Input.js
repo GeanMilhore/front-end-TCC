@@ -1,4 +1,5 @@
 import React from "react";
+import InputMask from 'react-input-mask'
 
 const Input = ({
   id,
@@ -9,7 +10,9 @@ const Input = ({
   onChange,
   onBlur,
   error,
-  placeholder
+  placeholder,
+  maxLength,
+  mask
 }) => {
   
   return (
@@ -17,7 +20,7 @@ const Input = ({
       <label>
         {label}
         <br />
-        <input
+        <InputMask
           id={id}
           name={id}
           type={type}
@@ -26,6 +29,8 @@ const Input = ({
           onBlur={onBlur}
           disabled={disabled}
           placeholder={placeholder}
+          maxLength={maxLength}
+          mask={mask}
         />
       {error && <p style={{color: 'red'}}>{error}</p> }
       </label>
