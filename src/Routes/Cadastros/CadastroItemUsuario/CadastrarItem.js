@@ -32,12 +32,12 @@ const CadastrarItem = () => {
   }, [img, errorImg]);
 
   function fileSelectedHandler(event) {
-    setImg(event.target.files[0]);
 
     if (event.target.files && event.target.files[0]) {
       var file = new FileReader();
       file.onload = function (e) {
         setPreview(e.target.result);
+        setImg(e.target.result)
       };
       file.readAsDataURL(event.target.files[0]);
     }
@@ -72,7 +72,7 @@ const CadastrarItem = () => {
       };
 
       axios
-        .post('url/api/CadastroItens', formData, config)
+        .post('http://192.168.1.103:8000/url/api/CadastroItens', formData, config)
         .then((response) => {
           console.log(response);
         })
@@ -80,7 +80,7 @@ const CadastrarItem = () => {
           console.log(error);
         });
     } else {
-      console.log("vish kk");
+      console.log("Formulário com Campos Incorretos");
     }
   }
 

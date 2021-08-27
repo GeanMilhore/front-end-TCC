@@ -4,7 +4,7 @@ const types = {
   cep: {
     regex: /^\d{5}-?\d{3}$/,
     messageError: "Cep ínvalido!",
-    teste: ""
+    teste: "_____-___"
   },
   email: {
     regex:
@@ -30,6 +30,8 @@ const UseForm = (type) => {
   const [error, setError] = React.useState(null);
 
   function validate(value) {
+    if (type === false) return true
+
     if (value.length === 0 ) {
       setError("! Preencha o Campo Vazio !");
       return false;

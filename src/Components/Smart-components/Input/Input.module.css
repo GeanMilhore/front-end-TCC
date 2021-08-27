@@ -1,0 +1,10 @@
+
+.placeholderOK::placeholder{
+    opacity: .7;
+    color: gray;
+}
+
+.placeholderError::placeholder{
+    color:red;
+    opacity: .7;
+}

@@ -20,7 +20,7 @@ const Header = () => {
                 <Link to="/cadastro/Instituicao">Instituição</Link>
               </div>
             }
-            <Link to="/login">Entrar</Link>
+            <Link to="/entrar">Entrar</Link>
             {/* <Link to="/cadastrarItem">CadastrarItem</Link> */}
           </Nav>
         </Navbar.Collapse>

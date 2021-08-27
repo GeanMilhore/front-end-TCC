@@ -28,11 +28,11 @@ const Input = ({
           onChange={onChange}
           onBlur={onBlur}
           disabled={disabled}
-          placeholder={placeholder}
           maxLength={maxLength}
           mask={mask}
+          placeholder={placeholder}
         />
-      {error && <p style={{color: 'red'}}>{error}</p> }
+        {error && <><br/><span style={{color: 'red'}}>{error}</span></>}
       </label>
     </>
   );
