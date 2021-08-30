@@ -17,11 +17,15 @@ const types = {
     messageError: "CPF ínvalido!",
     teste: "___.___.___-__"
   },
-
   telefone: {
     regex: /^(?:\+)[0-9]{2}\s?(?:\()[0-9]{2}(?:\))\s?[0-9]{4,5}(?:-)[0-9]{4}$/,
     teste: "+__ (__) _____-____",
-    messageError: "Número de Telefone ínvalido"
+    messageError: "Número de Telefone ínvalido!"
+  },
+  cnpj: {
+    regex: /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/,
+    teste: "__.___.___/____-__",
+    messageError: "Cnpj Ínvalido!",
   }
 };
 

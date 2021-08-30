@@ -32,7 +32,7 @@ const Input = ({
           mask={mask}
           placeholder={placeholder}
         />
-        {error && <><br/><span style={{color: 'red'}}>{error}</span></>}
+      {error && <><span style={{color: 'red'}}>{error}</span></>}
       </label>
     </>
   );

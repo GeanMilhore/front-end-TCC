@@ -8,9 +8,28 @@ import DefaultImage2 from "../../../resources/images/cadastrar-usuario-pt2.png";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 
-const CadastrarUsuario = () => {
+const usuario = {
+  doador: {
+    titulo: 'Usuário',
+    labelNome: 'Nome: ',
+    labelDocumento: 'CPF:',
+    documento: 'cpf',
+    labelData: 'Data de Nascimento:',
+    docMask: "999.999.999-99"
+  },
+  instituicao: {
+    titulo: 'Instituição',
+    labelNome: 'Nome Fantasia: ',
+    labelDocumento: 'CNPJ:',
+    documento: 'cnpj',
+    labelData: 'Data de Criação:',
+    docMask: "99.999.999/9999-99"
+  }
+}
+
+const CadastrarUsuario = ({ tipo }) => {
   const nome = useForm();
-  const cpf = useForm("cpf");
+  const documento = useForm(usuario[tipo].documento);
   const date = useForm();
   const telefone = useForm("telefone");
   const email = useForm("email");
@@ -78,7 +97,7 @@ const CadastrarUsuario = () => {
 
     if(
       nome.validate() &&
-      cpf.validate() &&
+      documento.validate() &&
       date.validate() &&
       telefone.validate() && 
       email.validate() &&
@@ -93,7 +112,7 @@ const CadastrarUsuario = () => {
       estado.validate()
     ){
       formData.append("nome",nome.value)
-      formData.append("cpf",cpf.value)
+      formData.append(usuario[tipo].documento,documento.value)
       formData.append("date",date.value)
       formData.append("telefone",telefone.value)
       formData.append("email",email.value)
@@ -110,7 +129,9 @@ const CadastrarUsuario = () => {
         headers: { "content-type": "multipart/form-data" },
       }
 
-      axios.post('url', formData, config)
+      const url = `https://127.0.0.1.103:3000/api/Cadastrar${tipo}`
+
+      axios.post(url, formData, config)
       .then((response) => {
         console.log(response)
       }).catch((error) => {
@@ -125,7 +146,7 @@ const CadastrarUsuario = () => {
     <>
       <Modal.Dialog className={style.ContainerModal}>
         <Modal.Header>
-          <Modal.Title>Cadastrar Usuário</Modal.Title>
+          <Modal.Title>Cadastrar {usuario[tipo].titulo}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div
@@ -135,22 +156,22 @@ const CadastrarUsuario = () => {
             <form action="" className={style.camposUsuario}>
               <Input
                 id="nome"
-                label="Nome:"
+                label={usuario[tipo].labelNome}
                 type="text"
                 {...nome}
                 className={style.input100}
               />
               <div className={style.conjuntoInput}>
                 <Input
-                  id="cpf"
-                  label="CPF:"
+                  id="documento"
+                  label={usuario[tipo].labelDocumento}
                   type="text"
-                  mask="999.999.999-99"
-                  {...cpf}
+                  mask={usuario[tipo].docMask}
+                  {...documento}
                 />
                 <Input
                   id="date"
-                  label="date de Nascimento:"
+                  label={usuario[tipo].labelData}
                   type="date"
                   {...date}
                 />

@@ -1,26 +1,19 @@
 import React from "react";
-import './App.css'
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import CadastrarItem from "./Routes/Cadastros/CadastroItemUsuario/CadastrarItem.js";
-import Doar from "./Routes/Doar/Doar";
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
 import Header from "./Components/Header/Header";
-import Home from "./Routes/Home/Home";
-import Login from "./Routes/Logar/Login";
-import CadastrarUsuario from "./Routes/Cadastros/CadastrarUsuario/CadastrarUsuario";
+import Routes from "./Routes";
+import { AuthProvider } from "./Context/AuthContext";
 
 const App = () => {
   return (
     <BrowserRouter>
-    <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/doar" element={<Doar />} />
-        <Route path="/cadastrarItem" element={<CadastrarItem />} />
-        <Route path="/cadastro/usuario" element={<CadastrarUsuario />} />
-        <Route path="/entrar" element={<Login />} />
-      </Routes>
+      <AuthProvider>
+        <Header />
+        <Routes />
+      </AuthProvider>
     </BrowserRouter>
-  )
+  );
 };
 
 export default App;
