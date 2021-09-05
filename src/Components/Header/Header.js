@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Context } from "../../Context/AuthContext";
+import { UserContext } from "../../UserContext";
 
 const Header = () => {
   const [modalCadastro, setModalCadastro] = React.useState(false)
-  const {authenticated} = React.useContext(Context)
+  const {logado } = React.useContext(UserContext)
 
   return (
     <>
@@ -16,15 +16,15 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav" >
           <Nav className="me-auto m-auto" style={{padding: '11px'}}>
             <Link to="/">Home</Link>
-            <Link to="" onMouseOver={() => setModalCadastro(true)} >Cadastro</Link>
+            {!logado && <Link to="" onMouseOver={() => setModalCadastro(true)} >Cadastro</Link>}
             {modalCadastro && 
               <div style={{display: 'flex', flexDirection: 'column'}}>
-                <Link to="/cadastro/Usuario">Usuário</Link>
-                <Link to="/cadastro/Instituicao">Instituição</Link>
+                <Link to="/login/criaDoador">Usuário</Link>
+                <Link to="/login/criaOng">Instituição</Link>
               </div>
             }
-            {!authenticated && <Link to="/entrar">Entrar</Link>}
-            {authenticated && <Link to="/MinhaConta">MinhaConta</Link>}
+            {!logado && <Link to="/login">Entrar</Link>}
+            {logado && <Link to="/conta">MinhaConta</Link>}
             {/* <Link to="/cadastrarItem">CadastrarItem</Link> */}
           </Nav>
         </Navbar.Collapse>

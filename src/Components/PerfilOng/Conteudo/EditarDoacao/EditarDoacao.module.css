@@ -1,0 +1,130 @@
+.cadastroItem{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 30px;
+    height: 100%;
+    max-height: 80%;
+}
+
+.dialog{
+    height: 100%;
+    width: 100%!important;
+    max-width: 80%!important;
+    margin: 30px;
+    max-height: 95%;
+    
+}
+
+.imgItem{
+    padding: 0;
+    margin: 0;
+}
+
+.dialog .modal-content{
+    height: 100%;
+}
+
+.labelClass{
+    display: flex;
+    align-items: center;
+}
+
+.switchButton{
+    margin-left: 1rem;
+}
+
+.imgItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    width: 35%;
+    margin-left: 4rem;
+    max-width: 70%;
+}
+
+.imgItem img{
+    width: 100%;
+    height: 100%;
+    min-width: 175px;
+}
+
+.imgAlterar{
+    position: absolute;
+    display: hidden;
+    color: transparent;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.imgAlterar:hover{
+    opacity: 1;
+    display: flex;
+    color: white;
+    font-weight: bolder;
+    font-size: 100%;
+    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.form label{
+    font-size: 18px;
+    margin: .6rem .8rem;
+}
+
+.form input{
+    width: 100%;
+}
+
+.divUnicQtd{
+    display: flex;
+    width: 100%;
+    max-width: 82%;
+}
+
+.divUnicQtd label{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%!important;
+    font-size: 12pt;
+}
+
+.divUnicQtd label input{
+    width: 60px;
+}
+
+
+.modalFooter{
+    justify-content: flex-start!important;
+}
+
+.modalFooter button{
+    background-color: #f279003f;
+    color: black;
+    border-color: white;
+    font-size: 18pt;
+}
+
+.modalFooter button:hover{
+    background-color: rgb(233, 166, 166);
+    border: none;
+}
+
+.modalFooter button:focus{
+    background-color: rgb(211, 139, 139);
+    border: none;
+}
+

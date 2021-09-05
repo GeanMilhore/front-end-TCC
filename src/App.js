@@ -3,15 +3,15 @@ import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import Routes from "./Routes";
-import { AuthProvider } from "./Context/AuthContext";
+import { UserStorage } from "./UserContext";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <AuthProvider>
+      <UserStorage>
         <Header />
         <Routes />
-      </AuthProvider>
+      </UserStorage>
     </BrowserRouter>
   );
 };

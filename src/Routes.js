@@ -1,23 +1,23 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Context } from "./Context/AuthContext.js";
 
-import CadastrarItem from "./Routes/Cadastros/CadastroItemUsuario/CadastrarItem.js";
-import Doar from "./Routes/Doar/Doar";
-import Home from "./Routes/Home/Home";
-import Login from "./Routes/Logar/Login";
-import CadastrarUsuario from "./Routes/Cadastros/CadastrarUsuario/CadastrarUsuario";
-import MinhaConta from "./Routes/Privado/MinhaConta";
+import Home from "./Components/Home/Home";
+import Login from "./Components/Login/Login"
+import { UserContext } from "./UserContext";
+import PerfilOng from './Components/PerfilOng/PerfilOng'
+import PerfilDoador from './Components/PerfilDoador/PerfilDoador'
+import EditarOng from "./Components/Login/EditarOng/EditarOng";
+import EditarDoador from './Components/Login/EditarDoador/EditarDoador'
 
-function CustomRoute({ isPrivate, ...rest }) {
-  const { authenticated, loading } = React.useContext(Context);
+export function CustomRoute({ isPrivate, ...rest }) {
+  const { logado, loading } = React.useContext(UserContext);
 
   if(loading){
     return <h1>Loading...</h1>
   }
 
-  if(isPrivate && !authenticated){
-    window.location = '/entrar'
+  if(isPrivate && !logado){
+    window.location = '/login'
     return null
   }
 
@@ -25,15 +25,18 @@ function CustomRoute({ isPrivate, ...rest }) {
 }
 
 export default function Router() {
+
+  const { dadosUsuario, loading } = React.useContext(UserContext)
+
+  if(loading) return <p>Loading...</p>
   return (
     <Routes>
       <CustomRoute path="/" element={<Home />} />
-      <CustomRoute path="/doar" element={<Doar />} />
-      <CustomRoute isPrivate path="/cadastrarItem" element={<CadastrarItem />} />
-      <CustomRoute path="/cadastro/usuario" element={<CadastrarUsuario tipo={'doador'}/>} />
-      <CustomRoute path="/cadastro/Instituicao" element={<CadastrarUsuario tipo={'instituicao'} />} />
-      <CustomRoute path="/entrar" element={<Login />} />
-      <CustomRoute isPrivate path="/MinhaConta" element={<MinhaConta />} />
+      <CustomRoute path="/login/*" element={<Login />} />
+      {dadosUsuario &&  dadosUsuario.tipo === 'instituicao' && <CustomRoute isPrivate path="/conta/*" element={<PerfilOng />} />}
+      {dadosUsuario && dadosUsuario.tipo === 'instituicao' && <CustomRoute isPrivate path="/conta/editar" element={<EditarOng />} />}
+      {dadosUsuario &&  dadosUsuario.tipo === 'doador' && <CustomRoute isPrivate path="/conta/*" element={<PerfilDoador />} />}
+      {dadosUsuario &&  dadosUsuario.tipo === 'doador' && <CustomRoute isPrivate path="/conta/editar" element={<EditarDoador />} />}
     </Routes>
   );
 }
