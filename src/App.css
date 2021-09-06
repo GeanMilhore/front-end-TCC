@@ -7,6 +7,37 @@
 }
 
 html, body, #root{
-    height: 97%;
+    height: 90%;
     width: 100%;
+}
+
+html{
+    margin-top: 3.9rem
+}
+
+
+.animeLeft {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: animeLeft .3s forwards;
+}
+
+@keyframes animeLeft {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
+.animeTop {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: animeTop .3s forwards;
+}
+
+@keyframes animeTop {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
 }

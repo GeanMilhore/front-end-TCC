@@ -118,7 +118,7 @@ const CadastrarOng = () => {
 
   return (
     <>
-      <Modal.Dialog className={style.ContainerModal}>
+      <Modal.Dialog className={style.ContainerModal + ` animeLeft`}>
         <Modal.Header>
           <Modal.Title>Cadastrar ONG</Modal.Title>
         </Modal.Header>
@@ -126,6 +126,7 @@ const CadastrarOng = () => {
           <div
             className={style.content}
             style={{ display: partOne ? "flex" : "none" }}
+            className={`animeLeft`}
           >
             <form action="" className={style.camposUsuario}>
               <Input
@@ -198,7 +199,7 @@ const CadastrarOng = () => {
             </div>
           </div>
           <div
-            className={style.content}
+            className={style.content +` animeLeft`}
             style={{ display: !partOne ? "flex" : "none" }}
           >
             <div className={style.containerImg}>
@@ -215,7 +216,7 @@ const CadastrarOng = () => {
                 }}
               ></div>
             </div>
-            <form action="" className={style.camposUsuario}>
+            <form action="" className={style.camposUsuario + ` animeLeft`}>
               <Input
                 id="cep"
                 label="CEP:"

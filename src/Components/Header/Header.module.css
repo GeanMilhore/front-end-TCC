@@ -1,0 +1,31 @@
+.navbar{
+    z-index: 3000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: .2px solid #fc9a38cc ;
+    background-color: #e28f3c!important;
+    height: 10vh;
+}
+
+.navbar a{
+    text-decoration: none;
+    color: black;
+    top: 0;
+    transition: all .4s;
+}
+
+.navbar a:hover{
+    text-decoration: none;
+    color: white;
+    transform: translateY(-3px);
+    border-bottom: white 3px solid;
+}
+
+.navbarContent{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    max-width: 50%;
+}

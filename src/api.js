@@ -1,8 +1,8 @@
-export const API_URL = "https://dogsapi.origamid.dev/json";
+export const API_URL = "http://localhost:8080";
 
 export function TOKEN_POST(body) {
   return {
-    url: API_URL + "/jwt-auth/v1/token",
+    url: API_URL + "/login",
     options: {
       method: "POST",
       headers: {
@@ -15,7 +15,7 @@ export function TOKEN_POST(body) {
 
 export function TOKEN_VALIDATE_POST(token) {
   return {
-    url: API_URL + "/jwt-auth/v1/token/validate",
+    url: API_URL + "/login/validate",
     options: {
       method: "POST",
       headers: {
@@ -25,14 +25,45 @@ export function TOKEN_VALIDATE_POST(token) {
   };
 }
 
-export function USER_GET(token) {
+
+
+
+export function PEGA_DADOS_USUARIO(token) {
   return {
-    url: API_URL + "/api/user",
+    url: API_URL + "/usuario",
     options: {
       method: "GET",
       headers: {
-        Authorization: "Bearer " + token,
+        // Authorization: "Bearer " + token,
+        Authorization: token,
       },
     },
   };
+}
+
+export function CADASTRAR_DOADOR(body){
+  return {
+    url: API_URL + "/doadores",
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body)
+    }
+  }
+}
+
+//http metodo 'POST'
+export function CADASTRAR_INSTITUICAO(body){
+  return {
+    url: API_URL + "/instituicoes",
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body)
+    }
+  }
 }

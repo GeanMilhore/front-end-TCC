@@ -1,5 +1,5 @@
 import React from "react";
-import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from "./api";
+import { TOKEN_POST, TOKEN_VALIDATE_POST, PEGA_DADOS_USUARIO } from "./api";
 import { useNavigate } from "react-router";
 
 export const UserContext = React.createContext();
@@ -28,8 +28,8 @@ export const UserStorage = ({ children }) => {
       setError(null);
       setLoading(true);
       const { url, options } = TOKEN_POST({
-        username: username,
-        password: password,
+        email: username,
+        senha: password,
       });
 
       const tokenRes = await fetch(url, options);
@@ -48,7 +48,7 @@ export const UserStorage = ({ children }) => {
   }
 
   async function getUser(token) {
-    const { url, options } = USER_GET(token);
+    const { url, options } = PEGA_DADOS_USUARIO(token);
 
     const userRes = await fetch(url, options);
     const dataUser = await userRes.json();

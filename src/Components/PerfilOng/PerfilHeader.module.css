@@ -1,9 +1,9 @@
 .bannerConta {
-  height: 30%;
+  height: 30vh;
   background-color: rgb(27, 23, 23);
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .cadastrarItem {

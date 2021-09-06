@@ -12,12 +12,12 @@ const LoginForm = () => {
 
   return (
     <>
-      <div className={style.container}>
+      <div className={style.container }>
         <div
           className={style.backgroundContainer}
           style={{ backgroundImage: `url(${background})` }}
         >
-          <div className={style.containerLogin}>
+          <div className={style.containerLogin + ` animeLeft`}>
             <div className={style.headerLogin}>Faça Seu Login</div>
             <div className={style.bodyLogin}>
               <Input id="email" label="E-mail:" type="e-mail" {...email} />

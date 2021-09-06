@@ -8,6 +8,7 @@ import PerfilOng from './Components/PerfilOng/PerfilOng'
 import PerfilDoador from './Components/PerfilDoador/PerfilDoador'
 import EditarOng from "./Components/Login/EditarOng/EditarOng";
 import EditarDoador from './Components/Login/EditarDoador/EditarDoador'
+import TesteComponente from './TesteComponente'
 
 export function CustomRoute({ isPrivate, ...rest }) {
   const { logado, loading } = React.useContext(UserContext);
@@ -37,6 +38,7 @@ export default function Router() {
       {dadosUsuario && dadosUsuario.tipo === 'instituicao' && <CustomRoute isPrivate path="/conta/editar" element={<EditarOng />} />}
       {dadosUsuario &&  dadosUsuario.tipo === 'doador' && <CustomRoute isPrivate path="/conta/*" element={<PerfilDoador />} />}
       {dadosUsuario &&  dadosUsuario.tipo === 'doador' && <CustomRoute isPrivate path="/conta/editar" element={<EditarDoador />} />}
+      <CustomRoute path="/testeComponente" element={<TesteComponente />} />
     </Routes>
   );
 }
