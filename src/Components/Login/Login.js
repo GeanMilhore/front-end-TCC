@@ -1,14 +1,14 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router";
 import LoginForm from './LoginForm/LoginForm'
-import CadastrarOng from "./CriarOng/CadastrarOng";
-import CadastrarDoador from './CriarDoador/CadastrarDoador'
+import CadastrarOng from "../Criar/CriarOng/CadastrarOng";
+import CadastrarDoador from '../Criar/CriarDoador/CadastrarDoador'
 import { UserContext } from "../../UserContext";
 
 const Login = () => {
   const { logado } = React.useContext(UserContext)
 
-  if(logado === true) return <Navigate to="/conta" />
+  if(logado) return <Navigate to="/conta/home" />
 
   return (
     <>

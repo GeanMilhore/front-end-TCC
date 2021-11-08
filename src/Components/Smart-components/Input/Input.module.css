@@ -1,10 +1,49 @@
-
-.placeholderOK::placeholder{
-    opacity: .7;
-    color: gray;
+.input{
+    padding: 6px 12px;
+    border: 1px solid rgb(118, 182, 255);
+    border-radius: 1rem;
 }
 
-.placeholderError::placeholder{
-    color:red;
-    opacity: .7;
+.label{
+    position: relative;
+}
+
+.error{
+    border: 1px solid red;
+}
+
+.input:focus,
+input:hover{
+    outline: none ;
+    border: 1px solid rgb(202, 158, 75);
+    box-shadow: 1px 0px 10px orange;
+    border-radius: 1rem;
+}
+
+.input:disabled{
+    outline: none ;
+    border: 1px solid rgb(114, 114, 114);
+    border-radius: 1rem;
+    background-color: rgb(226, 218, 218);
+}
+
+.span{
+    position: absolute;
+    top: 45%;
+    right: 30px;
+    background: rgb(252, 89, 89);
+    border-radius: 1rem;
+    font-size: .8rem;
+    color: white;
+    padding: 4px;
+}
+
+.alert{
+    position: absolute;
+    top: 45%;
+    right: 0;
+    color: white;
+    background-color: red;
+    padding: 2px 12px;
+    border-radius: 50%;
 }

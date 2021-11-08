@@ -1,0 +1,39 @@
+.main{
+    width: 100%;
+}
+
+.main section{
+    display: flex;
+    flex-direction: row;
+    padding: 0 45px;
+    border-bottom: 1px solid rgb(207, 207, 207);
+    width: 100%;
+}
+
+
+.main section a{
+    width: 100%;
+}
+
+.main div ul a{
+    display: flex;
+    flex-direction: row;
+    border-bottom: none;
+    padding-top: 15px;
+}
+
+.main div ul a img{
+    width: 25px;
+    margin-right: 15px;
+}
+
+.main div span{
+    display: flex;
+    width: 23.5vw;
+    padding: 0 35px;
+    padding-bottom: 15px;
+    margin-left: -45px;
+    margin-top: 15px;
+    border-bottom: 1px solid rgb(207, 207, 207);
+    flex-direction: row;
+}

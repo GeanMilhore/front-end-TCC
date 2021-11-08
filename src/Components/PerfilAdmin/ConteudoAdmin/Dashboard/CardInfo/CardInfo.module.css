@@ -1,0 +1,17 @@
+.cardInfo{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: #F8EBDF;
+    border-radius: 15px;
+    height: 22vh;
+    width: 16vw;
+    box-shadow: -5px -5px #cc772286;
+    transition: all 0.5s;
+}
+
+.cardInfo:hover{
+    transform: scale(1.05);
+}

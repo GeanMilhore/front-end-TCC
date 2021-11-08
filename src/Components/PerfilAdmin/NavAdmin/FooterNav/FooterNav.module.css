@@ -1,0 +1,23 @@
+.footer{
+    width: 20%;
+    position: fixed;
+    bottom: 5px;
+    border-top: 1px solid rgb(207, 207, 207);
+}
+
+.footer button{
+    width: 15vw;
+    height: 5vh;
+    margin-bottom: 15px;
+    margin-top: -10px;
+}
+
+.footer a{
+    display: flex;
+    flex-direction: row;
+}
+
+.footer a img{
+    width: 20px;
+    margin-right: 12px;
+}

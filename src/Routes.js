@@ -1,44 +1,65 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
-import Home from "./Components/Home/Home";
-import Login from "./Components/Login/Login"
+import PaginaInicial from "./Components/PaginaInicial/PaginaInicial";
+import Login from "./Components/Login/Login";
 import { UserContext } from "./UserContext";
-import PerfilOng from './Components/PerfilOng/PerfilOng'
-import PerfilDoador from './Components/PerfilDoador/PerfilDoador'
-import EditarOng from "./Components/Login/EditarOng/EditarOng";
-import EditarDoador from './Components/Login/EditarDoador/EditarDoador'
-import TesteComponente from './TesteComponente'
+import PerfilAdmin from "./Components/PerfilAdmin/PerfilAdmin";
+import Perfil from "./Components/Perfil/Perfil";
+import RoutesOng from "./Components/Perfil/ConteudoPerfil/Routes/RoutesOng";
+import RoutesDoador from "./Components/Perfil/ConteudoPerfil/Routes/RoutesDoador";
 
 export function CustomRoute({ isPrivate, ...rest }) {
-  const { logado, loading } = React.useContext(UserContext);
+  const { logado, loading, fazerLogout } = React.useContext(UserContext);
+  const navigate = useNavigate();
 
-  if(loading){
-    return <h1>Loading...</h1>
+  if (loading) {
+    return <div className="loader"></div>;
+  }
+  if (isPrivate && !logado && !window.localStorage.getItem("token")) {
+    fazerLogout();
   }
 
-  if(isPrivate && !logado){
-    window.location = '/login'
-    return null
-  }
-
-  return <Route {...rest} />
+  return <Route {...rest} />;
 }
 
 export default function Router() {
+  const { loading, dadosUsuario, logado } = React.useContext(UserContext);
 
-  const { dadosUsuario, loading } = React.useContext(UserContext)
-
-  if(loading) return <p>Loading...</p>
+  if (loading) return <div className="loader"></div>;
   return (
     <Routes>
-      <CustomRoute path="/" element={<Home />} />
+      <CustomRoute path="/" element={<PaginaInicial />} />
+      {logado && dadosUsuario && dadosUsuario.tipo === "INSTITUICAO" && (
+        <CustomRoute
+          path="/conta/*"
+          isPrivate
+          element={
+            <Perfil tipo={dadosUsuario.tipo} nome={dadosUsuario.nomeFantasia}>
+              <RoutesOng dadosUsuario={dadosUsuario} />
+            </Perfil>
+          }
+        />
+      )}
+      {logado && dadosUsuario && dadosUsuario.tipo === "DOADOR" && (
+        <CustomRoute
+          path="/conta/*"
+          element={
+            <Perfil tipo={dadosUsuario.tipo} nome={dadosUsuario.nome}>
+              <RoutesDoador dadosUsuario={dadosUsuario} />
+            </Perfil>
+          }
+        />
+      )}
       <CustomRoute path="/login/*" element={<Login />} />
-      {dadosUsuario &&  dadosUsuario.tipo === 'instituicao' && <CustomRoute isPrivate path="/conta/*" element={<PerfilOng />} />}
-      {dadosUsuario && dadosUsuario.tipo === 'instituicao' && <CustomRoute isPrivate path="/conta/editar" element={<EditarOng />} />}
-      {dadosUsuario &&  dadosUsuario.tipo === 'doador' && <CustomRoute isPrivate path="/conta/*" element={<PerfilDoador />} />}
-      {dadosUsuario &&  dadosUsuario.tipo === 'doador' && <CustomRoute isPrivate path="/conta/editar" element={<EditarDoador />} />}
-      <CustomRoute path="/testeComponente" element={<TesteComponente />} />
+      {logado && dadosUsuario && dadosUsuario.tipo === "ADMIN" && (
+        <CustomRoute
+          isPrivate
+          path="/conta/*"
+          element={<PerfilAdmin dadosPefil={dadosUsuario} />}
+        />
+      )}
     </Routes>
   );
 }

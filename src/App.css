@@ -29,6 +29,19 @@ html{
     }
 }
 
+.animeRight {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: animeRight .3s forwards;
+}
+
+@keyframes animeRight {
+    to {
+        opacity: 1;
+        transform: initial;
+    }
+}
+
 .animeTop {
     opacity: 0;
     transform: translateY(-20px);
@@ -39,5 +52,33 @@ html{
     to {
         opacity: 1;
         transform: initial;
+    }
+}
+
+.animeSmooth{
+    opacity: 0;
+    animation: animeSmooth .3s forwards;
+}
+
+@keyframes animeSmooth {
+    to {
+        opacity: 1;
+    }
+}
+
+.loader{
+    animation: is-rotating 1s infinite;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 6px solid rgb(226, 226, 226);
+    border-top-color: #CC7722;
+    margin-top: 20%;
+    margin-left: 50%;
+}
+
+@keyframes is-rotating {
+    to{
+        transform: rotate(1turn);
     }
 }

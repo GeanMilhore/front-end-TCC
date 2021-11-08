@@ -1,0 +1,54 @@
+.navListagem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.navListagem header{
+    width: 98%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.navListagem header button{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    height: 16px;
+    background-color: blueviolet;
+}
+
+.navListagem header button img{
+    margin-right: 10px;
+}
+
+.navListagem header input{
+    margin-bottom: 4vh;
+}
+
+.navListagem main{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid lightgray ;
+}
+
+.navListagem main *{
+    position: fixed;
+    /* width: 26.6%; */
+    /* border: 1px solid lightgray; */
+    /* margin-left: 20px; */
+}
+
+.navListagem .span1{
+    left: 25%;
+}
+.navListagem .span2{
+    left: 43%;
+}
+.navListagem .span3{
+    left: 61%;
+}

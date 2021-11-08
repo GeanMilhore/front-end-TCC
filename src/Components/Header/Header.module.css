@@ -1,31 +1,59 @@
-.navbar{
-    z-index: 3000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    border-bottom: .2px solid #fc9a38cc ;
-    background-color: #e28f3c!important;
-    height: 10vh;
+.navbar {
+  z-index: 3000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
 }
 
-.navbar a{
-    text-decoration: none;
-    color: black;
-    top: 0;
-    transition: all .4s;
+.defaultValue {
+    background-color: transparent;
 }
 
-.navbar a:hover{
-    text-decoration: none;
-    color: white;
-    transform: translateY(-3px);
-    border-bottom: white 3px solid;
+
+.notPage {
+    background-color: #ffae5d;
 }
 
-.navbarContent{
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-    max-width: 50%;
+.navBoot {
+  min-height: 12vh;
+}
+
+.scrollingActive {
+  background-color: rgba(0, 0, 0, 0.950);
+  box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.1);
+}
+
+.scrollingActive nav a {
+  color: white;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  top: 0;
+  transition: all 0.4s;
+  font-size: 12pt;
+  margin-left: 1rem;
+}
+
+.navbar a:hover {
+  text-decoration: none;
+  color: white;
+  transform: translateY(-3px);
+  border-bottom: white 3px solid;
+}
+
+.navbarContent {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.fundoNav {
+  background-color: #2c2c2c;
+  border-radius: 6px;
+  padding: 0 12px;
 }

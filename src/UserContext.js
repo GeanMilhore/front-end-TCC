@@ -13,11 +13,12 @@ export const UserStorage = ({ children }) => {
 
   const fazerLogout = React.useCallback(
     async function () {
-      setDadosUsuario(null);
+      window.localStorage.removeItem("token");
+      await setDadosUsuario(null);
+      console.log(dadosUsuario)
       setError(null);
       setLogado(false);
       setLoading(false);
-      window.localStorage.removeItem("token");
       navigate("/login");
     },
     [navigate]
@@ -38,7 +39,7 @@ export const UserStorage = ({ children }) => {
       const token = await json.token;
       window.localStorage.setItem("token", token);
       await getUser(token);
-      navigate("/conta");
+      navigate("/conta/home");
     } catch (err) {
       setError(err.message);
       setLogado(false);
@@ -56,6 +57,42 @@ export const UserStorage = ({ children }) => {
     setLogado(true);
   }
 
+  async function refreshUser() {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      await getUser(token);
+      return dadosUsuario;
+    } else {
+      return false
+    }
+  }
+
+  async function simulaLoginAdmin(email, senha){
+    const dadosAdmin = {
+      nome : "administrador",
+      email : "admin@gmail.com",
+      senha : "admin" ,
+      id : 11,
+      tipo: 'ADMIN'
+    }
+    if(email == dadosAdmin.email && senha == dadosAdmin.senha){
+      window.localStorage.setItem('token', dadosAdmin.id)
+      setLogado(true)
+      setDadosUsuario(dadosAdmin)
+      return dadosAdmin
+    } else {
+      setError('Usuário Ínvalido!')
+      console.log('oops')
+    }
+  }
+
+  async function simulaAutoLoginAdmin(){
+    if(window.localStorage.getItem('token')){
+      simulaLoginAdmin('admin@gmail.com', 'admin')
+    }
+  }
+
+  // apenas quando refrescamos a página
   React.useEffect(() => {
     async function autoLogar() {
       const token = window.localStorage.getItem("token");
@@ -69,97 +106,27 @@ export const UserStorage = ({ children }) => {
           getUser(token);
         } catch (err) {
           fazerLogout();
+          console.log(err)
+          console.log(token)
         } finally {
           setLoading(false);
         }
       }
     }
-    // autoLogar();
 
-    function simularAutoLogar() {
-      const token = window.localStorage.getItem("token");
-      const nome = window.localStorage.getItem("nome");
-      const senha = window.localStorage.getItem("senha");
-      const tipo = window.localStorage.getItem('tipo')
-      if (token && nome && senha && tipo && token === "123456789") {
-        {
-          tipo === "doador"
-            ? simularLoginDoador(nome, senha)
-            : simularLoginOng(nome, senha);
-        }
-      }
+    // autoLogar();
+    async function simularAutoLogar() {
+      const token = await window.localStorage.getItem('token')
+      console.log(token)
+      if(token){
+          getUser(token)
+      } 
     }
 
+    // autoLogar();
     simularAutoLogar();
+    // simulaAutoLoginAdmin()
   }, [fazerLogout]);
-
-  // Funções de SIMULAÇÃO
-
-  async function simularLoginOng(username, password) {
-    // simulando um token válido e um get nos dados do usuário
-    setError(null);
-    setLoading(true);
-    window.localStorage.setItem("token", 123456789);
-    window.localStorage.setItem("nome", username);
-    window.localStorage.setItem("senha", password);
-    window.localStorage.setItem("tipo", 'instituicao')
-    await setDadosUsuario({
-      nome: username,
-      senha: password,
-      tipo: "instituicao",
-      email: `${username}@gmail.com`,
-      dataCriacao: "2002-04-08",
-      cnpj: `12.123.123/1234-12`,
-      razaoSocial: "essa é uma razão muito social",
-      focoinstitucional: "um foco muito bom aqui",
-      telefone: `+55 (11) 96${parseInt(Math.random() * 1000)}-${parseInt(
-        Math.random() * 10000
-      )}`,
-      cep: "08532-120",
-      rua: "Neusa Rodrigues Ramos",
-      numero: "70",
-      complemento: "montreal Eventos",
-      cidade: "Ferraz de Vasconcelos",
-      estado: "SP",
-    });
-    setTimeout(() => {
-      setLogado(true);
-      setLoading(false);
-      // navigate('/conta')
-    }, 1000);
-  }
-
-  async function simularLoginDoador(username, password) {
-    // simulando um token válido e um get nos dados do usuário
-    setError(null);
-    setLoading(true);
-    window.localStorage.setItem("token", 123456789);
-    window.localStorage.setItem("nome", username);
-    window.localStorage.setItem("senha", password);
-    window.localStorage.setItem("tipo", 'doador');
-    await setDadosUsuario({
-      nome: username,
-      senha: password,
-      tipo: "doador",
-      email: `${username}@gmail.com`,
-      dataCriacao: "2015-08-12",
-      cpf: `123.123.123-12`,
-      telefone: `+55 (11) 96${parseInt(Math.random() * 1000)}-${parseInt(
-        Math.random() * 10000
-      )}`,
-      cep: "08532-120",
-      rua: "Neusa Rodrigues Ramos",
-      numero: "70",
-      complemento: "montreal Eventos",
-      cidade: "Ferraz de Vasconcelos",
-      estado: "SP",
-    });
-    setTimeout(() => {
-      setLogado(true);
-      setLoading(false);
-      // navigate('/conta')
-    }, 1000);
-  }
 
   return (
     <UserContext.Provider
@@ -167,11 +134,13 @@ export const UserStorage = ({ children }) => {
         fazerLogin,
         fazerLogout,
         dadosUsuario,
+        simulaLoginAdmin,
         error,
+        setError,
         loading,
         logado,
-        simularLoginOng,
-        simularLoginDoador,
+        getUser,
+        refreshUser,
       }}
     >
       {children}

@@ -1,7 +1,8 @@
 import React from "react";
-import InputMask from 'react-input-mask'
+import InputMask from "react-input-mask";
+import style from "./Input.module.css";
 
-const Input = ({
+const InputB = ({
   id,
   label,
   value,
@@ -12,12 +13,23 @@ const Input = ({
   error,
   placeholder,
   maxLength,
-  mask
+  mask,
 }) => {
-  
+  const [mostraErro, setMostraErro] = React.useState();
+  function handleMouseOver() {
+    if (error) {
+      setMostraErro(true);
+    }
+  }
+  function handleMouseOut(){
+    if(error){
+      setMostraErro(false)
+    }
+  }
   return (
     <>
-      <label>
+      <label className={style.label} 
+          onMouseLeave={handleMouseOut}>
         {label}
         <br />
         <InputMask
@@ -31,11 +43,22 @@ const Input = ({
           maxLength={maxLength}
           mask={mask}
           placeholder={placeholder}
+          className={style.input + " " + (error && style.error)}
         />
-      {error && <><span style={{color: 'red'}}>{error}</span></>}
+        {error && <span className={style.alert} onMouseOver={handleMouseOver} >!</span>}
+        {error && (
+          <>
+            <span
+              className={style.span}
+              style={{ display: mostraErro ? "flex" : "none" }}
+            >
+              {error}
+            </span>
+          </>
+        )}
       </label>
     </>
   );
 };
 
-export default Input;
+export default InputB;

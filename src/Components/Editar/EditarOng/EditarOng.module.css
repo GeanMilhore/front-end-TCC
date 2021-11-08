@@ -1,0 +1,49 @@
+.content{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.ContainerModal{
+    display: flex!important;
+    width: 100%!important;
+    max-width: 80%!important;
+}
+
+.camposUsuario{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 50%;
+}
+
+.camposUsuario input{
+    width: 30vw;
+}
+
+.containerImg{
+    display: flex;
+    width: 100%;
+    max-width: 50%;
+    justify-content: center;
+}
+
+.conjuntoInput{
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+}
+
+.conjuntoInput input{
+    width: 14vw;
+}
+
+.link{
+    text-decoration: none;
+    color: white;
+}
+
+.link:hover{
+    color: white;
+}

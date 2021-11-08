@@ -1,0 +1,34 @@
+.buttons {
+    top: 14vh;
+    right: 10vw;
+    position: absolute;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.buttons button:nth-child(1){
+    background-color: blueviolet;
+}
+.buttons button:nth-child(2){
+    background-color: lightcoral;
+}
+.buttons button:nth-child(3){
+    background-color: lightseagreen;
+}
+
+.cadastrar{
+    position: absolute;
+    width: 60%;
+    z-index: 2000;
+    left: 30vw;
+    top: 70vh;
+}

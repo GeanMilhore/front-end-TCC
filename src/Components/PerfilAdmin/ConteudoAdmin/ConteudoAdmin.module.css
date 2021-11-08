@@ -1,0 +1,9 @@
+.containerConteudo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 121%;
+    width: 80%;
+    margin-left: 20vw;
+    margin-top: 2vh;
+}

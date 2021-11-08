@@ -1,36 +1,94 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Link as LinkScroll, animateScroll } from "react-scroll";
 import { UserContext } from "../../UserContext";
 import style from "./Header.module.css";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [modalCadastro, setModalCadastro] = React.useState(false);
-  const { logado } = React.useContext(UserContext);
+  const { logado, dadosUsuario } = React.useContext(UserContext);
+  const [scroll, setScroll] = React.useState(false);
+
+  React.useEffect(() => {
+    if (window.location.pathname !== "/") {
+      setScroll(style.notPage);
+    } else {
+      setScroll(null);
+    }
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 3 && window.location.pathname === "/") {
+        setScroll(style.scrollingActive);
+      } else if (window.location.pathname === "/") {
+        setScroll(null);
+      } else {
+        setScroll(style.notPage);
+      }
+    });
+  }, [window.location.pathname]);
 
   return (
-    <header className={style.navbar}>
-      <Navbar expand="lg" onMouseLeave={() => setModalCadastro(false)}>
+    <header className={`${style.navbar} ${scroll}`}>
+      <Navbar
+        expand="lg"
+        onMouseLeave={() => setModalCadastro(false)}
+        className={style.navBoot}
+      >
         <Container>
-          <Link to="/">Artemis</Link>
+          <Link to="/" onClick={() => animateScroll.scrollToTop()}>
+            DOE+
+          </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className={`me-auto m-auto ${style.navbarContent}`} style={{ padding: "11px" }}>
-              <Link to="/">Home</Link>
+            <Nav
+              className={`me-auto m-auto ${style.navbarContent}`}
+              style={{ padding: "11px" }}
+            >
+              {!logado && window.location.pathname == "/" && (
+                <LinkScroll
+                  to="sobre"
+                  duration={500}
+                  style={{
+                    cursor: "pointer",
+                    color: `${!scroll ? "black" : "white"}`,
+                  }}
+                >
+                  Conheça
+                </LinkScroll>
+              )}
               {!logado && (
-                <Link to="" onMouseOver={() => setModalCadastro(true)}>
-                  Cadastro
+                <Link
+                  to="/"
+                  className={style.fundoNav}
+                  style={{
+                    cursor: "pointer",
+                    color: `${!scroll ? "white" : "#2c2c2c"}`,
+                    backgroundColor: `${!scroll ? "#2c2c2c" : "white"}`,
+                  }}
+                  onClick={async () => {
+                    await navigate("/");
+                    animateScroll.scrollToBottom();
+                  }}
+                >
+                  Inscreva-se
                 </Link>
               )}
-              {modalCadastro && (
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <Link to="/login/criaDoador">Usuário</Link>
-                  <Link to="/login/criaOng">Instituição</Link>
-                </div>
+              {!logado && (
+                <Link
+                  to="/login"
+                  className={style.fundoNav}
+                  style={{
+                    color: `${!scroll ? "white" : "#2c2c2c"}`,
+                    backgroundColor: `${!scroll ? "#2c2c2c" : "white"}`,
+                  }}
+                >
+                  Login
+                </Link>
               )}
-              {!logado && <Link to="/login">Entrar</Link>}
-              {logado && <Link to="/conta">MinhaConta</Link>}
-              <Link to="/testeComponente">Teste Componente</Link>
+              {logado && dadosUsuario && dadosUsuario.tipo == 'INSTITUICAO' && <Link to="/conta/configuracoes">{dadosUsuario.nomeFantasia}</Link>}
+              {logado && dadosUsuario && dadosUsuario.tipo == 'DOADOR' && <Link to="/conta/configuracoes">{dadosUsuario.nome}</Link>}
+              {/* {logado && <Link to="/conta/configuracoes">Conta</Link>} */}
             </Nav>
           </Navbar.Collapse>
         </Container>

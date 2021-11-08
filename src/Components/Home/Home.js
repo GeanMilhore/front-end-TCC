@@ -1,14 +1,29 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { Routes, Route } from "react-router-dom";
+import ListaContas from "./ListaContas/ListaContas";
+import ListaInteresses from "./ListaInteresses/ListaInteresses";
+import NavHome from "./NavHome/NavHome";
+import style from './Home.module.css'
 
-const Home = () => {
+const Home = ({ links, endPoints, label, imgs, mensagens }) => {
+  React.useEffect(() => {
+  }, []);
   return (
-    <div className='container-middle animeLeft'>
-      <div className="m-auto">
-        <h1>HOME</h1>
-        <p>Página inicial do site</p>
+    <>
+      <div className={style.home}>
+        <NavHome
+          linkUm={links[0]}
+          LinkDois={links[1]}
+          opcaoUm={label.opcaoUm}
+          opcaoDois={label.opcaoDois}
+          imgs={imgs}
+        />
+        <Routes>
+          <Route path={links[0]} element={<ListaContas endPoint={endPoints[0]} />} />
+          <Route path={links[1]} element={<ListaInteresses endPoint={endPoints[1]} />} />
+        </Routes>
       </div>
-    </div>
+    </>
   );
 };
 

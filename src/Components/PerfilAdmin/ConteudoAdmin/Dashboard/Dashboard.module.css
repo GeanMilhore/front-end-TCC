@@ -1,0 +1,32 @@
+.apresentaDados{
+    display: grid;
+    grid-template-columns: repeat(2, 200px );
+    column-gap: 65px;
+    row-gap: 65px;
+    height: 58%;
+    width: 80%;
+}
+
+.grafico{
+    position: absolute;
+    border: 1px solid rgb(233, 233, 233);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: -5px -5px orange;
+}
+
+.containerGrafico{
+    position: absolute;
+    top: 23%;
+    right: 13%;
+}
+
+.containerDados{
+    height: 73%;
+    width: 90%;
+}
+
+.titulos{
+    color: rgb(102, 102, 102);
+    height: 9vh;
+}

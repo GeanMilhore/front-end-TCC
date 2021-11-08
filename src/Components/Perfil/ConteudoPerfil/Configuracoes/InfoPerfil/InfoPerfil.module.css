@@ -1,0 +1,18 @@
+.infoPerfil div h4{
+    margin-left: 5px;
+    color: orange;
+}
+
+.infoPerfil div{
+    display: flex;
+    width: 100%;
+}
+
+.infoPerfil{
+    margin-bottom: 6vh;
+}
+
+.informacao{
+    margin-left: 25px;
+    color: rgb(44, 44, 44);
+}

@@ -1,0 +1,11 @@
+.main{
+    position: absolute;
+    top: 68vh;
+    height: 105vh;
+    width: 75%;
+    margin-left: -37vw;
+}
+
+.main span{
+    width: 80%;
+}

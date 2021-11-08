@@ -1,0 +1,31 @@
+.editarPerfil main{
+    display: flex;
+    flex-direction: column;
+}
+
+.editarPerfil footer button{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+.editarPerfil footer button:nth-child(1){
+    background-color: lightcoral;
+}
+
+.editarPerfil footer button:nth-child(2){
+    background-color: lightskyblue;
+}
+
+.editarPerfil footer{
+    padding-top: 25px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.editarPerfil {
+    margin-top: 35vh;
+    border: 1px solid lightgray;
+    padding: 30px;
+    border-radius: 15px;
+}
