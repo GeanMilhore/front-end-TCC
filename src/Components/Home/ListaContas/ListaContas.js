@@ -1,6 +1,6 @@
 import React from "react";
 import useFetch from "../../../Custom-Hooks/UseFetch";
-import CardOng from "../CardOng/CardOng";
+import CardOng from "../CardPerfil/CardPerfil";
 import style from './ListaContas.module.css'
 
 const ListaContas = ({ endPoint }) => {
@@ -34,7 +34,7 @@ const ListaContas = ({ endPoint }) => {
           return (
             <CardOng
               id={conta.id}
-              nomeFantasia={conta.nomeFantasia}
+              nome={conta.nomeFantasia ? conta.nomeFantasia : conta.nome}
               telefone={conta.telefone}
               estado={conta.estado}
               cidade={conta.cidade}

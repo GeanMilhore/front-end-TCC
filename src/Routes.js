@@ -30,6 +30,7 @@ export default function Router() {
   if (loading) return <div className="loader"></div>;
   return (
     <Routes>
+      {console.log(dadosUsuario)}
       <CustomRoute path="/" element={<PaginaInicial />} />
       {logado && dadosUsuario && dadosUsuario.tipo === "INSTITUICAO" && (
         <CustomRoute

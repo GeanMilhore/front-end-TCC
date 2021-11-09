@@ -8,7 +8,15 @@ import { useNavigate } from "react-router-dom";
 import useFetch from "../../Custom-Hooks/UseFetch";
 import { CADASTRA_ITEM } from "../../api";
 
-const CadastrarItem = ({ titulo, labels, imgsrc, message, submessage }) => {
+const CadastrarItem = ({
+  titulo,
+  labelImg,
+  labelUm,
+  labelDois,
+  btnUm,
+  btnDois,
+  imgsrc,
+}) => {
   const { request, error, loading } = useFetch();
   const navigate = useNavigate();
 
@@ -19,6 +27,7 @@ const CadastrarItem = ({ titulo, labels, imgsrc, message, submessage }) => {
   const [img, setImg] = React.useState(null);
   const [errorImg, setErrorImg] = React.useState(false);
   const [preview, setPreview] = React.useState(null);
+  const [show, setShow] = React.useState(false);
   const inputFile = React.useRef();
 
   React.useEffect(() => {
@@ -84,12 +93,13 @@ const CadastrarItem = ({ titulo, labels, imgsrc, message, submessage }) => {
 
   return (
     <div className={style.containerItem}>
+      <h2>{titulo}</h2>
       <div className={style.header}>
-        <img src={imgsrc} alt="fundo" />
-        <span>{message}</span>
-        <span>{submessage}</span>
-        <div className={style.img} onClick={() => inputFile.current.click()}>
-          <div className={style.imgHover}>
+        <div className={style.fundoDoacao}>
+          <img src={imgsrc} alt="fundo" />
+        </div>
+        <div className={style.img}>
+          <div className={style.hover} style={{ display: `${show}` }}>
             {preview ? "Alterar Imagem" : "Adicionar Imagem"}
           </div>
           <input
@@ -99,16 +109,26 @@ const CadastrarItem = ({ titulo, labels, imgsrc, message, submessage }) => {
             ref={inputFile}
             onBlur={() => validaImagem(preview)}
           />
-          <img src={preview ? preview : imageItem} alt="símbolo de galeria" />
+          <span style={{fontSize: '22px', marginBottom: '-23rem'}}>{labelImg}</span>
+          <div className={style.imgContainer} onClick={() => inputFile.current.click()}>
+            <img
+              src={preview ? preview : imageItem}
+              alt="símbolo de galeria"
+              onMouseEnter={() => {
+                setShow("block");
+              }}
+              onMouseLeave={() => {
+                setShow("none");
+              }}
+            />
+          </div>
+          {errorImg ? <p style={{ color: "red" }}>{errorImg}</p> : ""}
         </div>
-        {errorImg ? <p style={{ color: "red" }}>{errorImg}</p> : ""}
       </div>
       <div className={style.main}>
-        <Input id="nome" label="Nome do Item:" type="text" {...nome} />
+        <Input id="nome" label={labelUm} type="text" {...nome} />
 
-        <Input id="valor" label="Valor:" type="number" {...valor} />
-
-        <Input id="desc" label="Descrição:" type="textarea" {...desc} />
+        <Input id="desc" label={labelDois} type="textarea" {...desc} />
       </div>
       <div className={style.buttons}>
         <Button
@@ -119,13 +139,12 @@ const CadastrarItem = ({ titulo, labels, imgsrc, message, submessage }) => {
             valor.setValue("");
             setImg(null);
             setPreview(false);
-            if (checked) document.querySelector(".react-switch-bg").click();
           }}
         >
-          Limpar
+          {btnUm}
         </Button>
         <Button variant="primary" onClick={() => handleFormSubmit()}>
-          Cadastrar
+          {btnDois}
         </Button>
       </div>
     </div>

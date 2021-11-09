@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import style from "./PerfilHeader.module.css";
 import { useNavigate } from "react-router";
-import { UserContext } from "../../UserContext";
+import { UserContext } from "../../../UserContext";
 
 const PerfilHeader = () => {
   const navigate = useNavigate();

@@ -5,13 +5,15 @@ import EditarDoador from "../../../Editar/EditarDoador/EditarDoador";
 import Configuracoes from "../Configuracoes/Configuracoes";
 import MainPerfil from "../MainPerfil/MainPerfil";
 import Home from "../../../Home/Home";
-import campanhasicon from '../../../../resources/images/campanhashome.png';
-import ongsicon from '../../../../resources/images/ongshome.png';
+import campanhasicon from "../../../../resources/images/campanhashome.png";
+import ongsicon from "../../../../resources/images/ongshome.png";
 import { LISTAR_ONGS } from "../../../../api";
 import ContaOng from "../../../Visualizar/ContaOng/ContaOng";
+import BannerMensagem from "../../../Telas/BannerMensagem/BannerMensagem";
+import propostasicon from "../../../../resources/images/telapropostasdoador.png";
+import TelaPropostas from "../../../Telas/Doador/TelaPropostas/TelaPropostas";
 
 const RoutesDoador = ({ dadosUsuario }) => {
-
   if (!dadosUsuario) return null;
   return (
     <Routes>
@@ -57,9 +59,19 @@ const RoutesDoador = ({ dadosUsuario }) => {
           />
         }
       />
+      <Route path="home/ong/:id" element={<ContaOng />} />
       <Route
-        path="home/ong/:id"
-        element={<ContaOng />}
+        path="/propostas"
+        element={
+          <>
+            <BannerMensagem
+              img={propostasicon}
+              mensagem={"Propostas Enviadas"}
+              submensagem={"aqui você pode ver todas as propostas que realizou"}
+            />
+            <TelaPropostas />
+          </>
+        }
       />
     </Routes>
   );

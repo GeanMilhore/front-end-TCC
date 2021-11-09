@@ -9,7 +9,9 @@
     text-align: center;
     background-color: white;
     box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.253);
-    max-width: 280px;
+    width: 280px;
+    height: 150px;
+    overflow: hidden;
 }
 
 .card div{

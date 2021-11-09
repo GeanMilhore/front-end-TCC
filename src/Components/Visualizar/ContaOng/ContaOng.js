@@ -7,7 +7,8 @@ import MainPerfil from "../../Perfil/ConteudoPerfil/MainPerfil/MainPerfil";
 import Button from "../../Smart-components/Button/Button";
 import style from "./ContaOng.module.css";
 import CadastroTeste from "../../CadastroTeste/CadastroTeste";
-import doaricon from '../../../resources/images/doaricon.png'
+// import doaricon from '../../../resources/images/doaricon.png'
+import doaricon from '../../../resources/images/giftratas.gif'
 
 const ContaOng = () => {
   const [dadosOng, setDadosOng] = React.useState();
@@ -89,7 +90,12 @@ const ContaOng = () => {
         {doar && 
         <div className={style.cadastrar}>
             <CadastroTeste 
-                titulo={'Fazer Uma Proposta'}
+                titulo={'Doar um Item para '+dadosOng.nomeFantasia}
+                labelImg={'Imagem do Item'}
+                labelUm={'Nome do Item:'}
+                labelDois={'Descrição:'}
+                btnUm={'Limpar'}
+                btnDois={'Realizar Doação'}
                 cancelTo={'/'}
                 imgsrc={doaricon}
             />

@@ -1,0 +1,26 @@
+.banner{
+    position: absolute;
+    top: 20vh;
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    border: solid rgb(219, 219, 219) 1px;
+    padding: 1rem;
+    color: black;
+    padding: 3rem 0;
+}
+
+.banner img{
+    position: absolute;
+    height: 300px;
+    left: 15%;
+    top: -30%;
+}
+
+.banner div{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+    width: 40%;
+}

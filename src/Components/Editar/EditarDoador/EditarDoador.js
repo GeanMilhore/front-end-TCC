@@ -11,7 +11,7 @@ import { EDITAR_DOADOR, EXCLUIR_DOADOR } from "../../../api";
 import useFetch from "../../../Custom-Hooks/UseFetch";
 
 const EditarDoador = ({ dadosUsuario }) => {
-  const { refreshUser } = React.useContext(UserContext)
+  const { refreshUser, fazerLogout } = React.useContext(UserContext)
   const { error, loading, request } = useFetch();
 
   const navigate = useNavigate();

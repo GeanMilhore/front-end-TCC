@@ -252,21 +252,29 @@ export function EDITA_DOACAO(body, token, id) {
   };
 }
 
-export function LISTAR_ONGS( pagina , size) {
+export function LISTAR_ONGS(pagina, size) {
   return {
-    url: API_URL + `/instituicoes?${pagina ? `page=${pagina}` : null }${size ? `&size=${size}` : null}`,
+    url:
+      API_URL +
+      `/instituicoes?${pagina ? `page=${pagina}` : null}${
+        size ? `&size=${size}` : null
+      }`,
     options: {
       method: "GET",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     },
   };
 }
 
-export function LISTAR_DOADORES(token , pagina , size) {
+export function LISTAR_DOADORES(token, pagina, size) {
   return {
-    url: API_URL + `/doadores?${pagina ? `page=${pagina}` : null }${size ? `&size=${size}` : null}`,
+    url:
+      API_URL +
+      `/doadores?${pagina ? `page=${pagina}` : null}${
+        size ? `&size=${size}` : null
+      }`,
     options: {
       method: "GET",
       headers: {
@@ -277,9 +285,13 @@ export function LISTAR_DOADORES(token , pagina , size) {
   };
 }
 
-export function LISTAR_DOACOES(token , pagina , size) {
+export function LISTAR_DOACOES(token, pagina, size) {
   return {
-    url: API_URL + `/itens?${pagina ? `page=${pagina}` : null }${size ? `&size=${size}` : null}`,
+    url:
+      API_URL +
+      `/itens?${pagina ? `page=${pagina}` : null}${
+        size ? `&size=${size}` : null
+      }`,
     options: {
       method: "GET",
       headers: {
@@ -290,34 +302,47 @@ export function LISTAR_DOACOES(token , pagina , size) {
   };
 }
 
-export function RELATORIO_DOADORES(){
+export function RELATORIO_DOADORES() {
   return {
     url: API_URL + `/relatorios/doador`,
     options: {
-      method: "POST"
+      method: "POST",
     },
   };
 }
 
-export function RELATORIO_ONGS(){
+export function RELATORIO_ONGS() {
   return {
     url: API_URL + `/relatorios/ong`,
     options: {
-      method: "POST"
+      method: "POST",
     },
   };
 }
 
-export function RELATORIO_DOACOES(){
+export function RELATORIO_DOACOES() {
   return {
     url: API_URL + `/relatorios/doacao`,
     options: {
-      method: "POST"
+      method: "POST",
     },
   };
 }
 
 export function PROPOSTAS_ONG(token) {
+  return {
+    url: API_URL + "/propostas",
+    options: {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    },
+  };
+}
+
+export function PEGAR_PROPOSTAS_DOADOR(token) {
   return {
     url: API_URL + "/propostas",
     options: {
