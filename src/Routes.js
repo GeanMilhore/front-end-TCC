@@ -9,6 +9,8 @@ import PerfilAdmin from "./Components/PerfilAdmin/PerfilAdmin";
 import Perfil from "./Components/Perfil/Perfil";
 import RoutesOng from "./Components/Perfil/ConteudoPerfil/Routes/RoutesOng";
 import RoutesDoador from "./Components/Perfil/ConteudoPerfil/Routes/RoutesDoador";
+import Modal from './Components/Smart-components/Modal/Modal'
+import ParaTeste from "./Components/Smart-components/ParaTeste/ParaTeste";
 
 export function CustomRoute({ isPrivate, ...rest }) {
   const { logado, loading, fazerLogout } = React.useContext(UserContext);
@@ -61,6 +63,8 @@ export default function Router() {
           element={<PerfilAdmin dadosPefil={dadosUsuario} />}
         />
       )}
+
+      <CustomRoute path="/testando" element={<ParaTeste />} />
     </Routes>
   );
 }

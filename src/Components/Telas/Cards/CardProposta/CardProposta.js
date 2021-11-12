@@ -1,9 +1,14 @@
 import React from "react";
-import style from "./Card.module.css";
+import style from "./CardProposta.module.css";
+import Modal from '../../../Smart-components/Modal/Modal'
 
-const Card = ({ foto, nomeItem, nomeOng, status, labels }) => {
+const Card = ({ foto, nomeItem, nomeOng, status, labels, ...props }) => {
+
+  const [verModal, setVerModal] = React.useState(false)
+
   return (
-    <div className={style.card}>
+    <>
+    <div className={style.card} {...props} onClick={() => setVerModal(true)}>
       <div
         className={style.cardImg}
         style={{ backgroundImage: `url('${foto}')` }}
@@ -17,6 +22,8 @@ const Card = ({ foto, nomeItem, nomeOng, status, labels }) => {
         <p style={{color: `${status == 'PENDENTE' ? 'orange' : status === 'ACEITO' ? 'green' : 'red'}`}}>{status}</p>
       </div>
     </div>
+    {verModal ? <Modal onClose={setVerModal}>{nomeItem}</Modal> : null}
+    </>
   );
 };
 

@@ -4,6 +4,8 @@
     overflow: hidden;
     padding-bottom: .2rem; 
     border: 1px solid lightgray;
+    cursor: pointer;
+
 }
 
 .cardImg{
@@ -17,4 +19,8 @@
 
 .card div:nth-child(2){
     padding: .5rem;
+}
+
+.card div:nth-child(2) span{
+    font-weight: bolder;
 }

@@ -1,0 +1,30 @@
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, .7);
+    width: 100%;
+    height: 110vh;
+    z-index: 200;
+}
+
+.container{
+    position: absolute;
+    background-color: white;
+    border: 1px solid lightgrey;
+    padding: 1rem;
+    border-radius: 25px;
+}
+
+.container button{
+    position: relative;
+    left: calc(100% - 20px);
+    top: -1vh;
+    text-decoration: none;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+}

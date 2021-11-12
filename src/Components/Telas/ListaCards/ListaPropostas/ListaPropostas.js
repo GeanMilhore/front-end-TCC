@@ -1,8 +1,8 @@
 import React from "react";
-import Card from "../Card/Card";
-import style from './ListaCard.module.css'
+import CardProposta from "../../Cards/CardProposta/CardProposta";
+import style from './ListaPropostas.module.css'
 
-const ListaCards = ({ lista }) => {
+const ListaCards = ({ lista, label1, label2, label3 }) => {
   return (
     <>
       <div className={style.lista}>
@@ -10,17 +10,19 @@ const ListaCards = ({ lista }) => {
           console.log(card);
 
           return (
-            <Card
+            <>
+            <CardProposta
             labels={{
-                label1: 'Nome do Item:',
-                label2: 'ONG destino',
-                label3: 'Status'
+                label1: label1,
+                label2: label2,
+                label3: label3
             }}
               foto={card.item.image}
               nomeOng={card.instituicao.nomeFantasia}
               nomeItem={card.item.nome}
               status={card.status}
             />
+            </>
           );
         })}
       </div>

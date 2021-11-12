@@ -12,6 +12,8 @@ import ContaOng from "../../../Visualizar/ContaOng/ContaOng";
 import BannerMensagem from "../../../Telas/BannerMensagem/BannerMensagem";
 import propostasicon from "../../../../resources/images/telapropostasdoador.png";
 import TelaPropostas from "../../../Telas/Doador/TelaPropostas/TelaPropostas";
+import meusitensicon from "../../../../resources/images/telameusitens.png";
+import TelaMeusItens from "../../../Telas/Doador/TelaMeusItens/TelaMeusItens";
 
 const RoutesDoador = ({ dadosUsuario }) => {
   if (!dadosUsuario) return null;
@@ -67,9 +69,22 @@ const RoutesDoador = ({ dadosUsuario }) => {
             <BannerMensagem
               img={propostasicon}
               mensagem={"Propostas Enviadas"}
-              submensagem={"aqui você pode ver todas as propostas que realizou"}
+              submensagem={"aqui você pode ver todas as propostas que realizou."}
             />
             <TelaPropostas />
+          </>
+        }
+      />
+      <Route
+        path="/meusitens"
+        element={
+          <>
+            <BannerMensagem
+              img={meusitensicon}
+              mensagem={"Meus Itens"}
+              submensagem={"aqui você pode ver todos os itens que colocou para doação."}
+            />
+            <TelaMeusItens />
           </>
         }
       />
