@@ -19,7 +19,8 @@
     border-radius: 25px;
 }
 
-.container button{
+
+.btnModal{
     position: relative;
     left: calc(100% - 20px);
     top: -1vh;

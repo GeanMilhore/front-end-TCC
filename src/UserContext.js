@@ -51,10 +51,15 @@ export const UserStorage = ({ children }) => {
   async function getUser(token) {
     const { url, options } = PEGA_DADOS_USUARIO(token);
 
-    const userRes = await fetch(url, options);
-    const dataUser = await userRes.json();
-    setDadosUsuario(dataUser);
-    setLogado(true);
+    try {
+      const userRes = await fetch(url, options);
+      const dataUser = await userRes.json();
+      setDadosUsuario(dataUser);
+      setLogado(true);
+    } catch(error){
+      console.log(error)
+    }
+
   }
 
   async function refreshUser() {

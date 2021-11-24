@@ -1,6 +1,8 @@
 import React from 'react'
 import style from './ParaTeste.module.css'
 import Modal from '../Modal/Modal'
+import imgqualquer from '../../../resources/images/doadoricon.png'
+import CadastrarItem from '../../CadastroItem/CadastroItem'
 
 const ParaTeste = () => {
     const [isModalVisible, setIsModalVisible] = React.useState(false)
@@ -10,14 +12,23 @@ const ParaTeste = () => {
             {isModalVisible ? <Modal 
                 onClose={setIsModalVisible}
             >
-                <div className={style.testandoDiv}>
                     <div>
-                        PURISSIDADE PURA
+                        <CadastrarItem 
+                            titulo={'Cadastrar Um Item'}
+                            imgsrc={imgqualquer}
+                            labelUm={"Nome do Item:"}
+                            labelDois={"Descrição do Item"}
+                            btnUm={"Limpar"}
+                            btnDois={"Salvar"}
+                        />
+                        {/* titulo,
+                            labelImg,
+                            labelUm,
+                            labelDois,
+                            btnUm,
+                            btnDois,
+                            imgsrc, */}
                     </div>
-                    <div>
-                        MINECRAFT PURO
-                    </div>
-                </div>
             </Modal> : null }
         </div>
     )

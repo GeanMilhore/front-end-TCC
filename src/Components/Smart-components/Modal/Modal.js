@@ -7,9 +7,9 @@ const Modal = ({ id = 'modal' , onClose = () => {} ,  children}) => {
     }
 
     return (
-        <div id={id} className={style.modal} onClick={(e) => handleOutsideClick(e)}>
+        <div id={id} className={style.modal} onClick={(e) => handleOutsideClick(e)} >
             <div className={style.container}>
-                <button onClick={() => onClose(false)}>X</button>
+                <button className={style.btnModal} onClick={() => onClose(false)}>X</button>
                 <div className={style.content}>{children}</div>
             </div>
         </div>

@@ -1,11 +1,10 @@
-import React from "react";
-import { PEGAR_PROPOSTAS_DOADOR } from "../../../../api";
-import useFetch from "../../../../Custom-Hooks/UseFetch";
-import style from './TelaPropostas.module.css'
-import CardProposta from '../../Cards/CardProposta/CardProposta'
+import React from 'react'
+import style from './TelaDoacoes.module.css'
+import CardDoacoes from '../../Cards/CardDoacoes/CardDoacoes'
 
-const TelaPropostas = () => {
-  const [itens, setItens] = React.useState(null);
+
+const TelaDoacoes = () => {
+    const [itens, setItens] = React.useState(null);
   const { loading, error, dados, request } = useFetch();
 
   React.useEffect(() => {
@@ -36,14 +35,14 @@ const TelaPropostas = () => {
 
           return (
             <>
-            <CardProposta
+            <CardDoacoes
             labels={{
                 label1: 'Nome do Item',
                 label2: 'Ong de Destino',
-                label3: 'Status'
+                label3: 'Data Entrega'
             }}
               foto={card.item.image}
-              nomeOng={card.instituicao.nomeFantasia}
+              descricao={card.item.descricao}
               nomeItem={card.item.nome}
               status={card.status}
             />
@@ -55,4 +54,4 @@ const TelaPropostas = () => {
   );
 };
 
-export default TelaPropostas;
+export default TelaDoacoes

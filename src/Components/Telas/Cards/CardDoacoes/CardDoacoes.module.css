@@ -4,32 +4,9 @@
     overflow: hidden;
     padding-bottom: .2rem; 
     border: 1px solid lightgray;
-    position: relative;
+    cursor: pointer;
+
 }
-
-.cardBotoes{
-    position: absolute;
-    display: flex ;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    right: 0;
-}
-
-.cardBotoes button{
-    padding: .2em .5em;
-    margin: .2em;
-}
-
-.cardBotoes button:nth-child(1){
-    background-color: rgb(153, 0, 255);
-}
-
-.cardBotoes button:nth-child(2){
-    background-color: red;
-}
-
-
 
 .cardImg{
     overflow: hidden;

@@ -1,7 +1,8 @@
 import React from "react";
 import { PEGAR_PROPOSTAS_DOADOR } from "../../../../api";
 import useFetch from "../../../../Custom-Hooks/UseFetch";
-import ListaMeusItens from '../../ListaCards/ListaMeusItens/ListaMeusItens'
+import style from './TelaMeusItens.module.css'
+import CardMeusItens from '../../Cards/CardMeusItens/CardMeusItens'
 
 const TelaMeusItens = () => {
   const [itens, setItens] = React.useState(null);
@@ -29,12 +30,27 @@ const TelaMeusItens = () => {
   if (!itens) return null;
   return (
     <>
-      <ListaMeusItens
-        lista={itens}
-        label1={"Nome do Item:"}
-        label2={"descrição: "}
-        label3={'Status'}
-      />
+      <div className={style.lista}>
+        {itens.map((card) => {
+          console.log(card);
+
+          return (
+            <>
+            <CardMeusItens
+            labels={{
+                label1: 'Nome do Item',
+                label2: 'Descrição do Item',
+                label3: 'Status'
+            }}
+              foto={card.item.image}
+              descricao={card.item.descricao}
+              nomeItem={card.item.nome}
+              status={card.status}
+            />
+            </>
+          );
+        })}
+      </div>
     </>
   );
 };

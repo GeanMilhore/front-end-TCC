@@ -6,11 +6,3 @@
     width: 100%;
     height: 80vh;
 }
-
-.testandoDiv div:nth-child(1){
-    background-color: blue;
-}
-
-.testandoDiv div:nth-child(2){
-    background-color: red;
-}
