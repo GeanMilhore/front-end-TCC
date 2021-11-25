@@ -12,7 +12,7 @@ import ContaOng from "../../../Visualizar/ContaOng/ContaOng";
 import BannerMensagem from "../../../Telas/BannerMensagem/BannerMensagem";
 import propostasicon from "../../../../resources/images/telapropostasdoador.png";
 import TelaPropostas from "../../../Telas/Doador/TelaPropostas/TelaPropostas";
-import meusitensicon from "../../../../resources/images/telameusitens.png";
+// import meusitensicon from "../../../../resources/images/telameusitens.png";
 import TelaMeusItens from "../../../Telas/Doador/TelaMeusItens/TelaMeusItens";
 import minhasdoacoes from "../../../../resources/images/teladoacoes.png";
 
@@ -76,7 +76,7 @@ const RoutesDoador = ({ dadosUsuario }) => {
           </>
         }
       />
-      <Route
+      {/* <Route
         path="/meusitens"
         element={
           <>
@@ -88,7 +88,7 @@ const RoutesDoador = ({ dadosUsuario }) => {
             <TelaMeusItens />
           </>
         }
-      />
+      /> */}
       <Route
         path="/doacoes"
         element={
