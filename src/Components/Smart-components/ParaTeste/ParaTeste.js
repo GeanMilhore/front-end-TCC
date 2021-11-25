@@ -1,8 +1,8 @@
 import React from 'react'
 import style from './ParaTeste.module.css'
 import Modal from '../Modal/Modal'
-import imgqualquer from '../../../resources/images/doadoricon.png'
-import CadastrarItem from '../../CadastroItem/CadastroItem'
+import imgqualquer from '../../../resources/images/criarcampanha.png'
+import CriarCampanha from '../../CriarCampanha/CriarCampanha'
 
 const ParaTeste = () => {
     const [isModalVisible, setIsModalVisible] = React.useState(false)
@@ -13,11 +13,12 @@ const ParaTeste = () => {
                 onClose={setIsModalVisible}
             >
                     <div>
-                        <CadastrarItem 
-                            titulo={'Cadastrar Um Item'}
+                        <CriarCampanha 
+                            titulo={'Criar Uma Campanha'}
                             imgsrc={imgqualquer}
-                            labelUm={"Nome do Item:"}
-                            labelDois={"Descrição do Item"}
+                            labelUm={"Nome da Campanha:"}
+                            labelDois={"Descrição da Campanha:"}
+                            labelTres={"Quantidade para Arrecadar:"}
                             btnUm={"Limpar"}
                             btnDois={"Salvar"}
                         />

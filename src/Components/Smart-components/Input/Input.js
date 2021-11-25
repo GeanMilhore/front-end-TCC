@@ -13,6 +13,7 @@ const InputB = ({
   error,
   placeholder,
   maxLength,
+  min,
   mask,
 }) => {
   const [mostraErro, setMostraErro] = React.useState();
@@ -42,6 +43,7 @@ const InputB = ({
           disabled={disabled}
           maxLength={maxLength}
           mask={mask}
+          min={min}
           placeholder={placeholder}
           className={style.input + " " + (error && style.error)}
         />

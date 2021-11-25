@@ -13,12 +13,12 @@ const Perfil = ({ children, tipo, nome }) => {
   const perfil = {
     ong: {
       label: {
-        linha: "Home",
+        linha: null,
         linhaDois: "Campanhas",
         linhaTres: "Propostas",
         linhaQuatro: "Doações",
       },
-      links: ["home", "campanhas", "propostas", "doacoes"],
+      links: [null, "campanhas", "propostas", "doacoes"],
       imgs: [homeiconv2, campanhaicon, handshakeicon, donateicon]
     },
     doador: {
@@ -26,9 +26,9 @@ const Perfil = ({ children, tipo, nome }) => {
         linha: "Home",
         linhaDois: "Doações",
         linhaTres: "Propostas Enviadas",
-        linhaQuatro: "Meus Itens",
+        linhaQuatro: null,
       },
-      links: ["home/ongs", "doacoes", "propostas", "meusitens"],
+      links: ["home/ongs", "doacoes", "propostas", null],
       imgs: [homeiconv2, donationdoador, handshakeicon, donateicon]
     },
   };

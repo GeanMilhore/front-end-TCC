@@ -1,3 +1,8 @@
+h2{
+    margin: 3rem;
+    font-weight: bolder;
+}
+
 .containerItem{
     border: 1px solid rgb(230, 230, 230);
     text-align: center;

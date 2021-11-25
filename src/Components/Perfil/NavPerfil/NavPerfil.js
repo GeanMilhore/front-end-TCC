@@ -5,13 +5,12 @@ import campanhaicon from "../../../resources/images/campanhaicon.png";
 import homeiconv2 from "../../../resources/images/homeiconv2.png";
 import handshakeicon from "../../../resources/images/handshakeicon.png";
 import gearicon from "../../../resources/images/gearicon.png";
-import Button from '../../Smart-components/Button/Button'
+import Button from "../../Smart-components/Button/Button";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserContext";
 
 const NavPerfil = ({ label, links, imgs, nome }) => {
-
-  const { fazerLogout } = React.useContext(UserContext)
+  const { fazerLogout } = React.useContext(UserContext);
 
   return (
     <nav className={style.nav}>
@@ -20,10 +19,12 @@ const NavPerfil = ({ label, links, imgs, nome }) => {
         <span>{nome}</span>
       </header>
       <main>
-        <NavLink to={links[0]}>
-          <img src={imgs[0]} alt="icone" />
-          {label.linha}
-        </NavLink>
+        {links[0] && (
+          <NavLink to={links[0]}>
+            <img src={imgs[0]} alt="icone" />
+            {label.linha}
+          </NavLink>
+        )}
         <NavLink to={links[1]}>
           <img src={imgs[1]} alt="icone" />
           {label.linhaDois}
@@ -32,10 +33,12 @@ const NavPerfil = ({ label, links, imgs, nome }) => {
           <img src={imgs[2]} alt="icone" />
           {label.linhaTres}
         </NavLink>
-        <NavLink to={links[3]}>
-          <img src={imgs[3]} alt="icone" />
-          {label.linhaQuatro}
-        </NavLink>
+        {links[3] && (
+          <NavLink to={links[3]}>
+            <img src={imgs[3]} alt="icone" />
+            {label.linhaQuatro}
+          </NavLink>
+        )}
       </main>
       <footer>
         <NavLink to="configuracoes">
@@ -43,9 +46,7 @@ const NavPerfil = ({ label, links, imgs, nome }) => {
           Configurações
         </NavLink>
         <br />
-        <Button
-          onClick={() => fazerLogout()}
-        >Sair</Button>
+        <Button onClick={() => fazerLogout()}>Sair</Button>
       </footer>
     </nav>
   );
