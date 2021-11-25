@@ -1,17 +1,22 @@
 import React from "react";
 import { PEGAR_PROPOSTAS_DOADOR } from "../../../../api";
+import { LISTAR_ONGS } from "../../../../api";
 import useFetch from "../../../../Custom-Hooks/UseFetch";
-import style from './TelaPropostas.module.css'
-import CardProposta from '../../Cards/CardProposta/CardProposta'
+import style from "./TelaPropostas.module.css";
+import CardProposta from "../../Cards/CardProposta/CardProposta";
+import CardPerfil from "../../../Home/CardPerfil/CardPerfil";
+import Paginacao from "../../../Smart-components/Paginacao/Paginacao";
 
 const TelaPropostas = () => {
   const [itens, setItens] = React.useState(null);
   const { loading, error, dados, request } = useFetch();
+  const [page, setPage] = React.useState(0);
+  const [size, setSize] = React.useState(4);
 
   React.useEffect(() => {
     async function pegaItens() {
       const token = window.localStorage.getItem("token");
-      const { url, options } = PEGAR_PROPOSTAS_DOADOR(token);
+      const { url, options } = LISTAR_ONGS(page, size);
 
       const { response, json } = await request(url, options);
 
@@ -31,26 +36,62 @@ const TelaPropostas = () => {
   return (
     <>
       <div className={style.lista}>
-        {itens.map((card) => {
-          console.log(card);
-
-          return (
-            <>
-            <CardProposta
-            labels={{
-                label1: 'Nome do Item',
-                label2: 'Ong de Destino',
-                label3: 'Status'
-            }}
-              foto={card.item.image}
-              nomeOng={card.instituicao.nomeFantasia}
-              nomeItem={card.item.nome}
-              status={card.status}
-            />
-            </>
-          );
-        })}
+        {itens.content &&
+          itens.content.map((card) => {
+            console.log(card);
+            return (
+              <>
+                {/* <CardPerfil
+                  nome={card.nome}
+                  estado={card.estado}
+                  cidade={card.cidade}
+                  telefone={card.telefone}
+                  id={card.id}
+                />
+                <CardPerfil
+                  nome={card.nome}
+                  estado={card.estado}
+                  cidade={card.cidade}
+                  telefone={card.telefone}
+                  id={card.id}
+                />
+                <CardPerfil
+                  nome={card.nome}
+                  estado={card.estado}
+                  cidade={card.cidade}
+                  telefone={card.telefone}
+                  id={card.id}
+                />
+                <CardPerfil
+                  nome={card.nome}
+                  estado={card.estado}
+                  cidade={card.cidade}
+                  telefone={card.telefone}
+                  id={card.id}
+                /> */}
+                <CardProposta
+                  labels={{
+                      label1: 'Nome do Item',
+                      label2: 'Ong de Destino',
+                      label3: 'Status'
+                  }}
+                    foto={""}
+                    nomeOng={card.nome}
+                    nomeItem={"Item de teste"}
+                    status={"PENDENTE"}
+                  />
+              </>
+            );
+          })}
       </div>
+      <Paginacao
+        size={size}
+        page={page}
+        setItens={setItens}
+        setPagina={setPage}
+        totalPaginas={itens.totalPages}
+        reqItens={LISTAR_ONGS}
+      />
     </>
   );
 };

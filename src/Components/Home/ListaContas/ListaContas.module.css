@@ -1,3 +1,11 @@
 .listagem{
     display: flex;
 }
+
+.listagem a{
+    margin: 0 .4rem;
+}
+
+nav{
+    padding-top: 2rem;
+}

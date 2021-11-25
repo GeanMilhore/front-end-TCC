@@ -28,6 +28,17 @@ const Card = ({ foto, nomeItem, nomeOng, status, labels, ...props }) => {
       </div>
       {verModal ?
         <Modal onClose={setVerModal}
+          estilo={{
+            backgroundColor: 'transparent',
+            top: '-32vh',
+            left: '-20vw',
+            // height: 'auto',
+            // widht: 'auto',
+          }}
+
+          estiloContainer={{
+            boxShadow: '0 0 100px black'
+          }}
         >
           <div className={style.modalContainer}>
             <span>

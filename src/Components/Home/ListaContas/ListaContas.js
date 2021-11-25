@@ -2,16 +2,19 @@ import React from "react";
 import useFetch from "../../../Custom-Hooks/UseFetch";
 import CardOng from "../CardPerfil/CardPerfil";
 import style from './ListaContas.module.css'
+import Paginacao from '../../Smart-components/Paginacao/Paginacao'
 
 const ListaContas = ({ endPoint }) => {
   const [contas, setContas] = React.useState(null);
   const { request, error, loading, dados } = useFetch();
+  const [page, setPage] = React.useState(0)
+  const [size, setSize] = React.useState(4)
 
   React.useEffect(() => {
     async function pegaContas() {
       const token = window.localStorage.getItem("token");
 
-      const { url, options } = endPoint();
+      const { url, options } = endPoint(page, size);
 
       const { response, json } = await request(url, options);
 
@@ -42,6 +45,14 @@ const ListaContas = ({ endPoint }) => {
           );
         })}
       </div>
+      <Paginacao 
+        size={size}
+        page={page}
+        setItens={setContas}
+        setPagina={setPage}
+        totalPaginas={contas.totalPages}
+        reqItens={endPoint}
+      />
     </>
   );
 };

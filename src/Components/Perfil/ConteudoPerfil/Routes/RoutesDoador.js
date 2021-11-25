@@ -51,6 +51,12 @@ const RoutesDoador = ({ dadosUsuario }) => {
       <Route
         path="home/*"
         element={
+          <>
+          <BannerMensagem 
+            img={ongsicon}
+            mensagem={"Pesquisar Instituições"}
+            submensagem={"aqui você pode pesquisar e visualizar o perfil das instituições."}
+          />
           <Home
             links={["ongs", "campanhas"]}
             label={{
@@ -60,6 +66,7 @@ const RoutesDoador = ({ dadosUsuario }) => {
             imgs={[campanhasicon, ongsicon]}
             endPoints={[LISTAR_ONGS, LISTAR_ONGS]}
           />
+          </>
         }
       />
       <Route path="home/ong/:id" element={<ContaOng />} />

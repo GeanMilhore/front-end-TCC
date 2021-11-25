@@ -344,9 +344,11 @@ export function PROPOSTAS_ONG(token) {
   };
 }
 
-export function PEGAR_PROPOSTAS_DOADOR(token) {
+export function PEGAR_PROPOSTAS_DOADOR(token, pagina, size) {
   return {
-    url: API_URL + "/propostas",
+    url: API_URL +
+     `/propostas?${pagina ? `page=${pagina}` : null}
+     ${size ? `&size=${size}` : null}`,
     options: {
       method: "GET",
       headers: {
