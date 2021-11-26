@@ -18,7 +18,7 @@ const HeaderOng = ({
 }) => {
   return (
     <>
-      <header className={style.header}>
+      <header className={style.header} >
         <div>
           <img src={""} alt="Imagem de Perfil" />
           <span>{nomeFantasia}</span>

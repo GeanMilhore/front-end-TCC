@@ -7,16 +7,23 @@ import MainPerfil from "../../Perfil/ConteudoPerfil/MainPerfil/MainPerfil";
 import Button from "../../Smart-components/Button/Button";
 import style from "./ContaOng.module.css";
 import CadastroTeste from "../../CadastroTeste/CadastroTeste";
+import { PEGAR_CAMPANHAS } from "../../../api";
 // import doaricon from '../../../resources/images/doaricon.png'
 import doaricon from '../../../resources/images/giftratas.gif'
+import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons";
+import CardVerCampanha from "../../Telas/Cards/CardVerCampanha/CardVerCampanha";
+import ListCampanhas from "../ListCampanhas/ListCampanhas";
 
 const ContaOng = () => {
   const [dadosOng, setDadosOng] = React.useState();
   const [info, setInfo] = React.useState(true);
-  const [campanhas, setCampanhas] = React.useState(false);
+  const [verCampanha, setVerCampanhas] = React.useState(false);
+  const [campanhas, setCampanhas] = React.useState(null)
   const [doar, setDoar] = React.useState(false);
   const { request, loading, error, dados } = UseFetch();
   const { id } = useParams();
+
+
 
   React.useEffect(() => {
     async function montaPerfilOng() {
@@ -32,6 +39,26 @@ const ContaOng = () => {
         console.log(error);
       }
     }
+
+    async function pegaCampanhas() {
+
+      const { url, options } = PEGAR_CAMPANHAS(Number(id) + 1)
+      console.log(url)
+      console.log(options)
+
+      try {
+        const { response, json } = await request(url, options);
+        if (response.ok) {
+          setCampanhas(json)
+          console.log(json)
+        }
+      } catch (error) {
+        window.alert(id)
+        console.log(error)
+      }
+    }
+
+    pegaCampanhas()
     montaPerfilOng();
   }, []);
 
@@ -46,12 +73,13 @@ const ContaOng = () => {
           razaoSocial={dadosOng.razaoSocial}
           focoInstitucional={dadosOng.focoInstitucional}
           dtFundacao={dadosOng.dtFundacao}
+          style={{marginLeft: '50vw'}}
         />
         <div className={style.buttons}>
           <Button
             onClick={() => {
               setInfo(true);
-              setCampanhas(false);
+              setVerCampanhas(false);
               setDoar(false);
             }}
           >
@@ -60,7 +88,7 @@ const ContaOng = () => {
           <Button
             onClick={() => {
               setInfo(false);
-              setCampanhas(true);
+              setVerCampanhas(true);
               setDoar(false);
             }}
           >
@@ -69,7 +97,7 @@ const ContaOng = () => {
           <Button
             onClick={() => {
               setInfo(false);
-              setCampanhas(false);
+              setVerCampanhas(false);
               setDoar(true);
             }}
           >
@@ -87,19 +115,44 @@ const ContaOng = () => {
             telefone={dadosOng.telefone}
           />
         )}
-        {doar && 
-        <div className={style.cadastrar}>
-            <CadastroTeste 
-                titulo={'Doar um Item para '+dadosOng.nomeFantasia}
-                labelImg={'Imagem do Item'}
-                labelUm={'Nome do Item:'}
-                labelDois={'Descrição:'}
-                btnUm={'Limpar'}
-                btnDois={'Realizar Doação'}
-                cancelTo={'/'}
-                imgsrc={doaricon}
+        {doar &&
+          <div className={style.cadastrar}>
+            <CadastroTeste
+              titulo={'Doar um Item para ' + dadosOng.nomeFantasia}
+              labelImg={'Imagem do Item'}
+              labelUm={'Nome do Item:'}
+              labelDois={'Descrição:'}
+              btnUm={'Limpar'}
+              btnDois={'Realizar Doação'}
+              cancelTo={'/'}
+              imgsrc={doaricon}
             />
-        </div>
+          </div>
+        }
+        {verCampanha && (
+            <ListCampanhas 
+              id={id}
+            />
+          // <div className={style.lista}>
+          //   {campanhas.map((card) => (
+          //     <CardVerCampanha 
+          //     labels={{
+          //       label1: 'Campanha',
+          //       label2: 'Descricao',
+          //       label3: 'Para Arrecadar'
+          //     }}
+          //     idCampanha={card.id}
+          //     foto={card.image}
+          //     descricao={card.descricao}
+          //     nomeItem={card.nome}
+          //     quantidade={card.quantidade}
+          //     // atualizar={pegaCampanhas}
+          //     // abrirEdicao={setVerModalEdit}
+          //     // setDadosEdicao={setDadosEdicao}
+          //     />
+          //   ))}
+          // </div>
+          )
         }
       </div>
     </>
