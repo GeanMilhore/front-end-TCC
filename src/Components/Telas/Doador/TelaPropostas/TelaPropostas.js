@@ -71,15 +71,15 @@ const TelaPropostas = () => {
                 /> */}
                 <CardProposta
                   labels={{
-                      label1: 'Nome do Item',
-                      label2: 'Ong de Destino',
-                      label3: 'Status'
+                    label1: 'Nome do Item',
+                    label2: 'Ong de Destino',
+                    label3: 'Status'
                   }}
-                    foto={""}
-                    nomeOng={card.nome}
-                    nomeItem={"Item de teste"}
-                    status={"PENDENTE"}
-                  />
+                  foto={""}
+                  nomeOng={card.nome}
+                  nomeItem={"Item de teste"}
+                  status={"PENDENTE"}
+                />
               </>
             );
           })}

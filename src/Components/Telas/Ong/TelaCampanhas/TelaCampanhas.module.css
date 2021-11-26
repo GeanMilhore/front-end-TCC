@@ -1,0 +1,23 @@
+.containerButton{
+    position: absolute;
+    bottom: 40vh;
+    left: 70vw;
+}
+
+.containerButton button{
+    color: white;
+    background-color: purple;
+}
+
+.lista{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 35rem;
+    flex-direction: row;
+    transform: scale(.9);
+}
+
+.lista div{
+    margin: 0 1rem;
+}

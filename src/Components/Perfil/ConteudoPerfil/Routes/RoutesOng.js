@@ -2,7 +2,7 @@ import React from "react";
 import Configuracoes from "../Configuracoes/Configuracoes";
 import HeaderOng from "../HeadersPerfil/HeaderOng/HeaderOng";
 import EditarOng from "../../../Editar/EditarOng/EditarOng";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import MainPerfil from "../MainPerfil/MainPerfil";
 import BannerMensagem from "../../../Telas/BannerMensagem/BannerMensagem";
 import campanhaicon from '../../../../resources/images/campanhashome.png'
@@ -76,6 +76,10 @@ const RoutesOng = ({ dadosUsuario }) => {
             submensagem={"aqui você pode ver todas as doações aceitas que chegaram até a ONG."}
           />
         }
+      />
+      <Route 
+        path="home"
+        element={<Navigate to="/campanhas" />}
       />
     </Routes>
   );

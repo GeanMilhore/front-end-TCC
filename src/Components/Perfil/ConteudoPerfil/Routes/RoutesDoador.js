@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import HeaderDoador from "../HeadersPerfil/HeaderDoador/HeaderDoador";
 import EditarDoador from "../../../Editar/EditarDoador/EditarDoador";
 import Configuracoes from "../Configuracoes/Configuracoes";
@@ -108,6 +108,10 @@ const RoutesDoador = ({ dadosUsuario }) => {
             <TelaMeusItens />
           </>
         }
+      />
+      <Route 
+        path="home"
+        element={<Navigate to="/home/ongs" />}
       />
     </Routes>
   );

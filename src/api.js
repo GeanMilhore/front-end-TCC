@@ -358,3 +358,57 @@ export function PEGAR_PROPOSTAS_DOADOR(token, pagina, size) {
     },
   };
 }
+
+export function CADASTRAR_CAMPANHA(body , token){
+  return {
+    url: API_URL + '/campanhas',
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(body)
+    },
+  };
+}
+export function EDITAR_CAMPANHA(body , id, token){
+  return {
+    url: API_URL + `/campanhas/${id}`,
+    options: {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(body)
+    },
+  };
+}
+
+export function PEGAR_CAMPANHAS(token){
+  return {
+    url: API_URL + '/campanhas',
+    options: {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      }
+    },
+  };
+}
+
+export function EXCLUIR_CAMPANHA(token, id){
+  return {
+    url: API_URL + `/campanhas/${id}`,
+    options: {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      }
+    },
+  };
+}
+

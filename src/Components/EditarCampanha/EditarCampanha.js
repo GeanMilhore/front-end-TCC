@@ -1,16 +1,16 @@
 import React from "react";
 import Button from "../Smart-components/Button/Button";
-import style from "./CriarCampanha.module.css";
+import style from "./EditarCampanha.module.css";
 import Input from "../Smart-components/Input/Input";
 import imageItem from "../../resources/images/add-item-image.png";
 import useForm from "../../Custom-Hooks/UseForm";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../Custom-Hooks/UseFetch";
-import { CADASTRAR_CAMPANHA } from "../../api";
+import { EDITAR_CAMPANHA } from "../../api";
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faBullhorn} from '@fortawesome/free-solid-svg-icons'
 
-const CriarCampanha = ({
+const EditarCampanha = ({
   titulo,
   labelImg,
   labelUm,
@@ -20,7 +20,8 @@ const CriarCampanha = ({
   btnDois,
   imgsrc,
   modalAberto,
-  atualizar
+  atualizar,
+  dadosEditar
 }) => {
   const { request, error, loading } = useFetch();
   const navigate = useNavigate();
@@ -36,10 +37,23 @@ const CriarCampanha = ({
   const [preview, setPreview] = React.useState(null);
   const [show, setShow] = React.useState(false);
   const inputFile = React.useRef();
+  const [first, setFirst] = React.useState(true)
 
   React.useEffect(() => {
     if (errorImg) {
       validaImagem(img);
+    }
+
+    async function preencheCampos(){
+      nome.setValue(dadosEditar.nome)
+      number.setValue(dadosEditar.quantidade)
+      desc.setValue(dadosEditar.descricao)
+      setPreview(dadosEditar.image)
+      setFirst(false)
+    }
+
+    if(first){
+      preencheCampos()
     }
   }, [img, errorImg]);
 
@@ -88,22 +102,26 @@ const CriarCampanha = ({
       validaImagem(preview)
     ) {
       const token = window.localStorage.getItem("token");
-      const { url, options } = CADASTRAR_CAMPANHA(
+      const { url, options } = EDITAR_CAMPANHA(
         {
           nome: nome.value,
           image: preview,
           quantidade: number.value,
           descricao: desc.value,
         },
+        dadosEditar.id
+        ,
         token
       );
 
       const { response } = await request(url, options);
 
       if (response.ok) {
-        window.alert("Item Cadastrado com sucesso");
+        window.alert("Item Editado com sucesso");
         modalAberto(false)
         atualizar()
+      } else {
+        window.alert('oops')
       }
     }
   }
@@ -256,4 +274,4 @@ const CriarCampanha = ({
   );
 };
 
-export default CriarCampanha;
+export default EditarCampanha;
