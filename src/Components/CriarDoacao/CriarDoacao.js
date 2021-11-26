@@ -1,25 +1,30 @@
 import React from "react";
 import Button from "../Smart-components/Button/Button";
-import style from "./VerCampanha.module.css";
+import style from "./CriarDoacao.module.css";
 import Input from "../Smart-components/Input/Input";
 import imageItem from "../../resources/images/add-item-image.png";
 import useForm from "../../Custom-Hooks/UseForm";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../Custom-Hooks/UseFetch";
-import { EDITAR_CAMPANHA } from "../../api";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { CADASTRAR_CAMPANHA } from "../../api";
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faHandshake } from '@fortawesome/free-solid-svg-icons'
+import { faHandHoldingMedical } from '@fortawesome/free-solid-svg-icons'
 
-const VerCampanha = ({
+const CriarDoacao = ({
+  idOng,
+  idCampanha,
+  nomeCampanha,
   titulo,
   labelImg,
   labelUm,
   labelDois,
   labelTres,
+  btnUm,
+  btnDois,
   imgsrc,
   modalAberto,
-  atualizar,
-  dadosVisualizar
+  atualizar
 }) => {
   const { request, error, loading } = useFetch();
   const navigate = useNavigate();
@@ -35,23 +40,10 @@ const VerCampanha = ({
   const [preview, setPreview] = React.useState(null);
   const [show, setShow] = React.useState(false);
   const inputFile = React.useRef();
-  const [first, setFirst] = React.useState(true)
 
   React.useEffect(() => {
     if (errorImg) {
       validaImagem(img);
-    }
-
-    async function preencheCampos() {
-      nome.setValue(dadosVisualizar.nome)
-      number.setValue(dadosVisualizar.quantidade)
-      desc.setValue(dadosVisualizar.descricao)
-      setPreview(dadosVisualizar.image)
-      setFirst(false)
-    }
-
-    if (first) {
-      preencheCampos()
     }
   }, [img, errorImg]);
 
@@ -81,7 +73,7 @@ const VerCampanha = ({
     if (error) number.validate(target.value);
     number.setValue(target.value);
 
-    if (target.value < minLength) {
+    if(target.value < minLength ){
       number.setValue(minLength)
     }
   }
@@ -100,26 +92,22 @@ const VerCampanha = ({
       validaImagem(preview)
     ) {
       const token = window.localStorage.getItem("token");
-      const { url, options } = EDITAR_CAMPANHA(
+      const { url, options } = CADASTRAR_CAMPANHA(
         {
           nome: nome.value,
           image: preview,
           quantidade: number.value,
           descricao: desc.value,
         },
-        dadosVisualizar.id
-        ,
         token
       );
 
       const { response } = await request(url, options);
 
       if (response.ok) {
-        window.alert("Item Editado com sucesso");
+        window.alert("Item Cadastrado com sucesso");
         modalAberto(false)
         atualizar()
-      } else {
-        window.alert('oops')
       }
     }
   }
@@ -127,27 +115,61 @@ const VerCampanha = ({
   return (
     <>
       <div className={style.containerCampanha}>
-        <h2><span>Campanha</span> {titulo}{"  "}<FontAwesomeIcon icon={faInfoCircle} /></h2>
+        <h2>{titulo}{"  "}<FontAwesomeIcon icon={faHandshake} /></h2>
+        <h2><span>Campanha destino <FontAwesomeIcon icon={faHandHoldingMedical} />:</span>{" "}{nomeCampanha}</h2>
         <div className={style.main}>
+          <div className={style.left}>
+            <div className={style.img}>
+              <div className={style.hover} style={{ display: `${show}` }}>
+                {preview ? "Alterar Imagem" : "Adicionar Imagem"}
+              </div>
+              <input
+                type="file"
+                onChange={fileSelectedHandler}
+                style={{ display: "none" }}
+                ref={inputFile}
+                onBlur={() => validaImagem(preview)}
+              />
+              <span style={{ fontSize: "22px" }}>
+                {labelImg}
+              </span>
+              <div
+                className={style.imgContainer}
+                onClick={() => inputFile.current.click()}
+              >
+                <img
+                  src={preview ? preview : imageItem}
+                  alt="símbolo de galeria"
+                  onMouseEnter={() => {
+                    setShow("block");
+                  }}
+                  onMouseLeave={() => {
+                    setShow("none");
+                  }}
+                />
+              </div>
+              {errorImg ? <p style={{ color: "red" }}>{errorImg}</p> : ""}
+            </div>
+            <div className={style.inputs}>
+              <Input id="nome" label={labelUm} type="text" {...nome} />
+              <Input id="desc" label={labelDois} type="textarea" {...desc} />
+              <Input id="qtd" label={labelTres} type="number" {...number} onChange={(event) => onChangeNumber(event)} min={minLength}/>
+            </div>
+          </div>
           <div
             style={{
-              backgroundImage: `url(${dadosVisualizar.image})`,
+              backgroundImage: `url(${imgsrc})`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "contain",
             }}
             className={style.right}
+
           >
-          </div>
-          <div className={style.left}>
-            <div className={style.infos}>
-              <h4><span>{labelUm}</span> {dadosVisualizar.nome}</h4><br />
-              <h5><span>{labelDois}</span> {dadosVisualizar.descricao}</h5><br />
-              <h6><span>{labelTres}</span> {dadosVisualizar.quantidade}</h6>
-            </div>
+            .
           </div>
         </div>
-        {/* <div className={style.buttons}>
+        <div className={style.buttons}>
           <Button
             variant="secondary"
             onClick={() => {
@@ -167,7 +189,7 @@ const VerCampanha = ({
           <Button variant="primary" onClick={() => handleFormSubmit()}>
             {btnDois}
           </Button>
-        </div> */}
+        </div>
       </div>
 
       {/* <div className={style.containerItem}>
@@ -239,4 +261,4 @@ const VerCampanha = ({
   );
 };
 
-export default VerCampanha;
+export default CriarDoacao;

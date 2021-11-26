@@ -5,12 +5,10 @@ import useFetch from '../../../Custom-Hooks/UseFetch'
 import style from "./ListCampanhas.module.css"
 import Paginacao from "../../Smart-components/Paginacao/Paginacao" 
 
-const ListCampanhas = ({ id }) => {
+const ListCampanhas = ({ id, setDadosCampanha, setDados, setVerModal, abrirDoar }) => {
 
   const {request, loading, error, dados } = useFetch()
   const [campanhas, setCampanhas] = React.useState()
-  const [verModalEdit, setVerModalEdit] = React.useState()
-  const [dadosEdicao, setDadosEdicao] = React.useState()
   const [page, setPage] = React.useState(0)
   const [size, setSize] = React.useState(2)
 
@@ -82,8 +80,10 @@ const ListCampanhas = ({ id }) => {
                       nomeItem={card.nome}
                       quantidade={card.quantidade}
                       atualizar={pegaCampanhas}
-                      abrirEdicao={setVerModalEdit}
-                      setDadosEdicao={setDadosEdicao}
+                      abrirVisualizacao={setVerModal}
+                      abrirDoar={abrirDoar}
+                      setDadosVer={setDados}
+                      setDadosCampanha={setDadosCampanha}
                     />
                   </>
                 );

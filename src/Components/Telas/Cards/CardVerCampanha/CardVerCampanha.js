@@ -9,7 +9,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { EXCLUIR_CAMPANHA } from "../../../../api";
 import CriarCampanha from "../../../CriarCampanha/CriarCampanha";
 
-const CardVerCampanha = ({ setDadosEdicao, abrirEdicao, idCampanha, foto, nomeItem, descricao, quantidade, labels, atualizar, ...props }) => {
+const CardVerCampanha = ({ setDadosVer, setDadosCampanha, abrirDoar, abrirVisualizacao, idCampanha, foto, nomeItem, descricao, quantidade, labels, atualizar, ...props }) => {
 
   const [verModal, setVerModal] = React.useState(false)
   const [modalEditar, setModalEditar] = React.useState(false)
@@ -28,8 +28,8 @@ const CardVerCampanha = ({ setDadosEdicao, abrirEdicao, idCampanha, foto, nomeIt
     }
   }
 
-  function ambienteEdicao() {
-    setDadosEdicao(
+  function visualizarCampanha() {
+    setDadosVer(
       {
         id: idCampanha,
         nome: nomeItem,
@@ -37,7 +37,18 @@ const CardVerCampanha = ({ setDadosEdicao, abrirEdicao, idCampanha, foto, nomeIt
         quantidade: quantidade,
         image: foto
       })
-    abrirEdicao(true)
+    abrirVisualizacao(true)
+  }
+
+  function doarCampanha(){
+    setDadosCampanha({
+      id: idCampanha,
+      image: foto,
+      nome: nomeItem,
+      descricao: descricao,
+      quantidade: quantidade
+    })
+    abrirDoar(true)
   }
 
   return (
@@ -55,8 +66,8 @@ const CardVerCampanha = ({ setDadosEdicao, abrirEdicao, idCampanha, foto, nomeIt
           <span>{labels.label3}</span>
           <p >{quantidade}</p>
           <div className={style.buttonsCard}>
-            <Button onClick={() => setVerModal(true)}>Informações<FontAwesomeIcon icon={faInfoCircle} /></Button>
-            <Button style={{ marginTop: '2rem' }} onClick={() => null}>Doar<FontAwesomeIcon icon={faHeart} /></Button>
+            <Button onClick={() => visualizarCampanha()}>Informações<FontAwesomeIcon icon={faInfoCircle} /></Button>
+            <Button style={{ marginTop: '2rem' }} onClick={() => doarCampanha()}>Doar<FontAwesomeIcon icon={faHeart} /></Button>
           </div>
         </div>
       </div>
