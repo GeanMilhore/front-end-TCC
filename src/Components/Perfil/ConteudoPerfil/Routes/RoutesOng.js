@@ -8,6 +8,7 @@ import BannerMensagem from "../../../Telas/BannerMensagem/BannerMensagem";
 import campanhaicon from '../../../../resources/images/campanhashome.png'
 import propostasrecebidas from '../../../../resources/images/propostasrecebidas.png'
 import teladoacoesong from '../../../../resources/images/teladoacoesong.png'
+import TelaCampanhas from "../../../Telas/Ong/TelaCampanhas/TelaCampanhas";
 
 const RoutesOng = ({ dadosUsuario }) => {
   {
@@ -46,11 +47,14 @@ const RoutesOng = ({ dadosUsuario }) => {
       <Route
         path="/campanhas"
         element={
+          <>
           <BannerMensagem
             img={campanhaicon}
             mensagem={"Campanhas Publicadas"}
             submensagem={"aqui você pode ver todas as campanhas que você publicou."}
           />
+          <TelaCampanhas />
+          </>
         }
       />
       <Route
