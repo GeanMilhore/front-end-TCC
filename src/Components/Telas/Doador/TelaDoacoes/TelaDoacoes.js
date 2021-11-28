@@ -1,22 +1,27 @@
 import React from 'react'
 import style from './TelaDoacoes.module.css'
 import CardDoacoes from '../../Cards/CardDoacoes/CardDoacoes'
+import { PEGAR_PROPOSTAS_DOADOR } from '../../../../api';
+import useFetch from '../../../../Custom-Hooks/UseFetch';
+import Paginacao from '../../../Smart-components/Paginacao/Paginacao'
 
 
 const TelaDoacoes = () => {
-    const [itens, setItens] = React.useState(null);
+  const [doacoes, setDoacoes] = React.useState(null);
   const { loading, error, dados, request } = useFetch();
+  const [page, setPage] = React.useState(0)
+  const [size, setSize] = React.useState(4)
 
   React.useEffect(() => {
     async function pegaItens() {
       const token = window.localStorage.getItem("token");
-      const { url, options } = PEGAR_PROPOSTAS_DOADOR(token);
+      const { url, options } = PEGAR_PROPOSTAS_DOADOR(token, page, size);
 
       const { response, json } = await request(url, options);
 
       if (response.ok) {
         console.log(json);
-        setItens(json);
+        setDoacoes(json);
       } else {
         console.log(error);
       }
@@ -26,30 +31,39 @@ const TelaDoacoes = () => {
   }, []);
 
   if (loading) return <div className={" loader"} />;
-  if (!itens) return null;
+  if (!doacoes) return null;
   return (
     <>
       <div className={style.lista}>
-        {itens.map((card) => {
-          console.log(card);
+        {doacoes.content.map((doacao) => {
+          console.log(doacao);
 
           return (
             <>
-            <CardDoacoes
-            labels={{
-                label1: 'Nome do Item',
-                label2: 'Ong de Destino',
-                label3: 'Data Entrega'
-            }}
-              foto={card.item.image}
-              descricao={card.item.descricao}
-              nomeItem={card.item.nome}
-              status={card.status}
-            />
+              <CardDoacoes
+                labels={{
+                  label1: 'Nome do Item',
+                  label2: 'Ong de Destino',
+                  label3: 'Data Entrega'
+                }}
+                foto={doacao.item.image}
+                descricao={doacao.item.descricao}
+                nomeItem={doacao.item.nome}
+                status={doacao.status}
+              />
             </>
           );
         })}
       </div>
+      <Paginacao
+        size={size}
+        page={page}
+        setItens={setDoacoes}
+        setPagina={setPage}
+        totalPaginas={doacoes.totalPages}
+        reqItens={PEGAR_PROPOSTAS_DOADOR}
+        isPrivate={true}
+      />
     </>
   );
 };

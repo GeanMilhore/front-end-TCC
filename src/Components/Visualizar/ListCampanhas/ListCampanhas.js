@@ -15,7 +15,7 @@ const ListCampanhas = ({ id, setDadosCampanha, setDados, setVerModal, abrirDoar 
     
   const pegaCampanhas = async function () {
 
-    const {url, options} = PEGAR_CAMPANHAS(Number(id) + 1)
+    const {url, options} = PEGAR_CAMPANHAS(Number(id) + 1, page, size)
 
     const {response, json} =  await request(url, options);
 
@@ -33,41 +33,14 @@ const ListCampanhas = ({ id, setDadosCampanha, setDados, setVerModal, abrirDoar 
   }, [])
 
 
+  if(!campanhas) return null
     return (
       <>
         <div className={style.lista}>
-            {campanhas && campanhas.map((card) => {
+            {campanhas && campanhas.content.map((card) => {
                 console.log(card);
                 return (
                   <>
-                    {/* <CardPerfil
-                  nome={card.nome}
-                  estado={card.estado}
-                  cidade={card.cidade}
-                  telefone={card.telefone}
-                  id={card.id}
-                />
-                <CardPerfil
-                  nome={card.nome}
-                  estado={card.estado}
-                  cidade={card.cidade}
-                  telefone={card.telefone}
-                  id={card.id}
-                />
-                <CardPerfil
-                  nome={card.nome}
-                  estado={card.estado}
-                  cidade={card.cidade}
-                  telefone={card.telefone}
-                  id={card.id}
-                />
-                <CardPerfil
-                  nome={card.nome}
-                  estado={card.estado}
-                  cidade={card.cidade}
-                  telefone={card.telefone}
-                  id={card.id}
-                /> */}
                     <CardVerCampanha
                       labels={{
                         label1: 'Campanha',
@@ -79,6 +52,7 @@ const ListCampanhas = ({ id, setDadosCampanha, setDados, setVerModal, abrirDoar 
                       descricao={card.descricao}
                       nomeItem={card.nome}
                       quantidade={card.quantidade}
+                      usuario={card.usuario}
                       atualizar={pegaCampanhas}
                       abrirVisualizacao={setVerModal}
                       abrirDoar={abrirDoar}
@@ -92,6 +66,12 @@ const ListCampanhas = ({ id, setDadosCampanha, setDados, setVerModal, abrirDoar 
           <Paginacao 
             page={page}
             size={size}
+            totalPaginas={campanhas.totalPages}
+            reqItens={PEGAR_CAMPANHAS}
+            setItens={setCampanhas}
+            setPagina={setPage}
+            isPrivate={true}
+            token={Number(id) + 1}
           />
           </>
     )

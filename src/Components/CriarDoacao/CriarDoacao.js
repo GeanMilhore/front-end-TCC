@@ -6,14 +6,13 @@ import imageItem from "../../resources/images/add-item-image.png";
 import useForm from "../../Custom-Hooks/UseForm";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../Custom-Hooks/UseFetch";
-import { CADASTRAR_CAMPANHA } from "../../api";
+import { REALIZAR_DOACAO } from "../../api";
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faHandshake } from '@fortawesome/free-solid-svg-icons'
 import { faHandHoldingMedical } from '@fortawesome/free-solid-svg-icons'
 
 const CriarDoacao = ({
-  idOng,
-  idCampanha,
+  idInstituicao,
   nomeCampanha,
   titulo,
   labelImg,
@@ -45,6 +44,8 @@ const CriarDoacao = ({
     if (errorImg) {
       validaImagem(img);
     }
+
+    window.alert(idInstituicao)
   }, [img, errorImg]);
 
   function fileSelectedHandler(event) {
@@ -92,22 +93,29 @@ const CriarDoacao = ({
       validaImagem(preview)
     ) {
       const token = window.localStorage.getItem("token");
-      const { url, options } = CADASTRAR_CAMPANHA(
+      const { url, options } = REALIZAR_DOACAO(
         {
           nome: nome.value,
           image: preview,
           quantidade: number.value,
           descricao: desc.value,
+          idInstituicao: Number(idInstituicao) - 1
         },
         token
       );
 
       const { response } = await request(url, options);
 
-      if (response.ok) {
-        window.alert("Item Cadastrado com sucesso");
-        modalAberto(false)
-        atualizar()
+      try{
+        if (response.ok) {
+          window.alert("Proposta Enviada com Sucesso!");
+          modalAberto(false)
+          atualizar()
+        } else {
+          window.alert('opps')
+        }
+      } catch(error){
+        console.log(error)
       }
     }
   }

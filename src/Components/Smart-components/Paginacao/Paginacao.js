@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Paginacao.module.css";
 import useFetch from "../../../Custom-Hooks/UseFetch"
 
-const Paginacao = ({ page, size, setItens, setPagina, totalPaginas, reqItens }) => {
+const Paginacao = ({ page, size, setItens, setPagina, totalPaginas, reqItens, isPrivate = false, token = window.localStorage.getItem('token') }) => {
   const { request, loading, error, dados } = useFetch();
   const [ podeProxima, setPodeProxima ] = React.useState()
   const [ podeAnterior, setPodeAnterior ] = React.useState()
@@ -19,33 +19,55 @@ const Paginacao = ({ page, size, setItens, setPagina, totalPaginas, reqItens }) 
   }, [page])
 
   const proxima = async function proximaPagina() {
-    const token = window.localStorage.getItem("token");
 
-    const { url, options } = reqItens( page + 1, size);
-    setPagina(page + 1);
-
-    const { response, json } = await request(url, options);
-
-    if (response.ok) {
-      setItens(json);
-      console.log(json);
+    if(isPrivate){
+      const { url, options } = reqItens(token, page + 1, size);
+      setPagina(page + 1);
+      const { response, json } = await request(url, options);
+      if (response.ok) {
+        setItens(json);
+        console.log(json);
+      } else {
+        console.log(error);
+      }
     } else {
-      console.log(error);
+      const { url, options } = reqItens(page + 1, size);
+      setPagina(page + 1);
+      const { response, json } = await request(url, options);
+      if (response.ok) {
+        setItens(json);
+        console.log(json);
+      } else {
+        console.log(error);
+      }
     }
+
   };
 
   const anterior = async function voltarPagina() {
-    const token = window.localStorage.getItem("token");
-    const { url, options } = reqItens(page - 1, size);
-    setPagina(page - 1);
-    const { response, json } = await request(url, options);
-
-    if (response.ok) {
-      setItens(json);
-      console.log(json);
+    
+    if(isPrivate){
+      const { url, options } = reqItens(token, page - 1, size);
+      setPagina(page - 1);
+      const { response, json } = await request(url, options);
+      if (response.ok) {
+        setItens(json);
+        console.log(json);
+      } else {
+        console.log(error);
+      }
     } else {
-      console.log(error);
+      const { url, options } = reqItens(page - 1, size);
+      setPagina(page - 1);
+      const { response, json } = await request(url, options);
+      if (response.ok) {
+        setItens(json);
+        console.log(json);
+      } else {
+        console.log(error);
+      }
     }
+
   };
 
   return (

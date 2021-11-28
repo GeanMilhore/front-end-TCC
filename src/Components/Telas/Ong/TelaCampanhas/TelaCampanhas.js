@@ -19,16 +19,16 @@ const TelaCampanhas = () => {
   const [campanhas, setCampanhas] = React.useState(null)
   const { request, dados, error, loading } = useFetch()
   const [page, setPage] = React.useState(0)
-  const [size, setSize] = React.useState(4)
+  const [size, setSize] = React.useState(3)
 
   const pegaCampanhas = async function () {
     const token = window.localStorage.getItem('token')
 
-    const {url, options} = PEGAR_CAMPANHAS(token)
+    const { url, options } = PEGAR_CAMPANHAS(token, page, size)
 
-    const {response, json} =  await request(url, options);
+    const { response, json } = await request(url, options);
 
-    if(response.ok){
+    if (response.ok) {
       setCampanhas(json)
       console.log(json)
     } else {
@@ -86,64 +86,42 @@ const TelaCampanhas = () => {
       {campanhas && (
         <>
           <div className={style.lista}>
-            {campanhas.map((card) => {
-                console.log(card);
-                return (
-                  <>
-                    {/* <CardPerfil
-                  nome={card.nome}
-                  estado={card.estado}
-                  cidade={card.cidade}
-                  telefone={card.telefone}
-                  id={card.id}
-                />
-                <CardPerfil
-                  nome={card.nome}
-                  estado={card.estado}
-                  cidade={card.cidade}
-                  telefone={card.telefone}
-                  id={card.id}
-                />
-                <CardPerfil
-                  nome={card.nome}
-                  estado={card.estado}
-                  cidade={card.cidade}
-                  telefone={card.telefone}
-                  id={card.id}
-                />
-                <CardPerfil
-                  nome={card.nome}
-                  estado={card.estado}
-                  cidade={card.cidade}
-                  telefone={card.telefone}
-                  id={card.id}
-                /> */}
-                    <CardCampanha
-                      labels={{
-                        label1: 'Campanha',
-                        label2: 'Descricao',
-                        label3: 'Para Arrecadar'
-                      }}
-                      idCampanha={card.id}
-                      foto={card.image}
-                      descricao={card.descricao}
-                      nomeItem={card.nome}
-                      quantidade={card.quantidade}
-                      atualizar={pegaCampanhas}
-                      abrirEdicao={setVerModalEdit}
-                      setDadosEdicao={setDadosEdicao}
-                    />
-                  </>
-                );
-              })}
+            {campanhas.content.map((card) => {
+              console.log(card);
+              return (
+                <>
+                  <CardCampanha
+                    labels={{
+                      label1: 'Campanha',
+                      label2: 'Descricao',
+                      label3: 'Para Arrecadar'
+                    }}
+                    idCampanha={card.id}
+                    foto={card.image}
+                    descricao={card.descricao}
+                    nomeItem={card.nome}
+                    quantidade={card.quantidade}
+                    atualizar={pegaCampanhas}
+                    abrirEdicao={setVerModalEdit}
+                    setDadosEdicao={setDadosEdicao}
+                  />
+                </>
+              );
+            })}
           </div>
         </>
       )}
-      <Paginacao 
-        page={page}
-        size={size}
-        totalPaginas={10}
-      />
+      {campanhas && (
+        <Paginacao
+          page={page}
+          size={size}
+          setItens={setCampanhas}
+          setPagina={setPage}
+          reqItens={PEGAR_CAMPANHAS}
+          totalPaginas={campanhas.totalPages}
+          isPrivate={true}
+        />
+      )}
     </div>
   );
 };

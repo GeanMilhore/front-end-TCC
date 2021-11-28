@@ -4,10 +4,30 @@ import Modal from '../../../Smart-components/Modal/Modal'
 import Button from '../../../Smart-components/Button/Button'
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faWindowClose} from '@fortawesome/free-solid-svg-icons'
+import { CANCELAR_PROPOSTA } from "../../../../api"
+import useFetch from "../../../../Custom-Hooks/UseFetch";
 
-const Card = ({ foto, nomeItem, nomeOng, status, labels, ...props }) => {
+const Card = ({ idProposta, atualizar, foto, nomeItem, nomeOng, status, labels, ...props }) => {
 
   const [verModal, setVerModal] = React.useState(false)
+  const {request, loading ,error ,dados} = useFetch()
+
+  async function cancelarProposta(){
+    const token = window.localStorage.getItem('token')
+
+    const {url, options} = CANCELAR_PROPOSTA(token, idProposta)
+
+    const {response, json } = await request(url, options)
+
+    if(response.ok){
+      window.alert('Proposta Cancelada')
+      document.getElementById('modal').click()
+      console.log(json)
+      atualizar()
+    } else {
+      window.alert('oops')
+    }
+  }
 
   return (
     <>
@@ -23,7 +43,7 @@ const Card = ({ foto, nomeItem, nomeOng, status, labels, ...props }) => {
           <p>{nomeOng}</p>
           <span>{labels.label3}</span>
           <p style={{ color: `${status == 'PENDENTE' ? 'orange' : status === 'ACEITO' ? 'green' : 'red'}` }}>{status}</p>
-          <Button onClick={() => setVerModal(true)}>Cancelar<FontAwesomeIcon icon={faWindowClose} /></Button>
+          <Button disabled={status === 'PENDENTE' ? false : true } onClick={() => setVerModal(true)}>Cancelar<FontAwesomeIcon icon={faWindowClose} /></Button>
         </div>
       </div>
       {verModal ?
@@ -45,7 +65,7 @@ const Card = ({ foto, nomeItem, nomeOng, status, labels, ...props }) => {
             Você tem certeza que quer cancelar a proposta do item <strong>{nomeItem}</strong> ?
             </span>
             <div>
-              <Button>Sim</Button>
+              <Button onClick={() => cancelarProposta()}>Sim</Button>
               <Button onClick={() => document.getElementById('modal').click()}>Não</Button>
             </div>
           </div>

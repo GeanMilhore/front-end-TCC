@@ -1,6 +1,6 @@
-// export const API_URL = "http://192.168.18.46:8080";
+export const API_URL = "http://192.168.18.46:8080";
 
-export const API_URL = "http://localhost:8080";
+// export const API_URL = "http://localhost:8080";
 
 export function TOKEN_POST(body) {
   return {
@@ -258,8 +258,7 @@ export function LISTAR_ONGS(pagina, size) {
   return {
     url:
       API_URL +
-      `/instituicoes?${pagina ? `page=${pagina}` : null}${
-        size ? `&size=${size}` : null
+      `/instituicoes?${pagina ? `page=${pagina}` : null}${size ? `&size=${size}` : null
       }`,
     options: {
       method: "GET",
@@ -274,8 +273,7 @@ export function LISTAR_DOADORES(token, pagina, size) {
   return {
     url:
       API_URL +
-      `/doadores?${pagina ? `page=${pagina}` : null}${
-        size ? `&size=${size}` : null
+      `/doadores?${pagina ? `page=${pagina}` : null}${size ? `&size=${size}` : null
       }`,
     options: {
       method: "GET",
@@ -291,8 +289,7 @@ export function LISTAR_DOACOES(token, pagina, size) {
   return {
     url:
       API_URL +
-      `/itens?${pagina ? `page=${pagina}` : null}${
-        size ? `&size=${size}` : null
+      `/itens?${pagina ? `page=${pagina}` : null}${size ? `&size=${size}` : null
       }`,
     options: {
       method: "GET",
@@ -331,9 +328,22 @@ export function RELATORIO_DOACOES() {
   };
 }
 
-export function PROPOSTAS_ONG(token) {
+export function PROPOSTAS_ONG_ACEITAS(token, page, size) {
   return {
-    url: API_URL + "/propostas",
+    url: API_URL + `/instituicoes/${token}/propostas?status=ACEITO&page=${page ? page : 0}&size=${size ? size : 5}`,
+    options: {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    },
+  };
+}
+
+export function PROPOSTAS_ONG_PENDENTES(token, page, size) {
+  return {
+    url: API_URL + `/instituicoes/${token}/propostas?status=PENDENTE&page=${page ? page : 0}&size=${size ? size : 5}`,
     options: {
       method: "GET",
       headers: {
@@ -347,8 +357,7 @@ export function PROPOSTAS_ONG(token) {
 export function PEGAR_PROPOSTAS_DOADOR(token, pagina, size) {
   return {
     url: API_URL +
-     `/propostas?${pagina ? `page=${pagina}` : null}
-     ${size ? `&size=${size}` : null}`,
+      `/propostas?${pagina ? `page=${pagina}` : 0}${size ? `&size=${size}` : null}`,
     options: {
       method: "GET",
       headers: {
@@ -359,7 +368,7 @@ export function PEGAR_PROPOSTAS_DOADOR(token, pagina, size) {
   };
 }
 
-export function CADASTRAR_CAMPANHA(body , token){
+export function CADASTRAR_CAMPANHA(body, token) {
   return {
     url: API_URL + '/campanhas',
     options: {
@@ -372,7 +381,7 @@ export function CADASTRAR_CAMPANHA(body , token){
     },
   };
 }
-export function EDITAR_CAMPANHA(body , id, token){
+export function EDITAR_CAMPANHA(body, id, token) {
   return {
     url: API_URL + `/campanhas/${id}`,
     options: {
@@ -386,9 +395,9 @@ export function EDITAR_CAMPANHA(body , id, token){
   };
 }
 
-export function PEGAR_CAMPANHAS(token){
+export function PEGAR_CAMPANHAS(token, page, size) {
   return {
-    url: API_URL + '/campanhas',
+    url: API_URL + `/campanhas${page ? '?page='+page : '?page='+0 }${size ? '&size='+size : '&size='+5 }`,
     options: {
       method: "GET",
       headers: {
@@ -399,7 +408,7 @@ export function PEGAR_CAMPANHAS(token){
   };
 }
 
-export function EXCLUIR_CAMPANHA(token, id){
+export function EXCLUIR_CAMPANHA(token, id) {
   return {
     url: API_URL + `/campanhas/${id}`,
     options: {
@@ -410,5 +419,31 @@ export function EXCLUIR_CAMPANHA(token, id){
       }
     },
   };
+
 }
 
+export function DECIDIR_PROPOSTA(token, id, decisao) {
+  return {
+    url: API_URL + `/instituicoes/${token}/propostas/${id}/${decisao}`,
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      }
+    },
+  }
+}
+
+export function CANCELAR_PROPOSTA(token, id) {
+  return {
+    url: API_URL + `/propostas/${id}`,
+    options: {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      }
+    },
+  }
+}

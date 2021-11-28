@@ -9,6 +9,8 @@ import campanhaicon from '../../../../resources/images/campanhashome.png'
 import propostasrecebidas from '../../../../resources/images/propostasrecebidas.png'
 import teladoacoesong from '../../../../resources/images/teladoacoesong.png'
 import TelaCampanhas from "../../../Telas/Ong/TelaCampanhas/TelaCampanhas";
+import TelaPropostasOng from "../../../Telas/Ong/TelaPropostasOng/TelaPropostasOng";
+import TelaDoacoes from "../../../Telas/Ong/TelaDoacoes/TelaDoacoes";
 
 const RoutesOng = ({ dadosUsuario }) => {
   {
@@ -48,36 +50,42 @@ const RoutesOng = ({ dadosUsuario }) => {
         path="/campanhas"
         element={
           <>
-          <BannerMensagem
-            img={campanhaicon}
-            mensagem={"Campanhas Publicadas"}
-            submensagem={"aqui você pode ver todas as campanhas que você publicou."}
-          />
-          <TelaCampanhas />
+            <BannerMensagem
+              img={campanhaicon}
+              mensagem={"Campanhas Publicadas"}
+              submensagem={"aqui você pode ver todas as campanhas que você publicou."}
+            />
+            <TelaCampanhas />
           </>
         }
       />
       <Route
         path="/propostas"
         element={
-          <BannerMensagem
-            img={propostasrecebidas}
-            mensagem={"Propostas Recebidas"}
-            submensagem={"aqui você pode ver todas as propostas que você recebeu."}
-          />
+          <>
+            <BannerMensagem
+              img={propostasrecebidas}
+              mensagem={"Propostas Recebidas"}
+              submensagem={"aqui você pode ver todas as propostas que você recebeu."}
+            />
+            <TelaPropostasOng />
+          </>
         }
       />
       <Route
         path="/doacoes"
         element={
-          <BannerMensagem
-            img={teladoacoesong}
-            mensagem={"Doações Confirmadas"}
-            submensagem={"aqui você pode ver todas as doações aceitas que chegaram até a ONG."}
-          />
+          <>
+            <BannerMensagem
+              img={teladoacoesong}
+              mensagem={"Doações Confirmadas"}
+              submensagem={"aqui você pode ver todas as doações aceitas que chegaram até a ONG."}
+            />
+            <TelaDoacoes />
+          </>
         }
       />
-      <Route 
+      <Route
         path="home"
         element={<Navigate to="/campanhas" />}
       />

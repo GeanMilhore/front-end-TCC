@@ -31,7 +31,7 @@ const TelaMeusItens = () => {
   return (
     <>
       <div className={style.lista}>
-        {itens.map((card) => {
+        {itens.content.map((card) => {
           console.log(card);
 
           return (

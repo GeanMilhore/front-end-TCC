@@ -37,6 +37,7 @@ const ContaOng = () => {
 
 
   React.useEffect(() => {
+    
     async function montaPerfilOng() {
       const token = window.localStorage.getItem("token");
       const { url, options } = PEGA_DADOS_ONG(token, id);
@@ -53,7 +54,7 @@ const ContaOng = () => {
 
     async function pegaCampanhas() {
 
-      const { url, options } = PEGAR_CAMPANHAS(Number(id) + 1)
+      const { url, options } = PEGAR_CAMPANHAS(id)
       console.log(url)
       console.log(options)
 
@@ -69,6 +70,7 @@ const ContaOng = () => {
       }
     }
 
+    
     pegaCampanhas()
     montaPerfilOng();
   }, []);
@@ -105,7 +107,7 @@ const ContaOng = () => {
           >
             Campanhas
           </Button>
-          <Button
+          {/* <Button
             onClick={() => {
               setInfo(false);
               setVerCampanhas(false);
@@ -113,7 +115,7 @@ const ContaOng = () => {
             }}
           >
             Doar
-          </Button>
+          </Button> */}
         </div>
         {info && (
           <MainPerfil
@@ -196,6 +198,7 @@ const ContaOng = () => {
                 btnDois={"Salvar"}
                 modalAberto={setVerDoar}
                 nomeCampanha={dadosCampanha.nome}
+                idInstituicao={dadosCampanha.usuario.id}
             />
           </Modal>
         )}

@@ -13,7 +13,8 @@ import BannerMensagem from "../../../Telas/BannerMensagem/BannerMensagem";
 import propostasicon from "../../../../resources/images/telapropostasdoador.png";
 import TelaPropostas from "../../../Telas/Doador/TelaPropostas/TelaPropostas";
 // import meusitensicon from "../../../../resources/images/telameusitens.png";
-import TelaMeusItens from "../../../Telas/Doador/TelaMeusItens/TelaMeusItens";
+// import TelaMeusItens from "../../../Telas/Doador/TelaMeusItens/TelaMeusItens";
+import TelaDoacoes from "../../../Telas/Doador/TelaDoacoes/TelaDoacoes";
 import minhasdoacoes from "../../../../resources/images/teladoacoes.png";
 
 const RoutesDoador = ({ dadosUsuario }) => {
@@ -105,7 +106,7 @@ const RoutesDoador = ({ dadosUsuario }) => {
               mensagem={"Minhas Doações"}
               submensagem={"aqui você pode ver todas as doações que você realizou."}
             />
-            <TelaMeusItens />
+            <TelaDoacoes />
           </>
         }
       />

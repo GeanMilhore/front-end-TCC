@@ -9,7 +9,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { EXCLUIR_CAMPANHA } from "../../../../api";
 import CriarCampanha from "../../../CriarCampanha/CriarCampanha";
 
-const CardVerCampanha = ({ setDadosVer, setDadosCampanha, abrirDoar, abrirVisualizacao, idCampanha, foto, nomeItem, descricao, quantidade, labels, atualizar, ...props }) => {
+const CardVerCampanha = ({ usuario, setDadosVer, setDadosCampanha, abrirDoar, abrirVisualizacao, idCampanha, foto, nomeItem, descricao, quantidade, labels, atualizar, ...props }) => {
 
   const [verModal, setVerModal] = React.useState(false)
   const [modalEditar, setModalEditar] = React.useState(false)
@@ -46,7 +46,8 @@ const CardVerCampanha = ({ setDadosVer, setDadosCampanha, abrirDoar, abrirVisual
       image: foto,
       nome: nomeItem,
       descricao: descricao,
-      quantidade: quantidade
+      quantidade: quantidade,
+      usuario: usuario
     })
     abrirDoar(true)
   }
