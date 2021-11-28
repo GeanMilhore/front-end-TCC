@@ -357,7 +357,20 @@ export function PROPOSTAS_ONG_PENDENTES(token, page, size) {
 export function PEGAR_PROPOSTAS_DOADOR(token, pagina, size) {
   return {
     url: API_URL +
-      `/propostas?${pagina ? `page=${pagina}` : 0}${size ? `&size=${size}` : null}`,
+      `/propostas?${pagina ? `page=${pagina}` : `page=0`}${size ? `&size=${size}` : `&size=5`}`,
+    options: {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    },
+  };
+}
+
+export function PEGAR_PROPOSTAS_ACEITAS_DOADOR(token, page, size){
+  return {
+    url: API_URL +`/doadores/${token}/propostas?status=ACEITO${page ? `&page=${page}` : `&page=0`}${size ? `&size=${size}` : `&size=5`}`,
     options: {
       method: "GET",
       headers: {

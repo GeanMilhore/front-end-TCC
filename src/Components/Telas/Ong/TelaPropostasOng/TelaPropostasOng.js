@@ -45,10 +45,11 @@ const TelaPropostasOng = () => {
                                 nomeItem={proposta.item.nome}
                                 descricao={proposta.item.descricao}
                                 quantidade={proposta.status}
+                                nomeDoador={proposta.item.usuario.email}
                                 labels={{
                                     label1: 'Item',
                                     label2: 'Descricao',
-                                    label3: 'STATUS'
+                                    label3: 'Contato Doador'
                                 }}
                                 atualizar={pegaPropostas}
                             />

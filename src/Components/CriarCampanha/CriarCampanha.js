@@ -9,6 +9,11 @@ import useFetch from "../../Custom-Hooks/UseFetch";
 import { CADASTRAR_CAMPANHA } from "../../api";
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faBullhorn} from '@fortawesome/free-solid-svg-icons'
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+
+toast.configure()
 
 const CriarCampanha = ({
   titulo,
@@ -101,9 +106,13 @@ const CriarCampanha = ({
       const { response } = await request(url, options);
 
       if (response.ok) {
-        window.alert("Item Cadastrado com sucesso");
+        toast.success('Campanha Cadastrada com Sucesso!')
         modalAberto(false)
         atualizar()
+      }else {
+        toast.error('Ops! Algo deu Errado')
+        modalAberto(false)
+
       }
     }
   }

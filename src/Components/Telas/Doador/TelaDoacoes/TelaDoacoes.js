@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './TelaDoacoes.module.css'
 import CardDoacoes from '../../Cards/CardDoacoes/CardDoacoes'
-import { PEGAR_PROPOSTAS_DOADOR } from '../../../../api';
+import { PEGAR_PROPOSTAS_ACEITAS_DOADOR } from '../../../../api';
 import useFetch from '../../../../Custom-Hooks/UseFetch';
 import Paginacao from '../../../Smart-components/Paginacao/Paginacao'
 
@@ -15,7 +15,7 @@ const TelaDoacoes = () => {
   React.useEffect(() => {
     async function pegaItens() {
       const token = window.localStorage.getItem("token");
-      const { url, options } = PEGAR_PROPOSTAS_DOADOR(token, page, size);
+      const { url, options } = PEGAR_PROPOSTAS_ACEITAS_DOADOR(token, page, size);
 
       const { response, json } = await request(url, options);
 
@@ -61,7 +61,7 @@ const TelaDoacoes = () => {
         setItens={setDoacoes}
         setPagina={setPage}
         totalPaginas={doacoes.totalPages}
-        reqItens={PEGAR_PROPOSTAS_DOADOR}
+        reqItens={PEGAR_PROPOSTAS_ACEITAS_DOADOR}
         isPrivate={true}
       />
     </>

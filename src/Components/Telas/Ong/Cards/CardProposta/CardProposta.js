@@ -13,7 +13,8 @@ const CardProposta = ({
   nomeItem, 
   descricao, 
   quantidade, 
-  labels, 
+  labels,
+  nomeDoador,
   atualizar,
    ...props 
   }) => {
@@ -68,7 +69,7 @@ const CardProposta = ({
           <span>{labels.label2}</span>
           <p>{descricao}</p>
           <span>{labels.label3}</span>
-          <p >{quantidade}</p>
+          <p >{nomeDoador}</p>
           <div className={style.buttonsCard}>
             <Button onClick={() => aceitarProposta()}>Aceitar<FontAwesomeIcon icon={faCheckCircle} /></Button>
             <Button style={{ marginTop: '2rem' }} onClick={() => recusarProposta()}>Recusar<FontAwesomeIcon icon={faWindowClose} /></Button>

@@ -4,6 +4,10 @@ import useFetch from '../../../../Custom-Hooks/UseFetch'
 import Paginacao from '../../../Smart-components/Paginacao/Paginacao'
 import CardDoacao from '../Cards/CardDoacao/CardDoacao'
 import style from "./TelaDoacoes.module.css"
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const TelaDoacoes = () => {
 

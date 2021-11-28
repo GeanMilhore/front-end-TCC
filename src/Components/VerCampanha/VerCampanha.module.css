@@ -26,11 +26,11 @@ h2 span{
     flex-direction: column;
     align-items: center;
     color: white;
-    width: 50%;
+    width: 8vw;
+    height: 7vw;
     border-radius: 20%;
     margin-left: 2rem;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+    margin-top: calc(15% - 5.5vw);
     transform: scale(2.5);
 }
 

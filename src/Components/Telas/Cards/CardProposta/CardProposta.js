@@ -6,8 +6,9 @@ import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faWindowClose} from '@fortawesome/free-solid-svg-icons'
 import { CANCELAR_PROPOSTA } from "../../../../api"
 import useFetch from "../../../../Custom-Hooks/UseFetch";
+import { NavLink } from "react-router-dom";
 
-const Card = ({ idProposta, atualizar, foto, nomeItem, nomeOng, status, labels, ...props }) => {
+const Card = ({ idProposta, idOng, atualizar, foto, nomeItem, nomeOng, status, labels, ...props }) => {
 
   const [verModal, setVerModal] = React.useState(false)
   const {request, loading ,error ,dados} = useFetch()
@@ -39,8 +40,8 @@ const Card = ({ idProposta, atualizar, foto, nomeItem, nomeOng, status, labels, 
         <div>
           <span>{labels.label1}</span>
           <p>{nomeItem}</p>
-          <span>{labels.label2}</span>
-          <p>{nomeOng}</p>
+          <span>{labels.label2}</span><br />
+          <NavLink to={`/home/ong/${idOng}`}>{nomeOng}</NavLink><br /><br />
           <span>{labels.label3}</span>
           <p style={{ color: `${status == 'PENDENTE' ? 'orange' : status === 'ACEITO' ? 'green' : 'red'}` }}>{status}</p>
           <Button disabled={status === 'PENDENTE' ? false : true } onClick={() => setVerModal(true)}>Cancelar<FontAwesomeIcon icon={faWindowClose} /></Button>

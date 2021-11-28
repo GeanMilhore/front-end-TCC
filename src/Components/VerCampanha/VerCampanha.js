@@ -134,7 +134,7 @@ const VerCampanha = ({
               backgroundImage: `url(${dadosVisualizar.image})`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
-              backgroundSize: "contain",
+              backgroundSize: "cover",
             }}
             className={style.right}
           >

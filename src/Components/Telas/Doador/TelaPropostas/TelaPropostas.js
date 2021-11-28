@@ -48,6 +48,7 @@ const TelaPropostas = () => {
                   idProposta={proposta.id}
                   foto={proposta.item.image}
                   nomeOng={proposta.instituicao.nomeFantasia}
+                  idOng={proposta.instituicao.id}
                   nomeItem={proposta.item.nome}
                   status={proposta.status}
                   atualizar={pegaPropostas}
