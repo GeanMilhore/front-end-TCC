@@ -10,6 +10,10 @@ import Button from "../../../../Smart-components/Button/Button";
 import { NavLink } from "react-router-dom";
 import editaricon from "../../../../../resources/images/editar.png";
 import UseFetch from "../../../../../Custom-Hooks/UseFetch"
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const HeaderDoador = ({ nome, email, dtNasc, qtdDoacoes, qtdPropostas, isMine }) => {
 
@@ -27,9 +31,7 @@ const HeaderDoador = ({ nome, email, dtNasc, qtdDoacoes, qtdPropostas, isMine })
 
       if(response.ok){
         setPropostasFeitas(json.totalElements)
-      } else {
-        window.alert('oops')
-      }
+      } 
     }
 
     async function pegaPropostasAceitas(){
@@ -41,9 +43,7 @@ const HeaderDoador = ({ nome, email, dtNasc, qtdDoacoes, qtdPropostas, isMine })
 
       if(response.ok){
         setPropostasAceitas(json.totalElements)
-      } else {
-        window.alert('opps')
-      }
+      } 
     }
 
     pegaPropostasAceitas()

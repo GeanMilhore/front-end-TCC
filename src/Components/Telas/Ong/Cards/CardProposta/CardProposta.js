@@ -6,6 +6,10 @@ import useFetch from "../../../../../Custom-Hooks/UseFetch";
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { DECIDIR_PROPOSTA } from "../../../../../api";
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const CardProposta = ({ 
   idProposta, 
@@ -24,15 +28,15 @@ const CardProposta = ({
   async function aceitarProposta(){
     const token = Number(window.localStorage.getItem('token')) - 1
     const { url, options} = DECIDIR_PROPOSTA(token, idProposta, 'aceitar')
-    window.alert(url)
     try{
       const {response, json} = await request(url, options)
       if(response.ok){
         console.log(json)
-        window.alert('Proposta Aceita')
+        toast.success('Proposta Aceita')
         atualizar()
       } 
     } catch(error){
+      toast.error('Ops! Algo deu errado...')
       console.log(error)
     }
   }
@@ -42,15 +46,14 @@ const CardProposta = ({
     const { url, options} = DECIDIR_PROPOSTA(token, idProposta, 'recusado')
 
     try{
-      window.alert(url)
       const {response, json} = await request(url, options)
       if(response.ok){
-        window.alert('Proposta Recusada')
+        toast.success('Proposta Recusada')
         console.log(json)
         atualizar()
       } 
     } catch(error){
-      window.alert('oops')
+      toast.error('Ops! Algo deu errado...')
       console.log(error)
     }
   }

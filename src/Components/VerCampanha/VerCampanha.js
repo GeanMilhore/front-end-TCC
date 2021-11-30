@@ -9,6 +9,10 @@ import useFetch from "../../Custom-Hooks/UseFetch";
 import { EDITAR_CAMPANHA } from "../../api";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const VerCampanha = ({
   titulo,
@@ -115,11 +119,11 @@ const VerCampanha = ({
       const { response } = await request(url, options);
 
       if (response.ok) {
-        window.alert("Item Editado com sucesso");
+        toast.success("Item Editado com sucesso");
         modalAberto(false)
         atualizar()
       } else {
-        window.alert('oops')
+        toast.error("Ops! Algo deu errado...")
       }
     }
   }

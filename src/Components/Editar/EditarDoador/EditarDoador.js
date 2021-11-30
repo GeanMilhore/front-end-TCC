@@ -9,6 +9,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../UserContext";
 import { EDITAR_DOADOR, EXCLUIR_DOADOR } from "../../../api";
 import useFetch from "../../../Custom-Hooks/UseFetch";
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const EditarDoador = ({ dadosUsuario }) => {
   const { refreshUser, fazerLogout } = React.useContext(UserContext)
@@ -192,9 +196,10 @@ const EditarDoador = ({ dadosUsuario }) => {
         const { response, json } = await request(url, options);
 
         if (!response.ok) {
-          window.alert({ error });
+          toast.error({ error });
         } else {
           await refreshUser();
+          toast.success('Usuário editado com sucesso!')
           navigate("/configuracoes");
         }
       } else {
@@ -215,7 +220,7 @@ const EditarDoador = ({ dadosUsuario }) => {
       const { response } = await request(url, options);
 
       if (response.ok) {
-        window.alert("Perfil Excluido com Sucesso!");
+        toast.warning("Perfil Excluido com Sucesso!");
         fazerLogout();
       }
     }

@@ -3,6 +3,7 @@ import useFetch from "../../../Custom-Hooks/UseFetch";
 import CardOng from "../CardPerfil/CardPerfil";
 import style from './ListaContas.module.css'
 import Paginacao from '../../Smart-components/Paginacao/Paginacao'
+import NadaParaVer from "../../NadaParaVer/NadaParaVer";
 
 const ListaContas = ({ endPoint }) => {
   const [contas, setContas] = React.useState(null);
@@ -29,11 +30,10 @@ const ListaContas = ({ endPoint }) => {
   }, []);
 
   if (loading) return <div className={"loader"} />;
-  if (!contas) return null;
   return (
     <>
       <div className={style.listagem}>
-        {contas.content.map((conta) => {
+        {contas && contas.content.map((conta) => {
           return (
             <CardOng
               id={conta.id}
@@ -45,15 +45,18 @@ const ListaContas = ({ endPoint }) => {
           );
         })}
       </div>
-      <Paginacao 
-        size={size}
-        page={page}
-        setItens={setContas}
-        setPagina={setPage}
-        totalPaginas={contas.totalPages}
-        reqItens={endPoint}
-      />
+      {contas && contas.totalElements !== 0 ?
+        <Paginacao 
+          size={size}
+          page={page}
+          setItens={setContas}
+          setPagina={setPage}
+          reqItens={endPoint}
+          paginar={contas}
+        /> : <NadaParaVer />
+      }
     </>
+
   );
 };
 

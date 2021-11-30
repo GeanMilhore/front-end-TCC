@@ -9,6 +9,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../UserContext";
 import useFetch from "../../../Custom-Hooks/UseFetch";
 import { EDITAR_ONG, EXCLUIR_ONG } from "../../../api";
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const EditarOng = ({dadosUsuario}) => {
   const navigate = useNavigate();
@@ -198,10 +202,11 @@ const EditarOng = ({dadosUsuario}) => {
         const { response, json } = await request(url, options);
 
         if (!response.ok) {
-          window.alert({ error });
+          toast.warning({ error });
         } else {
           await refreshUser()
           navigate('/configuracoes')
+          toast.success('Dados editados com sucesso!')
         }
       } else {
         navigate("/login");
@@ -219,7 +224,7 @@ const EditarOng = ({dadosUsuario}) => {
       const { response } = await request(url, options);
 
       if (response.ok) {
-        window.alert("Perfil Excluido com Sucesso!");
+        toast.warning("Perfil Excluido com Sucesso!");
         fazerLogout();
       }
     }

@@ -1,0 +1,20 @@
+.verNada{
+    position: absolute;
+    left: 30vw;
+    top: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 60%;
+}
+
+.verNada img{
+    width: 50%;
+    transform: scale(.8);
+}
+
+.verNada h2{
+    width: 50%;
+    color: gray;
+    transform: scale(1.2);
+}

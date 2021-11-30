@@ -65,7 +65,6 @@ const ContaOng = () => {
           console.log(json)
         }
       } catch (error) {
-        window.alert(id)
         console.log(error)
       }
     }

@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Paginacao.module.css";
 import useFetch from "../../../Custom-Hooks/UseFetch"
 
-const Paginacao = ({ page, size, setItens, setPagina, totalPaginas, reqItens, isPrivate = false, token = window.localStorage.getItem('token') }) => {
+const Paginacao = ({ page, size, setItens, setPagina, reqItens, paginar, isPrivate = false, token = window.localStorage.getItem('token') }) => {
   const { request, loading, error, dados } = useFetch();
   const [ podeProxima, setPodeProxima ] = React.useState()
   const [ podeAnterior, setPodeAnterior ] = React.useState()
@@ -13,10 +13,17 @@ const Paginacao = ({ page, size, setItens, setPagina, totalPaginas, reqItens, is
     if(page == 0){
         setPodeAnterior(false)
     }
-    if(page == totalPaginas - 1 || totalPaginas == 0){
+    if(page == paginar.totalPages - 1 || paginar.totalPages == 0){
         setPodeProxima(false)
     }
-  }, [page])
+    
+  }, [page, paginar.totalPages])
+
+  React.useEffect(() => {
+    if(!paginar.first && paginar.last && paginar.numberOfElements == 0){
+      anterior()
+    }
+  }, [paginar.totalPages])
 
   const proxima = async function proximaPagina() {
 
@@ -72,7 +79,7 @@ const Paginacao = ({ page, size, setItens, setPagina, totalPaginas, reqItens, is
 
   return (
     <nav className={style.paginacao}>
-      <span>Página - {page + 1} de {totalPaginas}</span>
+      <span>Página - {page + 1} de {paginar.totalPages}</span>
       <div>
         <button disabled={!podeAnterior} onClick={() => anterior()}>&lt;</button>
         <button disabled={!podeProxima} onClick={() => proxima()}>&gt;</button>

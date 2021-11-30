@@ -8,6 +8,10 @@ import DefaultImage2 from "../../../resources/images/cadastrar-usuario-pt2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { CADASTRAR_DOADOR } from "../../../api";
 import useFetch from "../../../Custom-Hooks/UseFetch";
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const CadastrarOng = () => {
   const { request, error, loading } = useFetch();
@@ -156,8 +160,10 @@ const CadastrarOng = () => {
       const { response } = await request(url, options);
 
       if (response.ok) {
-        window.alert("Usuário Cadastado com Sucesso!");
+        toast.success("Usuário Cadastado com Sucesso!");
         navigate("/");
+      } else {
+        toast.error('Ops! Algo Deu Errado')
       }
     }
   }

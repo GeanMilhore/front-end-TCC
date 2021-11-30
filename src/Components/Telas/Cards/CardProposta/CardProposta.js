@@ -7,6 +7,10 @@ import { faWindowClose} from '@fortawesome/free-solid-svg-icons'
 import { CANCELAR_PROPOSTA } from "../../../../api"
 import useFetch from "../../../../Custom-Hooks/UseFetch";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const Card = ({ idProposta, idOng, atualizar, foto, nomeItem, nomeOng, status, labels, ...props }) => {
 
@@ -21,12 +25,12 @@ const Card = ({ idProposta, idOng, atualizar, foto, nomeItem, nomeOng, status, l
     const {response, json } = await request(url, options)
 
     if(response.ok){
-      window.alert('Proposta Cancelada')
+      toast.warning('Proposta Cancelada')
       document.getElementById('modal').click()
       console.log(json)
       atualizar()
     } else {
-      window.alert('oops')
+      toast.error('Ops! Algo deu errado...')
     }
   }
 

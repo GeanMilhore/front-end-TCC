@@ -5,6 +5,7 @@ import style from "./TelaPropostas.module.css";
 import CardProposta from "../../Cards/CardProposta/CardProposta";
 import CardPerfil from "../../../Home/CardPerfil/CardPerfil";
 import Paginacao from "../../../Smart-components/Paginacao/Paginacao";
+import NadaParaVer from "../../../NadaParaVer/NadaParaVer";
 
 const TelaPropostas = () => {
   const [propostas, setPropostas] = React.useState(null);
@@ -57,15 +58,19 @@ const TelaPropostas = () => {
             );
           })}
       </div>
+      {propostas.totalElements !== 0 ? (
       <Paginacao
         size={size}
         page={page}
         setItens={setPropostas}
         setPagina={setPage}
-        totalPaginas={propostas.totalPages}
         reqItens={PEGAR_PROPOSTAS_DOADOR}
         isPrivate={true}
+        paginar={propostas}
       />
+      ) : (
+        <NadaParaVer />
+      )}
     </>
   );
 };

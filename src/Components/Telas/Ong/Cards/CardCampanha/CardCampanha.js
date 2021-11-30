@@ -8,6 +8,10 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { EXCLUIR_CAMPANHA } from "../../../../../api";
 import CriarCampanha from "../../../../CriarCampanha/CriarCampanha";
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const CardCampanha = ({ setDadosEdicao, abrirEdicao, idCampanha, foto, nomeItem, descricao, quantidade, labels, atualizar, ...props }) => {
 
@@ -23,8 +27,10 @@ const CardCampanha = ({ setDadosEdicao, abrirEdicao, idCampanha, foto, nomeItem,
     const { response, json } = await request(url, options)
 
     if (response.ok) {
-      window.alert('Campanha deletada com Sucesso')
+      toast.success('Campanha deletada com Sucesso')
       atualizar()
+    } else {
+      toast.error("Ops! Algo deu errado...")
     }
   }
 

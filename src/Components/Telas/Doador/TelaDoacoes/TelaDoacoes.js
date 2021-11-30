@@ -4,6 +4,7 @@ import CardDoacoes from '../../Cards/CardDoacoes/CardDoacoes'
 import { PEGAR_PROPOSTAS_ACEITAS_DOADOR } from '../../../../api';
 import useFetch from '../../../../Custom-Hooks/UseFetch';
 import Paginacao from '../../../Smart-components/Paginacao/Paginacao'
+import NadaParaVer from '../../../NadaParaVer/NadaParaVer';
 
 
 const TelaDoacoes = () => {
@@ -55,15 +56,19 @@ const TelaDoacoes = () => {
           );
         })}
       </div>
-      <Paginacao
-        size={size}
-        page={page}
-        setItens={setDoacoes}
-        setPagina={setPage}
-        totalPaginas={doacoes.totalPages}
-        reqItens={PEGAR_PROPOSTAS_ACEITAS_DOADOR}
-        isPrivate={true}
-      />
+      {doacoes && doacoes.totalElements !== 0 ? (
+        <Paginacao
+          size={size}
+          page={page}
+          setItens={setDoacoes}
+          setPagina={setPage}
+          reqItens={PEGAR_PROPOSTAS_ACEITAS_DOADOR}
+          paginar={doacoes}
+          isPrivate={true}
+        />
+      ) : (
+        <NadaParaVer />
+      )}
     </>
   );
 };

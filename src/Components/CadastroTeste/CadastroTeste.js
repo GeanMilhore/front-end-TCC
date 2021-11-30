@@ -7,6 +7,10 @@ import useForm from "../../Custom-Hooks/UseForm";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../Custom-Hooks/UseFetch";
 import { CADASTRA_ITEM } from "../../api";
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const CadastrarItem = ({
   titulo,
@@ -85,7 +89,7 @@ const CadastrarItem = ({
       const { response } = await request(url, options);
 
       if (response.ok) {
-        window.alert("Item Cadastrado com sucesso");
+        toast.success("Item Cadastrado com sucesso");
         navigate("/doacoesCadastradas");
       }
     }

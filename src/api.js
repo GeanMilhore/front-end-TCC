@@ -460,3 +460,4 @@ export function CANCELAR_PROPOSTA(token, id) {
     },
   }
 }
+

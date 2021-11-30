@@ -11,6 +11,7 @@ import CardCampanha from "../Cards/CardCampanha/CardCampanha";
 import useFetch from "../../../../Custom-Hooks/UseFetch";
 import { PEGAR_CAMPANHAS } from "../../../../api";
 import Paginacao from '../../../Smart-components/Paginacao/Paginacao'
+import NadaParaVer from "../../../NadaParaVer/NadaParaVer";
 
 const TelaCampanhas = () => {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
@@ -31,9 +32,7 @@ const TelaCampanhas = () => {
     if (response.ok) {
       setCampanhas(json)
       console.log(json)
-    } else {
-      window.alert('puts')
-    }
+    } 
 
   }
 
@@ -111,17 +110,20 @@ const TelaCampanhas = () => {
           </div>
         </>
       )}
-      {campanhas && (
+      
+      {campanhas && campanhas.totalElements !== 0 ? (
         <Paginacao
           page={page}
           size={size}
           setItens={setCampanhas}
           setPagina={setPage}
           reqItens={PEGAR_CAMPANHAS}
-          totalPaginas={campanhas.totalPages}
           isPrivate={true}
+          paginar={campanhas}
         />
-      )}
+      ) : (
+        <NadaParaVer />
+      ) }
     </div>
   );
 };

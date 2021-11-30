@@ -4,6 +4,7 @@ import { PROPOSTAS_ONG, PROPOSTAS_ONG_PENDENTES } from '../../../../api'
 import CardProposta from '../Cards/CardProposta/CardProposta'
 import style from "./TelaPropostasOng.module.css"
 import Paginacao from '../../../Smart-components/Paginacao/Paginacao'
+import NadaParaVer from "../../../NadaParaVer/NadaParaVer"
 
 const TelaPropostasOng = () => {
 
@@ -16,7 +17,7 @@ const TelaPropostasOng = () => {
     const pegaPropostas = async function () {
         const token = window.localStorage.getItem('token')
 
-        const { url, options } = PROPOSTAS_ONG_PENDENTES(Number(token) - 1,page, size)
+        const { url, options } = PROPOSTAS_ONG_PENDENTES(Number(token) - 1, page, size)
         try {
             const { response, json } = await request(url, options)
             if (response.ok) {
@@ -32,7 +33,7 @@ const TelaPropostasOng = () => {
         pegaPropostas()
     }, [])
 
-    if(!propostas) return null
+    if (!propostas) return null
     return (
         <>
             <div>
@@ -57,16 +58,21 @@ const TelaPropostasOng = () => {
                     </div>
                 )}
             </div>
-            <Paginacao
-                page={page}
-                size={size}
-                setPagina={setPage}
-                setItens={setPropostas}
-                reqItens={PROPOSTAS_ONG_PENDENTES}
-                totalPaginas={propostas.totalPages}
-                isPrivate={true}
-                token={Number(window.localStorage.getItem('token')) - 1}
-            />
+            {propostas.totalElements !== 0 ? (
+                <Paginacao
+                    page={page}
+                    size={size}
+                    setPagina={setPage}
+                    setItens={setPropostas}
+                    reqItens={PROPOSTAS_ONG_PENDENTES}
+                    paginar={propostas}
+                    isPrivate={true}
+                    token={Number(window.localStorage.getItem('token')) - 1}
+                />
+            ) : (
+                <NadaParaVer />
+            )}
+
         </>
     )
 }

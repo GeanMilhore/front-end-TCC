@@ -8,6 +8,11 @@ import { useNavigate } from "react-router-dom";
 import useFetch from '../../Custom-Hooks/UseFetch'
 import { CADASTRA_ITEM } from "../../api";
 
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
+
 const CadastrarItem = ({ titulo, labels, cancelTo}) => {
 
   const {request, error, loading} = useFetch()
@@ -75,8 +80,10 @@ const CadastrarItem = ({ titulo, labels, cancelTo}) => {
       const {response} = await request(url, options)
 
       if(response.ok){
-        window.alert('Item Cadastrado com sucesso')
+        toast.success('Proposta Enviada com Sucesso!')
         navigate('/doacoesCadastradas')
+      } else {
+        toast.error('Ops! Algo Deu Errado')
       }
     }
   }

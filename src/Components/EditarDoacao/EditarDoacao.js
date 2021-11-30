@@ -7,6 +7,10 @@ import useForm from "../../Custom-Hooks/UseForm";
 import { useParams, useNavigate } from "react-router";
 import { DOACAO_CADASTRADA, EDITA_DOACAO } from "../../api";
 import useFetch from "../../Custom-Hooks/UseFetch";
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const EditarDoacao = () => {
   const { loading, request } = useFetch();
@@ -95,8 +99,10 @@ const EditarDoacao = () => {
       const { response } = await request(url, options);
 
       if(response.ok){
-        window.alert('item modificado com sucesso!')
+        toast.success('item modificado com sucesso!')
         navigate('/doacoesCadastradas')
+      } else {
+        toast.error('Ops! algo deu errado...')
       }
     }
   }

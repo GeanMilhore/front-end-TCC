@@ -6,6 +6,7 @@ import CardDoacao from '../Cards/CardDoacao/CardDoacao'
 import style from "./TelaDoacoes.module.css"
 import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
+import NadaParaVer from '../../../NadaParaVer/NadaParaVer'
 
 toast.configure()
 
@@ -54,16 +55,20 @@ const TelaDoacoes = () => {
                     ))
                 )}
             </div>
-            <Paginacao
-                page={page}
-                size={size}
-                reqItens={PROPOSTAS_ONG_ACEITAS}
-                setItens={setDoacoes}
-                setPagina={setPage}
-                totalPaginas={doacoes.totalPages}
-                token={Number(window.localStorage.getItem('token')) - 1}
-                isPrivate={true}
-            />
+            {doacoes.totalElements !== 0 ? (
+                <Paginacao
+                    page={page}
+                    size={size}
+                    reqItens={PROPOSTAS_ONG_ACEITAS}
+                    setItens={setDoacoes}
+                    setPagina={setPage}
+                    paginar={doacoes}
+                    token={Number(window.localStorage.getItem('token')) - 1}
+                    isPrivate={true}
+                />
+            ) : (
+                <NadaParaVer />
+            )}
         </>
     )
 }

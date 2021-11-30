@@ -10,6 +10,10 @@ import { REALIZAR_DOACAO } from "../../api";
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faHandshake } from '@fortawesome/free-solid-svg-icons'
 import { faHandHoldingMedical } from '@fortawesome/free-solid-svg-icons'
+import { toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 const CriarDoacao = ({
   idInstituicao,
@@ -44,8 +48,6 @@ const CriarDoacao = ({
     if (errorImg) {
       validaImagem(img);
     }
-
-    window.alert(idInstituicao)
   }, [img, errorImg]);
 
   function fileSelectedHandler(event) {
@@ -108,11 +110,11 @@ const CriarDoacao = ({
 
       try{
         if (response.ok) {
-          window.alert("Proposta Enviada com Sucesso!");
+          toast.success("Proposta Enviada com Sucesso!");
           modalAberto(false)
           atualizar()
         } else {
-          window.alert('opps')
+          toast.error('Ops! Algo deu errado...')
         }
       } catch(error){
         console.log(error)

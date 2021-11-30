@@ -22,10 +22,7 @@ const ListCampanhas = ({ id, setDadosCampanha, setDados, setVerModal, abrirDoar 
     if(response.ok){
       setCampanhas(json)
       console.log(json)
-    } else {
-      window.alert('puts')
     }
-
   }
 
   React.useEffect(() => {
@@ -66,7 +63,7 @@ const ListCampanhas = ({ id, setDadosCampanha, setDados, setVerModal, abrirDoar 
           <Paginacao 
             page={page}
             size={size}
-            totalPaginas={campanhas.totalPages}
+            paginar={campanhas}
             reqItens={PEGAR_CAMPANHAS}
             setItens={setCampanhas}
             setPagina={setPage}
