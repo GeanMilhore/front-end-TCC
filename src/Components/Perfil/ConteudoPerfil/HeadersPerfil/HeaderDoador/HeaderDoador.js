@@ -12,6 +12,8 @@ import editaricon from "../../../../../resources/images/editar.png";
 import UseFetch from "../../../../../Custom-Hooks/UseFetch"
 import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
+import imagemTeste from "../../../../../resources/images/perfilphotoadmin.png"
+
 
 toast.configure()
 
@@ -53,10 +55,21 @@ const HeaderDoador = ({ nome, email, dtNasc, qtdDoacoes, qtdPropostas, isMine })
   return (
     <>
       <header className={style.header}>
-        <div>
-          <img src={""} alt="Imagem de Perfil" />
-          <span>{nome}</span>
-          <span>{email}</span>
+      <div>
+          <div className={style.imagemPerfil}
+            style={{ backgroundImage: `url('${imagemTeste}')`,
+                     backgroundSize: 'contain',
+                     backgroundRepeat: 'no-repeat',
+                     backgroundPosition: 'center center'
+            }}
+          >
+            {" "}
+          </div>
+          {/* <img src={imagemTeste} alt="Imagem de Perfil" /> */}
+          <div>
+            <span>{nome}</span>
+            <span>{email}</span>
+          </div>
         </div>
         {isMine && <NavLink to="editar">
           <Button>

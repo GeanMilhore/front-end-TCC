@@ -54,7 +54,7 @@
 }
 
 .cards{
-    width: 80%;
+    width: 79%;
     position: absolute;
     z-index: 2000;
     display: flex;
