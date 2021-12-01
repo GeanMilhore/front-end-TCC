@@ -62,3 +62,69 @@
     left: 20vw;
     top: 43vh;
 }
+
+.btnFoto{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 31vw;
+    top: 20vh;
+}
+
+.btnFoto button{
+    background-color: white;
+    color: orange;
+    padding: 1.3vh 2vh;
+    border-radius: 50%;
+}
+
+
+.img{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    /* transform: scale(.30); */
+}
+
+.img p{
+    position: absolute;
+    bottom: 0;
+}
+
+.img img{
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+
+}
+
+.img img:hover{
+    filter: brightness(20%);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.img span{
+    color: orange;
+    margin-bottom: 2rem;
+    font-weight: bolder;
+}
+
+.hover{
+    position: absolute;
+    color: white;
+    z-index: 200;
+}
+
+.containerImage{
+    width: 40vw;
+    /* height: 40vh; */
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+}

@@ -13,6 +13,9 @@ import UseFetch from "../../../../../Custom-Hooks/UseFetch"
 import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 import imagemTeste from "../../../../../resources/images/perfilphotoadmin.png"
+import Modal from "../../../../Smart-components/Modal/Modal"
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faCamera} from '@fortawesome/free-solid-svg-icons'
 
 
 toast.configure()
@@ -22,6 +25,7 @@ const HeaderDoador = ({ nome, email, dtNasc, qtdDoacoes, qtdPropostas, isMine })
   const {request, dados, loading, error } = UseFetch()
   const [propostasFeitas, setPropostasFeitas] = React.useState(null)
   const [propostasAceitas, setPropostasAceitas] = React.useState(null)
+  const [editImage, setEditImage] = React.useState(false)
 
   React.useEffect(() => {
 
@@ -94,7 +98,13 @@ const HeaderDoador = ({ nome, email, dtNasc, qtdDoacoes, qtdPropostas, isMine })
           icone={dataicon}
           conteudo={dtNasc}
         />
+        <Button>Ooi</Button>
       </div>
+      {editImage && (
+        <Modal>
+          OI
+        </Modal>
+      )}
     </>
   );
 };
