@@ -224,6 +224,9 @@ const EditarDoador = ({ dadosUsuario }) => {
       if (response.ok) {
         toast.warning("Perfil Excluido com Sucesso!");
         fazerLogout();
+      } else {
+        toast.error("Ops! Algo correu errado...")
+        toast.warning("Você não pode excluir um perfil que possui vínculos tanto com doações como com propostas.")
       }
     }
   }

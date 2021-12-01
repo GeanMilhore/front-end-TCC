@@ -63,6 +63,13 @@ export default function Router() {
           element={<PerfilAdmin dadosPefil={dadosUsuario} />}
         />
       )}
+      {logado && dadosUsuario && dadosUsuario.tipo === "ADMIN" && (
+        <CustomRoute
+          isPrivate
+          path="/conta/home"
+          element={<Navigate to={'/conta/graficos'} />}
+        />
+      )}
 
       <CustomRoute path="/testando" element={<ParaTeste />} />
     </Routes>

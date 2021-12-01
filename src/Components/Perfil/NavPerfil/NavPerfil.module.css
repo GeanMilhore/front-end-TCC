@@ -1,14 +1,27 @@
 .nav main{
     display: flex;
     flex-direction: column;
+
 }
+
+.nav main a{
+    text-decoration: none;
+    color: rgb(38, 38, 38);
+    transition: all .3s;
+    margin-bottom: 1rem;
+}
+
+.nav main a:hover{
+    transform: scale(1.5);
+}
+
 .nav{
     left: 0;
     top: 12vh;
     display: flex;
     flex-direction: column;
     position: fixed;
-    height: 88%;
+    height: 98%;
     width: 20vw;
     text-align: center;
     justify-content: space-evenly;
@@ -16,6 +29,7 @@
     padding: 0 10px;
     box-shadow: 5px 0px 5px rgba(85, 85, 85, 0.2);
     background-color: #F8EBDF;
+    /* padding-bottom: 6.9%; */
 }
 
 .nav header{
@@ -27,6 +41,21 @@
     margin: -10px;
     height: 30%;
     margin-top: -13vh;
+}
+
+footer a{
+    text-decoration: none;
+    color: rgb(67, 67, 67);
+    transition: all .3s;
+}
+
+footer a:hover{
+    color: black;
+    top: 5px;
+}
+
+footer button{
+    margin-top: 3vh;
 }
 
 .nav header span:nth-child(1){

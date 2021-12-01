@@ -9,16 +9,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../UserContext";
 import useFetch from "../../../Custom-Hooks/UseFetch";
 import { EDITAR_ONG, EXCLUIR_ONG } from "../../../api";
-import { toast } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-toast.configure()
+toast.configure();
 
-const EditarOng = ({dadosUsuario}) => {
+const EditarOng = ({ dadosUsuario }) => {
   const navigate = useNavigate();
 
   const [completo, setCompleto] = React.useState();
-  const { refreshUser, fazerLogout, pegaImagemPerfil, imagem } = React.useContext(UserContext);
+  const { refreshUser, fazerLogout, pegaImagemPerfil, imagem } =
+    React.useContext(UserContext);
 
   const { error, request, loading } = useFetch();
 
@@ -49,7 +50,7 @@ const EditarOng = ({dadosUsuario}) => {
     if (!completo) {
       preencheFormulario();
     }
-    pegaImagemPerfil()
+    pegaImagemPerfil();
   }, []);
 
   async function preencheFormulario() {
@@ -77,57 +78,54 @@ const EditarOng = ({dadosUsuario}) => {
     return true;
   }
 
-  function validaParteUm(){
-    nome.validate() 
-      documento.validate() 
-      date.validate() 
-      focoInst.validate() 
-      razaoSocial.validate() 
-      telefone.validate()
-      email.validate() 
-    if(
+  function validaParteUm() {
+    nome.validate();
+    documento.validate();
+    date.validate();
+    focoInst.validate();
+    razaoSocial.validate();
+    telefone.validate();
+    email.validate();
+    if (
       nome.validate() &&
       documento.validate() &&
       date.validate() &&
       focoInst.validate() &&
       razaoSocial.validate() &&
       telefone.validate() &&
-      email.validate() 
-      ){
-        return true
-      } else {
-        return false
-      }
+      email.validate()
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  function validaParteDois(){
-
-    cep.validate() 
-      rua.validate() 
-      numero.validate() 
-      complemento.validate() 
-      cidade.validate() 
-      estado.validate()
-    if(
-    cep.validate() &&
+  function validaParteDois() {
+    cep.validate();
+    rua.validate();
+    numero.validate();
+    complemento.validate();
+    cidade.validate();
+    estado.validate();
+    if (
+      cep.validate() &&
       rua.validate() &&
       numero.validate() &&
       complemento.validate() &&
       cidade.validate() &&
       estado.validate()
-    ){
-      return true
+    ) {
+      return true;
     } else {
-      return false
+      return false;
     }
   }
 
   function handleClickProximo() {
-    if(
-      validaParteUm()
-      ){
-        setPartOne(!partOne);
-      }
+    if (validaParteUm()) {
+      setPartOne(!partOne);
+    }
   }
 
   const handleChangeCep = () => {
@@ -157,9 +155,9 @@ const EditarOng = ({dadosUsuario}) => {
             cidade.setValue(data.localidade);
             estado.setValue(data.uf);
             setEndereco(data);
-            rua.setError(null)
-            cidade.setError(null)
-            estado.setError(null)
+            rua.setError(null);
+            cidade.setError(null);
+            estado.setError(null);
           }
         })
         .catch((err) => {
@@ -170,10 +168,7 @@ const EditarOng = ({dadosUsuario}) => {
   }
 
   async function handleSubmit() {
-    if (
-      validaParteUm() &&
-      validaParteDois()
-    ) {
+    if (validaParteUm() && validaParteDois()) {
       const token = window.localStorage.getItem("token");
       const { entityId } = await refreshUser();
 
@@ -194,7 +189,7 @@ const EditarOng = ({dadosUsuario}) => {
             cep: cep.value,
             email: email.value,
             senha: senha.value,
-            image: imagem
+            image: imagem,
           },
           token,
           entityId
@@ -205,16 +200,16 @@ const EditarOng = ({dadosUsuario}) => {
         if (!response.ok) {
           toast.warning({ error });
         } else {
-          await refreshUser()
-          navigate('/configuracoes')
-          toast.success('Dados editados com sucesso!')
+          await refreshUser();
+          navigate("/configuracoes");
+          toast.success("Dados editados com sucesso!");
         }
       } else {
         navigate("/login");
       }
     }
   }
-  
+
   async function handleExcluirPerfil() {
     if (window.confirm("Deletar Perfil?")) {
       const token = window.localStorage.getItem("token");
@@ -227,20 +222,24 @@ const EditarOng = ({dadosUsuario}) => {
       if (response.ok) {
         toast.warning("Perfil Excluido com Sucesso!");
         fazerLogout();
+      } else {
+        toast.error("Ops! Algo correu errado...");
+        toast.warning(
+          "Você não pode excluir um perfil que possui vínculos tanto com doações como com propostas."
+        );
       }
     }
   }
 
-
   return (
     <>
-      <Modal.Dialog className={style.ContainerModal + ' animeSmooth'}>
+      <Modal.Dialog className={style.ContainerModal + " animeSmooth"}>
         <Modal.Header>
           <Modal.Title>Editar Minha Conta</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div
-            className={style.content + ' animeLeft'}
+            className={style.content + " animeLeft"}
             style={{ display: partOne ? "flex" : "none" }}
           >
             <form action="" className={style.camposUsuario}>
@@ -292,8 +291,7 @@ const EditarOng = ({dadosUsuario}) => {
                 disabled
                 {...email}
               />
-              <div className={style.conjuntoInput}>
-              </div>
+              <div className={style.conjuntoInput}></div>
             </form>
             <div className={style.containerImg}>
               <div
@@ -310,10 +308,10 @@ const EditarOng = ({dadosUsuario}) => {
             </div>
           </div>
           <div
-            className={style.content + ' animeRight'}
+            className={style.content + " animeRight"}
             style={{ display: !partOne ? "flex" : "none" }}
           >
-            <div className={style.containerImg }>
+            <div className={style.containerImg}>
               <div
                 className="userImage"
                 style={{
@@ -386,23 +384,24 @@ const EditarOng = ({dadosUsuario}) => {
           >
             {partOne ? "Próximo" : "Voltar"}
           </Button>
-          {
-            loading ?
+          {loading ? (
             <Button
-            variant="primary"
-            style={{ display: !partOne ? "flex" : "none" }}
-            onClick={() => handleSubmit()}
-            disabled
-          >
-            Editando...
-          </Button> :
-          <Button
-            variant="primary"
-            style={{ display: !partOne ? "flex" : "none" }}
-            onClick={() => handleSubmit()}
-          >
-            Salvar
-          </Button>}
+              variant="primary"
+              style={{ display: !partOne ? "flex" : "none" }}
+              onClick={() => handleSubmit()}
+              disabled
+            >
+              Editando...
+            </Button>
+          ) : (
+            <Button
+              variant="primary"
+              style={{ display: !partOne ? "flex" : "none" }}
+              onClick={() => handleSubmit()}
+            >
+              Salvar
+            </Button>
+          )}
           <Button
             variant="danger"
             style={{ display: !partOne ? "flex" : "none" }}
