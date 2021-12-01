@@ -45,12 +45,12 @@ const TelaDoacoes = () => {
                 labels={{
                   label1: 'Nome do Item',
                   label2: 'Ong de Destino',
-                  label3: 'Data Entrega'
+                  label3: 'Quantidade'
                 }}
                 foto={doacao.item.image}
-                descricao={doacao.item.descricao}
+                nomeOng={doacao.instituicao.nomeFantasia}
                 nomeItem={doacao.item.nome}
-                status={doacao.status}
+                quantidade={doacao.item.quantidade}
               />
             </>
           );

@@ -2,7 +2,7 @@ import React from "react";
 import style from "./CardDoacoes.module.css";
 import Modal from '../../../Smart-components/Modal/Modal'
 
-const Card = ({ foto, nomeItem, nomeOng, dataEntrega, labels, ...props }) => {
+const Card = ({ foto, nomeItem, nomeOng, quantidade, labels, ...props }) => {
 
   const [verModal, setVerModal] = React.useState(false)
 
@@ -19,7 +19,7 @@ const Card = ({ foto, nomeItem, nomeOng, dataEntrega, labels, ...props }) => {
         <span>{labels.label2}</span>
         <p>{nomeOng}</p>
         <span>{labels.label3}</span>
-        <p >{dataEntrega}</p>
+        <p >{quantidade}</p>
       </div>
     </div>
     {verModal ? <Modal onClose={setVerModal}>{nomeItem}</Modal> : null}

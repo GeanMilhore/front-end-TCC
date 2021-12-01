@@ -336,7 +336,7 @@ const EditarDoador = ({ dadosUsuario }) => {
                 label="Rua:"
                 type="text"
                 {...rua}
-                disabled={endereco}
+                disabled={true}
               />
               <div className={style.conjuntoInput}>
                 <Input id="numero" label="Número:" type="number" {...numero} />
@@ -352,14 +352,14 @@ const EditarDoador = ({ dadosUsuario }) => {
                 label="Cidade:"
                 type="text"
                 {...cidade}
-                disabled={endereco}
+                disabled={true}
               />
               <Input
                 id="estado"
                 label="Estado:"
                 type="text"
                 {...estado}
-                disabled={endereco}
+                disabled={true}
               />
             </form>
           </div>

@@ -2,10 +2,12 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    align-items: center;
     padding-bottom: .2rem; 
     border: 1px solid lightgray;
     position: relative;
     width: 25vw;
+    text-align: center;
 }
 
 .cardImg{
