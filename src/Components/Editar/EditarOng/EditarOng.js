@@ -18,7 +18,7 @@ const EditarOng = ({dadosUsuario}) => {
   const navigate = useNavigate();
 
   const [completo, setCompleto] = React.useState();
-  const { refreshUser, fazerLogout } = React.useContext(UserContext);
+  const { refreshUser, fazerLogout, pegaImagemPerfil, imagem } = React.useContext(UserContext);
 
   const { error, request, loading } = useFetch();
 
@@ -41,7 +41,6 @@ const EditarOng = ({dadosUsuario}) => {
   const razaoSocial = useForm();
   const focoInst = useForm();
 
-
   React.useEffect(() => {
     setDisabled(senha.value.length < 8);
   }, [senha]);
@@ -50,6 +49,7 @@ const EditarOng = ({dadosUsuario}) => {
     if (!completo) {
       preencheFormulario();
     }
+    pegaImagemPerfil()
   }, []);
 
   async function preencheFormulario() {
@@ -194,6 +194,7 @@ const EditarOng = ({dadosUsuario}) => {
             cep: cep.value,
             email: email.value,
             senha: senha.value,
+            image: imagem
           },
           token,
           entityId

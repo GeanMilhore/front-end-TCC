@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css'
 toast.configure()
 
 const EditarDoador = ({ dadosUsuario }) => {
-  const { refreshUser, fazerLogout } = React.useContext(UserContext)
+  const { refreshUser, fazerLogout, pegaImagemPerfil, imagem } = React.useContext(UserContext)
   const { error, loading, request } = useFetch();
 
   const navigate = useNavigate();
@@ -46,6 +46,7 @@ const EditarDoador = ({ dadosUsuario }) => {
     if (!completo) {
       preencheFormulario();
     }
+    pegaImagemPerfil()
   }, []);
 
   function preencheFormulario() {
@@ -188,6 +189,7 @@ const EditarDoador = ({ dadosUsuario }) => {
             cidade: cidade.value,
             estado: estado.value,
             cep: cep.value,
+            image: imagem
           },
           token,
           entityId

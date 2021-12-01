@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Paginacao.module.css";
 import useFetch from "../../../Custom-Hooks/UseFetch"
+import Button from "../Button/Button"
 
 const Paginacao = ({ page, size, setItens, setPagina, reqItens, paginar, isPrivate = false, token = window.localStorage.getItem('token') }) => {
   const { request, loading, error, dados } = useFetch();
@@ -79,10 +80,10 @@ const Paginacao = ({ page, size, setItens, setPagina, reqItens, paginar, isPriva
 
   return (
     <nav className={style.paginacao}>
-      <span>Página - {page + 1} de {paginar.totalPages}</span>
+      <p><span>Página</span> - {page + 1} de {paginar.totalPages}</p>
       <div>
-        <button disabled={!podeAnterior} onClick={() => anterior()}>&lt;</button>
-        <button disabled={!podeProxima} onClick={() => proxima()}>&gt;</button>
+        <Button disabled={!podeAnterior} onClick={() => anterior()}>&lt;</Button>
+        <Button disabled={!podeProxima} onClick={() => proxima()}>&gt;</Button>
       </div>
     </nav>
   );

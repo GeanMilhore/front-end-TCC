@@ -4,3 +4,25 @@
     justify-content: space-evenly;
     padding-bottom: 1rem
 }
+
+.paginacao p{
+    font-size: 1.25em;
+}
+
+.paginacao span{
+    font-weight: bold;
+}
+
+.paginacao div{
+    display: flex;
+}
+
+.paginacao button{
+    display: flex;
+    padding: 1pt 15pt;
+    align-items: center;
+}
+
+.paginacao button:disabled{
+    cursor: default;
+}

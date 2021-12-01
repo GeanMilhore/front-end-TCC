@@ -37,6 +37,7 @@ const ListaContas = ({ endPoint }) => {
           return (
             <CardOng
               id={conta.id}
+              imagemOng={conta.image}
               nome={conta.nomeFantasia ? conta.nomeFantasia : conta.nome}
               telefone={conta.telefone}
               estado={conta.estado}
