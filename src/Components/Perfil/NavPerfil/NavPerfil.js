@@ -8,14 +8,45 @@ import gearicon from "../../../resources/images/gearicon.png";
 import Button from "../../Smart-components/Button/Button";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserContext";
+import useFetch from "../../../Custom-Hooks/UseFetch";
+import { PEGA_DADOS_ONG } from "../../../api";
+import imagemOng from "../../../resources/images/ongprofile.png"
 
 const NavPerfil = ({ label, links, imgs, nome }) => {
-  const { fazerLogout } = React.useContext(UserContext);
+  const { fazerLogout, dadosUsuario } = React.useContext(UserContext);
+  const { request, error, loading, dados } = useFetch()
+  const [imagem, setImagem] = React.useState()
+
+  React.useEffect(() => {
+
+    async function pegaDados() {
+      if (dadosUsuario.tipo === "INSTITUICAO") {
+        const token = window.localStorage.getItem('token')
+        const { url, options } = PEGA_DADOS_ONG(token, Number(token) - 1)
+
+        const { response, json } = await request(url, options)
+
+        if (response.ok) {
+          setImagem(json.image)
+        }
+      } else {
+
+      }
+    }
+
+    pegaDados()
+  }, [])
 
   return (
     <nav className={style.nav}>
       <header>
-        <span>Foto</span>
+        {/* <img src={imagem} /> */}
+        <span
+          className={style.imagemNavbar}
+          style={{
+            backgroundImage: `url(${imagem ? imagem : imagemOng})`
+          }}>.
+        </span>
         <span>{nome}</span>
       </header>
       <main>

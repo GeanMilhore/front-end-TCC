@@ -98,7 +98,6 @@ const HeaderDoador = ({ nome, email, dtNasc, qtdDoacoes, qtdPropostas, isMine })
           icone={dataicon}
           conteudo={dtNasc}
         />
-        <Button>Ooi</Button>
       </div>
       {editImage && (
         <Modal>

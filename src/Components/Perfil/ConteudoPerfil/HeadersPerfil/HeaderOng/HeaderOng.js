@@ -7,12 +7,14 @@ import razaoicon from "../../../../../resources/images/razaoSocial.png";
 import Button from "../../../../Smart-components/Button/Button";
 import { NavLink } from "react-router-dom";
 import editaricon from "../../../../../resources/images/editar.png";
-import { PEGA_DADOS_ONG } from "../../../../../api";
+import { EDITAR_ONG, PEGA_DADOS_ONG } from "../../../../../api";
 import UseFetch from "../../../../../Custom-Hooks/UseFetch";
-import imagemTeste from "../../../../../resources/images/perfilphotoadmin.png";
+import imagempadrao from "../../../../../resources/images/ongprofile.png";
 import Modal from "../../../../Smart-components/Modal/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
+import { UserContext } from "../../../../../UserContext";
 
 const HeaderOng = ({
   nomeFantasia,
@@ -25,28 +27,31 @@ const HeaderOng = ({
   const { request, loading, error, dados } = UseFetch();
   const [editImage, setEditImage] = React.useState(false);
   const [img, setImg] = React.useState(null);
-  const [imgPerfil, setImgPerfil] = React.useState(null)
+  const [dadosPerfil, setDadosPerfil] = React.useState(null)
   const [errorImg, setErrorImg] = React.useState(false);
   const [preview, setPreview] = React.useState(null);
   const inputFile = React.useRef();
   const [show, setShow] = React.useState(false);
+  const { refreshUser } = React.useContext(UserContext)
+
+  const pegaDadosPerfil = async function(){
+    const token = window.localStorage.getItem("token");
+
+    const { url, options } = PEGA_DADOS_ONG(token, Number(token) - 1);
+
+    const { response, json } = await request(url, options);
+
+    if (response.ok) {
+      console.log(json);
+      setDadosPerfil(json);
+      setPreview(json.image)
+    } else {
+      console.log("ops");
+    }
+  }
 
   React.useEffect(() => {
-    async function pegaImagemONG() {
-      const token = window.localStorage.getItem("token");
-
-      const { url, options } = PEGA_DADOS_ONG(token, Number(token) - 1);
-
-      const { response, json } = await request(url, options);
-
-      if (response.ok) {
-        console.log(json);
-        setImgPerfil(json.image);
-      } else {
-        console.log("ops");
-      }
-    }
-    pegaImagemONG();
+    pegaDadosPerfil();
   }, []);
 
   React.useEffect(() => {
@@ -83,6 +88,43 @@ const HeaderOng = ({
     setPreview(false);
   }
 
+  async function atualizaImagem() {
+    if (validaImagem(preview) || preview === null) {
+      const token = window.localStorage.getItem('token')
+      const { url, options } = EDITAR_ONG(
+        {
+          nomeFantasia: dadosPerfil.nomeFantasia,
+          razaoSocial: dadosPerfil.razaoSocial,
+          focoInstitucional: dadosPerfil.focoInstitucional,
+          cnpj: dadosPerfil.cnpj,
+          dtFundacao: dadosPerfil.dtFundacao,
+          telefone: dadosPerfil.telefone,
+          rua: dadosPerfil.rua,
+          numero: dadosPerfil.numero,
+          complemento: dadosPerfil.complemento,
+          cidade: dadosPerfil.cidade,
+          estado: dadosPerfil.estado,
+          cep: dadosPerfil.cep,
+          image: preview,
+          email: dadosPerfil.usuario.email,
+          senha: dadosPerfil.usuario.senha,
+        },
+        token, dadosPerfil.id)
+      const { response, json } = await request(url, options)
+
+      if(response.ok){
+        toast.success('Imagem Editada com Sucesso!')
+        pegaDadosPerfil()
+        refreshUser()
+        document.getElementById('modal').click()
+      } else {
+        toast.error('Ops! Algo correu errado...')
+        document.getElementById('modal').click()
+      }
+    }
+  }
+
+  { if (!dadosPerfil) return null }
   return (
     <>
       <header className={style.header}>
@@ -90,8 +132,8 @@ const HeaderOng = ({
           <div
             className={style.imagemPerfil}
             style={{
-              backgroundImage: `url('${imgPerfil ? imgPerfil : imagemTeste}')`,
-              backgroundSize: "contain",
+              backgroundImage: `url('${dadosPerfil.image ? dadosPerfil.image : imagempadrao}')`,
+              backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center center",
             }}
@@ -157,7 +199,7 @@ const HeaderOng = ({
                 onClick={() => inputFile.current.click()}
               >
                 <img
-                  src={preview ? preview : imagemTeste}
+                  src={preview ? preview : imagempadrao}
                   alt="símbolo de galeria"
                   onMouseEnter={() => {
                     setShow("block");
@@ -171,7 +213,7 @@ const HeaderOng = ({
             </div>
             <div className={style.buttons}>
               <Button onClick={() => limpar()}>Limpar</Button>
-              <Button>Salvar</Button>
+              <Button onClick={() => atualizaImagem()}>Salvar</Button>
             </div>
           </div>
         </Modal>
