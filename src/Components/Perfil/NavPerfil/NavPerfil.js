@@ -11,31 +11,15 @@ import { UserContext } from "../../../UserContext";
 import useFetch from "../../../Custom-Hooks/UseFetch";
 import { PEGA_DADOS_ONG } from "../../../api";
 import imagemOng from "../../../resources/images/ongprofile.png"
+import imagemDoador from "../../../resources/images/doadorprofile.png"
 
 const NavPerfil = ({ label, links, imgs, nome }) => {
-  const { fazerLogout, dadosUsuario } = React.useContext(UserContext);
+  const { fazerLogout, dadosUsuario, imagem, pegaImagemPerfil } = React.useContext(UserContext);
   const { request, error, loading, dados } = useFetch()
-  const [imagem, setImagem] = React.useState()
 
   React.useEffect(() => {
-
-    async function pegaDados() {
-      if (dadosUsuario.tipo === "INSTITUICAO") {
-        const token = window.localStorage.getItem('token')
-        const { url, options } = PEGA_DADOS_ONG(token, Number(token) - 1)
-
-        const { response, json } = await request(url, options)
-
-        if (response.ok) {
-          setImagem(json.image)
-        }
-      } else {
-
-      }
-    }
-
-    pegaDados()
-  }, [])
+    pegaImagemPerfil()
+  }, [imagem])
 
   return (
     <nav className={style.nav}>
@@ -44,7 +28,7 @@ const NavPerfil = ({ label, links, imgs, nome }) => {
         <span
           className={style.imagemNavbar}
           style={{
-            backgroundImage: `url(${imagem ? imagem : imagemOng})`
+            backgroundImage: `url(${imagem ? imagem : (dadosUsuario.tipo === "INSTITUICAO" ? imagemOng : imagemDoador)})`
           }}>.
         </span>
         <span>{nome}</span>

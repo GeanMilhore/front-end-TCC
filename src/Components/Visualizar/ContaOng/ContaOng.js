@@ -32,15 +32,15 @@ const ContaOng = () => {
   const [dadosCampanha, setDadosCampanha] = React.useState(null)
   const { request, loading, error, dados } = UseFetch();
   const { id } = useParams();
+  const tokenId = id
 
 
 
 
   React.useEffect(() => {
-    
     async function montaPerfilOng() {
       const token = window.localStorage.getItem("token");
-      const { url, options } = PEGA_DADOS_ONG(token, id);
+      const { url, options } = PEGA_DADOS_ONG(token, tokenId);
 
       const { response, json } = await request(url, options);
 
@@ -54,7 +54,7 @@ const ContaOng = () => {
 
     async function pegaCampanhas() {
 
-      const { url, options } = PEGAR_CAMPANHAS(id)
+      const { url, options } = PEGAR_CAMPANHAS(Number(id) + 1)
       console.log(url)
       console.log(options)
 
@@ -70,8 +70,8 @@ const ContaOng = () => {
     }
 
     
-    pegaCampanhas()
     montaPerfilOng();
+    pegaCampanhas()
   }, []);
 
   if (loading) return <div className={"loader"} />;
@@ -81,10 +81,11 @@ const ContaOng = () => {
       <div className={style.conta}>
         <HeaderOng
           nomeFantasia={dadosOng.nomeFantasia}
-          email={dadosOng.email}
+          email={dadosOng.usuario.email}
           razaoSocial={dadosOng.razaoSocial}
           focoInstitucional={dadosOng.focoInstitucional}
           dtFundacao={dadosOng.dtFundacao}
+          idToken={dadosOng.id}
           style={{marginLeft: '50vw'}}
         />
         <div className={style.buttons}>

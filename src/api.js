@@ -53,6 +53,21 @@ export function PEGA_DADOS_ONG(token, id) {
   };
 }
 
+export function PEGA_DADOS_DOADOR(token, id) {
+  return {
+    url: API_URL + `/doadores/${id}`,
+    options: {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    },
+  };
+}
+
+
+
 export function CADASTRAR_DOADOR(body) {
   return {
     url: API_URL + "/doadores",

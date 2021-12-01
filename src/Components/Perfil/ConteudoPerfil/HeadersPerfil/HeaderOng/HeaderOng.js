@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import { UserContext } from "../../../../../UserContext";
 
 const HeaderOng = ({
+  idToken = Number(window.localStorage.getItem('token')) - 1,
   nomeFantasia,
   email,
   razaoSocial,
@@ -37,7 +38,7 @@ const HeaderOng = ({
   const pegaDadosPerfil = async function(){
     const token = window.localStorage.getItem("token");
 
-    const { url, options } = PEGA_DADOS_ONG(token, Number(token) - 1);
+    const { url, options } = PEGA_DADOS_ONG(token, idToken );
 
     const { response, json } = await request(url, options);
 
