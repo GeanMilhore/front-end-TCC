@@ -141,7 +141,6 @@ const HeaderOng = ({
           >
             {" "}
           </div>
-          {/* <img src={imagemTeste} alt="Imagem de Perfil" /> */}
           <div>
             <span>{nomeFantasia}</span>
             <span>{email}</span>

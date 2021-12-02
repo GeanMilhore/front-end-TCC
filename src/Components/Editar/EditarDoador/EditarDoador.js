@@ -279,17 +279,6 @@ const EditarDoador = ({ dadosUsuario }) => {
                 disabled
                 {...email}
               />
-              {/* <div className={style.conjuntoInput}>
-                <Input id="senha" label="Senha:" type="password" {...senha} />
-                <Input
-                  id="senha2"
-                  label="Confirmar Senha:"
-                  type="password"
-                  {...senha2}
-                  disabled={disabled}
-                  onBlur={validaSenhas}
-                />
-              </div> */}
             </form>
             <div className={style.containerImg}>
               <div

@@ -106,15 +106,6 @@ const ContaOng = () => {
           >
             Campanhas
           </Button>
-          {/* <Button
-            onClick={() => {
-              setInfo(false);
-              setVerCampanhas(false);
-              setDoar(true);
-            }}
-          >
-            Doar
-          </Button> */}
         </div>
         {info && (
           <MainPerfil

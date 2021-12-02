@@ -25,7 +25,6 @@ const NavPerfil = ({ label, links, imgs, nome }) => {
   return (
     <nav className={style.nav}>
       <header>
-        {/* <img src={imagem} /> */}
         <span
           className={style.imagemNavbar}
           style={{

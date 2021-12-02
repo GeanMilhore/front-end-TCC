@@ -3,7 +3,6 @@
     flex-direction: column;
     width: 60vw;
     text-align: center;
-    /* transform: scale(.9); */
 }
 
 h2{
@@ -60,12 +59,10 @@ h2 span{
 .img{
     display: flex;
     position: relative;
-    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
     margin: 0;
     padding: 0;
-    /* transform: scale(.30); */
 }
 
 .img p{

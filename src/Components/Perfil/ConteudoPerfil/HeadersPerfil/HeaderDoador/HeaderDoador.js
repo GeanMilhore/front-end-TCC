@@ -172,7 +172,6 @@ const HeaderDoador = ({ nome, email, dtNasc, qtdDoacoes, qtdPropostas, isMine })
           >
             {" "}
           </div>
-          {/* <img src={imagemTeste} alt="Imagem de Perfil" /> */}
           <div>
             <span>{nome}</span>
             <span>{email}</span>

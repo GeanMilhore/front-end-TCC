@@ -14,7 +14,6 @@ const CardPerfil = ({ nome, imagemOng, estado, cidade, telefone, id }) => {
       </div>
       <div className={style.infoCard}>
         <span>{nome}</span>
-        {/* <span>{telefone}</span> */}
         <span>
           {estado} , {cidade}
         </span>

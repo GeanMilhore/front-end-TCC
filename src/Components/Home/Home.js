@@ -11,13 +11,6 @@ const Home = ({ links, endPoints, label, imgs, mensagens }) => {
   return (
     <>
       <div className={style.home}>
-        {/* <NavHome
-          linkUm={links[0]}
-          LinkDois={links[1]}
-          opcaoUm={label.opcaoUm}
-          opcaoDois={label.opcaoDois}
-          imgs={imgs}
-        /> */}
         <Routes>
           <Route path={links[0]} element={<ListaContas endPoint={endPoints[0]} />} />
           <Route path={links[1]} element={<ListaInteresses endPoint={endPoints[1]} />} />

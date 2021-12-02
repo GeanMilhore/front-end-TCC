@@ -7,7 +7,6 @@
 
 .configuracoes header {
     display: flex;
-    /* flex-direction: column; */
     position: fixed;
     align-items: center;
     justify-content: space-evenly;

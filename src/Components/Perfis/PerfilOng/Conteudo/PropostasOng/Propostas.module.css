@@ -13,7 +13,6 @@
     display: grid;
     overflow: scroll;
     grid-template-columns: 330px 330px;
-    /* flex-direction: column; */
 }
 
 .itemLista{

@@ -22,13 +22,6 @@ const ParaTeste = () => {
                             btnUm={"Limpar"}
                             btnDois={"Salvar"}
                         />
-                        {/* titulo,
-                            labelImg,
-                            labelUm,
-                            labelDois,
-                            btnUm,
-                            btnDois,
-                            imgsrc, */}
                     </div>
             </Modal> : null }
         </div>

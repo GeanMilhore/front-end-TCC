@@ -10,7 +10,6 @@ const FooterNav = () => {
 
   return (
     <footer className={style.footer}>
-      {/* <NavLink to={"configuracoes"}> <img src={iconeconfiguracao} alt="icone" /> Configurações</NavLink> */}
       <br />
       <Button
         onClick={() => {

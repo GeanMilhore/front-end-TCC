@@ -82,19 +82,6 @@ const RoutesDoador = ({ dadosUsuario }) => {
           </>
         }
       />
-      {/* <Route
-        path="/meusitens"
-        element={
-          <>
-            <BannerMensagem
-              img={meusitensicon}
-              mensagem={"Meus Itens"}
-              submensagem={"aqui você pode ver todos os itens que colocou para doação."}
-            />
-            <TelaMeusItens />
-          </>
-        }
-      /> */}
       <Route
         path="/doacoes"
         element={

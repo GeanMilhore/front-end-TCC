@@ -88,7 +88,6 @@ const Header = () => {
               )}
               {logado && dadosUsuario && dadosUsuario.tipo == 'INSTITUICAO' && <Link to="/conta/configuracoes">{dadosUsuario.nomeFantasia}</Link>}
               {logado && dadosUsuario && dadosUsuario.tipo == 'DOADOR' && <Link to="/conta/configuracoes">{dadosUsuario.nome}</Link>}
-              {/* {logado && <Link to="/conta/configuracoes">Conta</Link>} */}
             </Nav>
           </Navbar.Collapse>
         </Container>

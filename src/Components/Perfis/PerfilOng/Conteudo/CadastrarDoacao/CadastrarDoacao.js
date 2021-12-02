@@ -65,15 +65,6 @@ const CadastrarItem = () => {
       <Modal.Dialog className={style.dialog}>
         <Modal.Header>
           <Modal.Title>Cadastrar Doação</Modal.Title>
-          {/* <button
-            style={{
-              border: "none",
-              fontSize: "15pt",
-              backgroundColor: "transparent",
-            }}
-          >
-            X
-          </button> */}
         </Modal.Header>
 
         <Modal.Body>
@@ -83,29 +74,7 @@ const CadastrarItem = () => {
               onSubmit={(event) => event.preventDefault()}
             >
               <Input id="nome" label="Nome do Item:" type="text" {...nome} />
-              {/* {tipo === "doador" && (
-                <div className={style.divUnicQtd}>
-                  <Switch
-                    id="unico"
-                    label="Item único:"
-                    value={checked}
-                    setValue={setChecked}
-                    buttonclass={style.switchButton}
-                    labelclass={style.labelClass}
-                  />
-                  <Input
-                    id="qtd"
-                    label="Quantidade:"
-                    type="number"
-                    min={1}
-                    value={qtd.value}
-                    onChange={qtd.onChange}
-                    disabled={checked}
-                    className={style.divUnicQtd}
-                  />
-                </div>
-              )} */}
-
+             
               <Input id="valor" label="Valor:" type="number" {...valor} />
 
               <Input id="desc" label="Descrição:" type="textarea" {...desc} />

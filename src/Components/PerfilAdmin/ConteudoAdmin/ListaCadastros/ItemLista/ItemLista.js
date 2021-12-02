@@ -33,10 +33,6 @@ const ItemLista = ({ item }) => {
       <span>{itemLista.nome}</span>
       <span>{itemLista.colunaDois}</span>
       <span>{itemLista.colunaTres}</span>
-      {/* <span className={style.adminButtons}>
-        <Button>Editar</Button>
-        <Button>Excluir</Button>
-      </span> */}
     </div>
   );
 };
