@@ -172,12 +172,10 @@ const EditarDoacao = () => {
               onClick={() => {
                 nome.setValue("");
                 valor.setValue("");
-                // qtd.setValue(2);
                 setChecked(null);
                 desc.setValue("");
                 setImg(null);
                 setPreview(false);
-                // if (checked) document.querySelector(".react-switch-bg").click();
               }}
             >
               Limpar

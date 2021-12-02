@@ -35,7 +35,6 @@ const DoacoesRecebidas = () => {
     request("/api/getDoacoesRealizadas", config);
   }, []);
 
-  // if(error) return <p>{error}</p>
   if (loading) return <p>Loading...</p>;
   if (itensRecebidos) {
     return (

@@ -77,6 +77,19 @@ html{
     margin-left: 50%;
 }
 
+.arrumaLoad{
+    margin-left: 0;
+}
+
+.arrumaLoadHome{
+    margin-left: 0;
+    margin-top: 5.5vh;
+}
+
+.arrumaLoadAdmin{
+    margin: 0;
+}
+
 @keyframes is-rotating {
     to{
         transform: rotate(1turn);

@@ -2,6 +2,7 @@ import React from "react";
 import { LISTAR_ONGS } from "../../../../../api";
 import style from "./NavFooter.module.css";
 import useFetch from "../../../../../Custom-Hooks/UseFetch";
+import Button from '../../../../Smart-components/Button/Button'
 
 const NavFooter = ({ page, size, setCadastros, setPagina, totalPaginas, listarItem }) => {
   const { request, loading, error, dados } = useFetch();
@@ -51,10 +52,10 @@ const NavFooter = ({ page, size, setCadastros, setPagina, totalPaginas, listarIt
 
   return (
     <nav className={style.navFooter}>
-      <span>Página - {page + 1}</span>
+      <span><strong>Página</strong> - {page + 1} de {totalPaginas}</span>
       <div>
-        <button disabled={!podeAnterior} onClick={() => anterior()}>&lt;</button>
-        <button disabled={!podeProxima} onClick={() => proxima()}>&gt;</button>
+        <Button disabled={!podeAnterior} onClick={() => anterior()}>&lt;</Button>
+        <Button disabled={!podeProxima} onClick={() => proxima()}>&gt;</Button>
       </div>
     </nav>
   );

@@ -57,8 +57,6 @@ const Card = ({ idProposta, idOng, atualizar, foto, nomeItem, nomeOng, status, l
             backgroundColor: 'transparent',
             top: '-32vh',
             left: '-20vw',
-            // height: 'auto',
-            // widht: 'auto',
           }}
 
           estiloContainer={{

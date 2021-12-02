@@ -31,7 +31,6 @@ const PropostasEnviadas = () => {
       // get itens de doação cadastrados
   }, []);
 
-  // if(error) return <p>{error}</p>
   if (loading) return <p>Loading...</p>;
   if (propostasEnviadas) {
     return (

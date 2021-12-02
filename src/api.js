@@ -1,6 +1,6 @@
-// export const API_URL = "http://192.168.18.46:8080";
+export const API_URL = "http://192.168.18.46:8080";
 
-export const API_URL = "http://localhost:8080";
+// export const API_URL = "http://localhost:8080";
 
 export function TOKEN_POST(body) {
   return {
@@ -33,7 +33,6 @@ export function PEGA_DADOS_USUARIO(token) {
     options: {
       method: "GET",
       headers: {
-        // Authorization: "Bearer " + token,
         Authorization: token,
       },
     },
@@ -81,7 +80,6 @@ export function CADASTRAR_DOADOR(body) {
   };
 }
 
-//http metodo 'POST'
 export function CADASTRAR_INSTITUICAO(body) {
   return {
     url: API_URL + "/instituicoes",
@@ -288,7 +286,7 @@ export function LISTAR_DOADORES(token, pagina, size) {
   return {
     url:
       API_URL +
-      `/doadores?${pagina ? `page=${pagina}` : null}${size ? `&size=${size}` : null
+      `/doadores?${pagina ? `page=${pagina}` : ''}${size ? `&size=${size}` : ''
       }`,
     options: {
       method: "GET",
@@ -303,9 +301,7 @@ export function LISTAR_DOADORES(token, pagina, size) {
 export function LISTAR_DOACOES(token, pagina, size) {
   return {
     url:
-      API_URL +
-      `/itens?${pagina ? `page=${pagina}` : null}${size ? `&size=${size}` : null
-      }`,
+      API_URL + `/itens/todos?${pagina ? `page=${pagina}` : ''}${size ? `&size=${size}` : ''}`,
     options: {
       method: "GET",
       headers: {
@@ -383,9 +379,9 @@ export function PEGAR_PROPOSTAS_DOADOR(token, pagina, size) {
   };
 }
 
-export function PEGAR_PROPOSTAS_ACEITAS_DOADOR(token, page, size){
+export function PEGAR_PROPOSTAS_ACEITAS_DOADOR(token, page, size) {
   return {
-    url: API_URL +`/doadores/${token}/propostas?status=ACEITO${page ? `&page=${page}` : `&page=0`}${size ? `&size=${size}` : `&size=5`}`,
+    url: API_URL + `/doadores/${token}/propostas?status=ACEITO${page ? `&page=${page}` : `&page=0`}${size ? `&size=${size}` : `&size=5`}`,
     options: {
       method: "GET",
       headers: {
@@ -425,7 +421,7 @@ export function EDITAR_CAMPANHA(body, id, token) {
 
 export function PEGAR_CAMPANHAS(token, page, size) {
   return {
-    url: API_URL + `/campanhas${page ? '?page='+page : '?page='+0 }${size ? '&size='+size : '&size='+5 }`,
+    url: API_URL + `/campanhas${page ? '?page=' + page : '?page=' + 0}${size ? '&size=' + size : '&size=' + 5}`,
     options: {
       method: "GET",
       headers: {

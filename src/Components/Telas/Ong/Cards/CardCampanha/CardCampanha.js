@@ -73,8 +73,6 @@ const CardCampanha = ({ setDadosEdicao, abrirEdicao, idCampanha, foto, nomeItem,
             backgroundColor: 'transparent',
             top: '-32vh',
             left: 'calc(50% - 50vw)',
-            // height: 'auto',
-            // widht: 'auto',
           }}
 
           estiloContainer={{

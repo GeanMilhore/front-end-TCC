@@ -33,6 +33,7 @@ const TelaPropostasOng = () => {
         pegaPropostas()
     }, [])
 
+    if(loading) return <div className={'arrumaLoad loader'} />
     if (!propostas) return null
     return (
         <>

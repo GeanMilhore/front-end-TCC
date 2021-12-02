@@ -24,7 +24,7 @@ const ItemLista = ({ item }) => {
     itemLista.colunaTres = item.dtNasc;
   } else if (item.quantidade) {
     itemLista.nome = item.nome;
-    itemLista.colunaDois = item.dataCriacao;
+    itemLista.colunaDois = item.descricao;
     itemLista.colunaTres = item.quantidade;
   }
 
@@ -33,10 +33,10 @@ const ItemLista = ({ item }) => {
       <span>{itemLista.nome}</span>
       <span>{itemLista.colunaDois}</span>
       <span>{itemLista.colunaTres}</span>
-      <span className={style.adminButtons}>
+      {/* <span className={style.adminButtons}>
         <Button>Editar</Button>
         <Button>Excluir</Button>
-      </span>
+      </span> */}
     </div>
   );
 };

@@ -29,7 +29,7 @@ const ListaContas = ({ endPoint }) => {
     pegaContas();
   }, []);
 
-  if (loading) return <div className={"loader"} />;
+  if (loading) return <div className={"arrumaLoadHome loader"} />;
   return (
     <>
       <div className={style.listagem}>

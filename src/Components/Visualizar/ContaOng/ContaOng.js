@@ -8,7 +8,6 @@ import Button from "../../Smart-components/Button/Button";
 import style from "./ContaOng.module.css";
 import CadastroTeste from "../../CadastroTeste/CadastroTeste";
 import { PEGAR_CAMPANHAS } from "../../../api";
-// import doaricon from '../../../resources/images/doaricon.png'
 import doaricon from '../../../resources/images/giftratas.gif'
 import { faWindowMaximize } from "@fortawesome/free-solid-svg-icons";
 import CardVerCampanha from "../../Telas/Cards/CardVerCampanha/CardVerCampanha";
@@ -150,25 +149,6 @@ const ContaOng = () => {
               abrirDoar={setVerDoar}
               setDadosCampanha={setDadosCampanha}
             />
-          // <div className={style.lista}>
-          //   {campanhas.map((card) => (
-          //     <CardVerCampanha 
-          //     labels={{
-          //       label1: 'Campanha',
-          //       label2: 'Descricao',
-          //       label3: 'Para Arrecadar'
-          //     }}
-          //     idCampanha={card.id}
-          //     foto={card.image}
-          //     descricao={card.descricao}
-          //     nomeItem={card.nome}
-          //     quantidade={card.quantidade}
-          //     // atualizar={pegaCampanhas}
-          //     // abrirEdicao={setVerModalEdit}
-          //     // setDadosEdicao={setDadosEdicao}
-          //     />
-          //   ))}
-          // </div>
           )
         }
         {verModal && (

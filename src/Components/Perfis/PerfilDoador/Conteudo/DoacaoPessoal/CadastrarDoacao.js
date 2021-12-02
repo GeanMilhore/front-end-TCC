@@ -8,21 +8,12 @@ import useForm from "../../../../Custom-Hooks/UseForm"
 const CadastrarItem = () => {
   const nome = useForm();
   const desc = useForm();
-  // const qtd = useForm();
   const valor = useForm();
   const [checked, setChecked] = React.useState(false);
   const [img, setImg] = React.useState(null);
   const [errorImg, setErrorImg] = React.useState(false);
   const [preview, setPreview] = React.useState(null);
   const inputFile = React.useRef();
-
-  // React.useEffect(() => {
-  //   if (checked) {
-  //     qtd.setValue(1);
-  //   } else if (qtd.value < 2) {
-  //     qtd.setValue(2);
-  //   }
-  // }, [checked, qtd]);
 
   React.useEffect(() => {
     if (errorImg) {
@@ -154,8 +145,6 @@ const CadastrarItem = () => {
               variant="secondary"
               onClick={() => {
                 nome.setValue("");
-                // qtd.setValue(2);
-                // setChecked(null);
                 desc.setValue("");
                 valor.setValue('')
                 setImg(null);

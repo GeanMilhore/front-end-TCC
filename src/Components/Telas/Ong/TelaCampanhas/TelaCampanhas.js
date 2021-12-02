@@ -40,6 +40,8 @@ const TelaCampanhas = () => {
     pegaCampanhas()
   }, [])
 
+  if(loading) return <div className={'arrumaLoad loader'} />
+  if(!campanhas) return null
   return (
     <div className={style.mainButton}>
       <div className={style.containerButton}>

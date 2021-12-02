@@ -5,8 +5,10 @@
 }
 
 .navListagem header{
-    width: 98%;
-    margin-bottom: 10px;
+    width: 100%;
+    padding-bottom: 1rem;
+    margin-bottom: 2.1rem;
+    border-bottom: 1px solid rgb(179, 179, 179);
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -44,11 +46,11 @@
 }
 
 .navListagem .span1{
-    left: 25%;
+    left: 28%;
 }
 .navListagem .span2{
-    left: 43%;
+    left: 51%;
 }
 .navListagem .span3{
-    left: 61%;
+    left: 73%;
 }

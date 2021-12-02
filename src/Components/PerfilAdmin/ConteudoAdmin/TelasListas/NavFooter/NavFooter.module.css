@@ -3,3 +3,16 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.navFooter button{
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.navFooter button:disabled{
+    cursor: default;
+}
+.navFooter div{
+    display: flex;
+}

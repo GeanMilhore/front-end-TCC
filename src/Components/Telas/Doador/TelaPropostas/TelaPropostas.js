@@ -31,7 +31,7 @@ const TelaPropostas = () => {
     pegaPropostas();
   }, []);
 
-  if (loading) return <div className={" loader"} />;
+  if (loading) return <div className={"arrumaLoad loader"} />;
   if (!propostas) return null;
   return (
     <>

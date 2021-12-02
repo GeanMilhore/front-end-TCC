@@ -42,8 +42,6 @@ const CardDoacao = ({ foto, nomeItem, descricao, quantidade, labels, ...props })
             backgroundColor: 'transparent',
             top: '-32vh',
             left: 'calc(50% - 50vw)',
-            // height: 'auto',
-            // widht: 'auto',
           }}
 
           estiloContainer={{

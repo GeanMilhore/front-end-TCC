@@ -85,8 +85,6 @@ const CardVerCampanha = ({ usuario, setDadosVer, setDadosCampanha, abrirDoar, ab
             backgroundColor: 'transparent',
             top: '-32vh',
             left: 'calc(50% - 50vw)',
-            // height: 'auto',
-            // widht: 'auto',
           }}
 
           estiloContainer={{

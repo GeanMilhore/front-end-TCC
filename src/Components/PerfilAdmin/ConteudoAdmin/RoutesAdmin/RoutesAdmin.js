@@ -23,7 +23,7 @@ const RoutesAdmin = () => {
         doacoes: {
             nome: 'Doações',
             primeiraColuna: 'Nome do Item',
-            segundaColuna: 'Data de Realização',
+            segundaColuna: 'Descrição da Doação',
             terceiraColuna: 'Quantidade'
         }
     }

@@ -9,7 +9,8 @@ import Button from "../../Smart-components/Button/Button";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../../../UserContext";
 import useFetch from "../../../Custom-Hooks/UseFetch";
-import { PEGA_DADOS_ONG } from "../../../api";
+import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
 import imagemOng from "../../../resources/images/ongprofile.png"
 import imagemDoador from "../../../resources/images/doadorprofile.png"
 
@@ -61,7 +62,7 @@ const NavPerfil = ({ label, links, imgs, nome }) => {
           Configurações
         </NavLink>
         <br />
-        <Button onClick={() => fazerLogout()}>Sair</Button>
+        <Button onClick={() => fazerLogout()}><FontAwesomeIcon icon={faSignOutAlt} />{"  "}Sair</Button>
       </footer>
     </nav>
   );

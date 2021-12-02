@@ -4,11 +4,9 @@ import Modal from '../../../Smart-components/Modal/Modal'
 
 const Card = ({ foto, nomeItem, nomeOng, quantidade, labels, ...props }) => {
 
-  const [verModal, setVerModal] = React.useState(false)
-
   return (
     <>
-    <div className={style.card} {...props} onClick={() => setVerModal(true)}>
+    <div className={style.card} {...props} >
       <div
         className={style.cardImg}
         style={{ backgroundImage: `url('${foto}')` }}
@@ -22,7 +20,6 @@ const Card = ({ foto, nomeItem, nomeOng, quantidade, labels, ...props }) => {
         <p >{quantidade}</p>
       </div>
     </div>
-    {verModal ? <Modal onClose={setVerModal}>{nomeItem}</Modal> : null}
     </>
   );
 };

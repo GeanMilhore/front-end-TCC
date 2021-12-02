@@ -88,21 +88,4 @@ const Paginacao = ({ page, size, setItens, setPagina, reqItens, paginar, isPriva
     </nav>
   );
 };
-
-// -- Tem nos parametros
-
-// size={size}
-//           page={pagina}
-//           setCadastros={setCadastros}
-//           setPagina={setPagina}
-//           totalPaginas={cadastros.totalPages}
-//           listarItem={LISTAR_ONGS}
-
-// ------------------------------
-
-// -- tem no componente
-
-// const [pagina, setPagina] = React.useState(0);
-// const [size, setSize] = React.useState(5);
-
 export default Paginacao;

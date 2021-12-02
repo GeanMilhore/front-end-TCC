@@ -31,7 +31,7 @@ const TelaDoacoes = () => {
     pegaItens();
   }, []);
 
-  if (loading) return <div className={" loader"} />;
+  if (loading) return <div className={"arrumaLoad loader"} />;
   if (!doacoes) return null;
   return (
     <>

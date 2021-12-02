@@ -27,8 +27,9 @@ const ListaDoadores = ({ labels }) => {
 
     pegaDados();
   }, []);
-
-  if (!cadastros) return <div className={"loader"} />;
+  
+  if(loading) return <div className={"arrumaLoadAdmin loader"} />
+  if (!cadastros) return null 
   return (
     <>
       <div className={style.listaDoadores}>

@@ -20,7 +20,6 @@ const CadastrarItem = ({ titulo, labels, cancelTo}) => {
 
   const nome = useForm();
   const desc = useForm();
-  // const qtd = useForm();
   const valor = useForm();
   const [checked, setChecked] = React.useState(false);
   const [img, setImg] = React.useState(null);

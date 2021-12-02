@@ -33,7 +33,6 @@ const NavListagem = ({
       body: JSON.stringify(postInfo),
     })
       .then(async (res) => ({
-        //.get('content-disposition')
         filename: "relatorioPDF",
         blob: await res.blob(),
       }))
@@ -69,7 +68,6 @@ const NavListagem = ({
       <nav className={style.navListagem}>
         <header>
           <span>Lista de {nome}</span>
-          <Input />
           <Button onClick={() => downloadPDF()}>
             <img src={iconepdf} alt="icone" />
             PDF

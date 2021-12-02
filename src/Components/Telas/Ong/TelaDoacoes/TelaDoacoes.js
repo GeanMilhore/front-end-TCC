@@ -35,6 +35,7 @@ const TelaDoacoes = () => {
         pegaDoacoes()
     }, [])
 
+    if(loading) return <div className={'arrumaLoad loader'} />
     if(!doacoes) return null
     return (
         <>
